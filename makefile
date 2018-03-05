@@ -9,7 +9,7 @@ OBJ = $(HOME)/obj
 INCLUDE = $(HOME)/include
 LIB = $(HOME)/lib
 
-all : clean $(BIN)/saludo $(BIN)/unico
+all : clean $(BIN)/saludo $(BIN)/unico $(BIN)/I_CambiaNegs
 
 $(BIN)/saludo : $(SRC)/saludo.cpp
 	@echo Compilando...
@@ -21,6 +21,10 @@ $(BIN)/unico : $(OBJ)/unico.o
 
 $(OBJ)/unico.o : $(SRC)/unico.cpp
 	g++ -c -o $(OBJ)/unico.o $(SRC)/unico.cpp
+
+$(BIN)/I_CambiaNegs : $(SRC)/I_CambiaNegs.cpp
+	g++ -o $(BIN)/I_CambiaNegs $(SRC)/I_CambiaNegs.cpp
+
 
 clean : 
 	-rm $(OBJ)/*
