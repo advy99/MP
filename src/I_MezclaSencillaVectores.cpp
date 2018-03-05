@@ -21,15 +21,28 @@ int main( void ){
 	int k = 0;
 
 
-	for (int i = 0; i < tam_res; i++){
-		
-		if ( *(p_v1 + j) < *(p_v2 + k) ){
-			*(p_res + i ) = *(p_v1 + j);
-			j++;
+	for (int i = 0; i < tam_res ; i++){
+
+		if ( j < tam_v1 && k < tam_v2 ){
+			if ( *(p_v1 + j) < *(p_v2 + k) ){
+				*(p_res + i ) = *(p_v1 + j);
+				j++;
+			}
+			else{
+				*(p_res + i ) = *(p_v2 + k);
+				k++;
+			}
 		}
 		else{
-			*(p_res + i ) = *(p_v2 + k);
-			k++;
+			if (j == tam_v1 ){
+				*(p_res + i ) = *(p_v2 + k);
+				k++;
+			}
+			else{
+				*(p_res + i ) = *(p_v1 + j);
+				j++;
+			}
+
 		}
 	}
 
