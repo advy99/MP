@@ -35,7 +35,7 @@ using namespace std;
 int main( void ){
 	const int MAX = 1000;
 	int v[MAX];
-	int *p = v;
+	int * const p = v;
 	GeneradorAleatorioEnteros generador(-50,50);
 
 	for (int i = 0;i < MAX;i++){
