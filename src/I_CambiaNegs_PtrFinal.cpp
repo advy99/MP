@@ -33,7 +33,7 @@ public:
 using namespace std;
 
 int main( void ){
-	const int MAX = 10;
+	const int MAX = 1000;
 	int v[MAX];
 	GeneradorAleatorioEnteros generador(-50,50);
 
