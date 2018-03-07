@@ -1,5 +1,4 @@
 # Fichero: makefile
-# Construye el ejecutable saludo a partir de saludo.cpp
 
 HOME = .
 
@@ -9,7 +8,7 @@ OBJ = $(HOME)/obj
 INCLUDE = $(HOME)/include
 LIB = $(HOME)/lib
 
-all : clean $(BIN)/saludo $(BIN)/unico $(BIN)/I_CambiaNegs $(BIN)/I_CambiaNegs_PtrFinal $(BIN)/I_MezclaSencillaVectores $(BIN)/I_ReorganizaVector
+all : clean $(BIN)/saludo $(BIN)/unico makefile_sesion_inicial
 
 $(BIN)/saludo : $(SRC)/saludo.cpp
 	@echo Compilando...
@@ -22,18 +21,14 @@ $(BIN)/unico : $(OBJ)/unico.o
 $(OBJ)/unico.o : $(SRC)/unico.cpp
 	g++ -c -o $(OBJ)/unico.o $(SRC)/unico.cpp
 
-$(BIN)/I_CambiaNegs : $(SRC)/I_CambiaNegs.cpp
-	g++ -o $(BIN)/I_CambiaNegs $(SRC)/I_CambiaNegs.cpp
+makefile_sesion_inicial :
+	@echo
+	@echo "Generando sesion inicial"
+	
+	make -f $(HOME)/makefile_sesion_inicial.mak
 
-$(BIN)/I_CambiaNegs_PtrFinal : $(SRC)/I_CambiaNegs_PtrFinal.cpp
-	g++ -o $(BIN)/I_CambiaNegs_PtrFinal $(SRC)/I_CambiaNegs_PtrFinal.cpp
-
-$(BIN)/I_MezclaSencillaVectores : $(SRC)/I_MezclaSencillaVectores.cpp
-	g++ -o $(BIN)/I_MezclaSencillaVectores $(SRC)/I_MezclaSencillaVectores.cpp
-
-$(BIN)/I_ReorganizaVector : $(SRC)/I_ReorganizaVector.cpp
-	g++ -o $(BIN)/I_ReorganizaVector $(SRC)/I_ReorganizaVector.cpp
-
+	@echo "Sesion inicial generada"
+	@echo
 
 clean : 
 	-rm $(OBJ)/*
