@@ -7,7 +7,7 @@ OBJ = $(HOME)/obj
 INCLUDE = $(HOME)/include
 LIB = $(HOME)/lib
 
-all : clean $(BIN)/I_CambiaNegs $(BIN)/I_CambiaNegs_PtrFinal $(BIN)/I_MezclaSencillaVectores $(BIN)/I_ReorganizaVector
+all : $(BIN)/I_CambiaNegs $(BIN)/I_CambiaNegs_PtrFinal $(BIN)/I_MezclaSencillaVectores $(BIN)/I_ReorganizaVector
 
 $(BIN)/I_CambiaNegs : $(SRC)/I_CambiaNegs.cpp
 	g++ -o $(BIN)/I_CambiaNegs $(SRC)/I_CambiaNegs.cpp
