@@ -32,14 +32,13 @@ bool es_palindromo( char * cadena){
 
 int comparar_cadenas (char * cadena1, char * cadena2){
 	int valor_cad1 = 0;
-	int valor_cad2 = 0;
 
 	for (int i = 0; i < longitud_cadena(cadena1); i++){
 		valor_cad1 += *(cadena1 + i);
 	}
 	for (int i = 0; i < longitud_cadena(cadena2); i++){
-		valor_cad2 += *(cadena2 + i);
+		valor_cad1 -= *(cadena2 + i);
 	}
 
-	return valor_cad1 - valor_cad2;
+	return valor_cad1;
 }
