@@ -15,7 +15,7 @@ int longitud_cadena( char * cadena){
 bool es_palindromo( char * cadena){
 	bool palindromo = true;
 	int tam_util = longitud_cadena(cadena);
-	char * p_fin_char = &cadena[tam_util - 1];
+	char * p_fin_char = cadena + tam_util - 1;
 
 	while ( cadena < p_fin_char && palindromo){
 		if(*cadena == *p_fin_char){
