@@ -10,7 +10,9 @@ int main( void ){
 	cout << "Introduce una cadena: ";
 	cin.getline(cadenaC, MAX);
 
-	cout << longitud_cadena(cadenaC);
+	cout << longitud_cadena(cadenaC) << endl;
+
+	cout << "La cadena es palindromo " << es_palindromo(cadenaC) << endl;
 
 	return (0);
 }
