@@ -6,10 +6,13 @@ BIN = $(HOME)/bin
 SRC = $(HOME)/src
 OBJ = $(HOME)/obj
 
-all : $(BIN)/I_PosicionPrimerBlanco clean
+all :  clean $(BIN)/I_PosicionPrimerBlanco $(BIN)/I_SaltaPrimeraPalabra
 
 $(BIN)/I_PosicionPrimerBlanco : $(SRC)/I_PosicionPrimerBlanco.cpp
 	g++ -o $(BIN)/I_PosicionPrimerBlanco $(SRC)/I_PosicionPrimerBlanco.cpp
+
+$(BIN)/I_SaltaPrimeraPalabra : $(SRC)/I_SaltaPrimeraPalabra.cpp
+	g++ -o $(BIN)/I_SaltaPrimeraPalabra $(SRC)/I_SaltaPrimeraPalabra.cpp
 
 
 clean :
