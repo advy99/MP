@@ -30,7 +30,6 @@ public:
    }
 };
 
-using namespace std;
 
 int main( void ){
 	const int MAX = 1000;
