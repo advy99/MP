@@ -17,8 +17,10 @@ int main ( void ){
 		p_char++;
 	}
 
-	if (*p_char != '\0')
+	if (*p_char != '\0'){
+		p_char++;
 		strcpy(cadenaC_recortada, p_char);
+	}
 	
 	cout << cadenaC_recortada;
 }
