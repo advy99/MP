@@ -46,7 +46,7 @@ int comparar_cadenas (char * cadena1, char * cadena2){
 void copiar_cadena(char * resultado, char * original){
 	int longitud = longitud_cadena(original);
 
-	for(int i = 0; i < longitud ; i++){
+	for(int i = 0; i <= longitud ; i++){
 		*(resultado + i) = *(original + i); 
 	}
 }

@@ -14,7 +14,7 @@ int main( void ){
 	cout << "Introduce otra cadena: ";
 	cin.getline(cadenaC_2, MAX);
 
-	cout << "Longitud de la cadena 1" << longitud_cadena(cadenaC) << endl;
+	cout << "Longitud de la cadena 1 : " << longitud_cadena(cadenaC) << endl;
 
 	cout << "La cadena 1 es palindromo :" << es_palindromo(cadenaC) << endl;
 
@@ -22,7 +22,8 @@ int main( void ){
 
 	copiar_cadena(cadenaC_copia, cadenaC);
 
-	cout << "Copia : " << cadenaC_copia;
+	cout << "Copia : " << cadenaC_copia << endl;
+
 
 	return (0);
 }
