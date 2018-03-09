@@ -28,6 +28,8 @@ int main( void ){
 
 	cout << cadenaC << endl;
 
+	cout << extraer_subcadena(cadenaC,1,20) << endl;
+
 	cout << invertir_cadena(cadenaC_2) << endl;
 
 	return (0);

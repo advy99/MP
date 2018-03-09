@@ -51,8 +51,6 @@ void copiar_cadena(char * resultado, char * original){
 	}
 }
 
-/*---------------------------------------------------------*/
-
 void encadenar_cadena (char * original , char * a_copiar ){
 	int longitud_original = longitud_cadena(original);
 	int longitud_a_copiar = longitud_cadena(a_copiar);
@@ -62,15 +60,25 @@ void encadenar_cadena (char * original , char * a_copiar ){
 	}
 
 }
-/*
-char extraer_subcadena (char * cadena , int pos , int lon){
-	char subcadena;
 
+char * extraer_subcadena (char * cadena , int pos , int lon){
+	int lon_original = longitud_cadena(cadena);
 
-	for (int i = pos; i < longitud ; i++)
+	if (lon + pos > lon_original)
+		lon = lon_original - pos;
+
+	char subcadena[lon + 1];
+	char * p_char = subcadena;
+
+	for (int i = 0; i < lon && i < lon_original; i++){
+		*(p_char + i) = *(cadena + pos + i);
+	}
+	*(p_char + lon) = '\0';
+
+	return p_char;
 
 }
-*/
+
 char * invertir_cadena (char * cadena){
 	int longitud = longitud_cadena(cadena);
 
