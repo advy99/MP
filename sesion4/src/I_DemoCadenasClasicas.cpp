@@ -28,6 +28,7 @@ int main( void ){
 
 	cout << cadenaC << endl;
 
+	cout << invertir_cadena(cadenaC_2) << endl;
 
 	return (0);
 }

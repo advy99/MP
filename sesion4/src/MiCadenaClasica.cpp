@@ -60,5 +60,27 @@ void encadenar_cadena (char * original , char * a_copiar ){
 	for (int i =0; i < longitud_a_copiar; i++){
 		*(original+longitud_original +i) = * (a_copiar + i);
 	}
+
+}
+/*
+char extraer_subcadena (char * cadena , int pos , int lon){
+	char subcadena;
+
+
+	for (int i = pos; i < longitud ; i++)
+
+}
+*/
+char * invertir_cadena (char * cadena){
+	int longitud = longitud_cadena(cadena);
+
+	char invertida[longitud];
+	char * p_char = invertida;
+
+	for (int i = 0; i < longitud; i++){
+		*(p_char+i) = *(cadena+longitud - 1 -i);
+	}
+	*(p_char+longitud) = '\0';
 	
+	return p_char;
 }
