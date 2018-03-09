@@ -24,6 +24,10 @@ int main( void ){
 
 	cout << "Copia : " << cadenaC_copia << endl;
 
+	encadenar_cadena(cadenaC, cadenaC_2);
+
+	cout << cadenaC << endl;
+
 
 	return (0);
 }

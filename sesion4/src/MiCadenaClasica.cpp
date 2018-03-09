@@ -50,3 +50,15 @@ void copiar_cadena(char * resultado, char * original){
 		*(resultado + i) = *(original + i); 
 	}
 }
+
+/*---------------------------------------------------------*/
+
+void encadenar_cadena (char * original , char * a_copiar ){
+	int longitud_original = longitud_cadena(original);
+	int longitud_a_copiar = longitud_cadena(a_copiar);
+
+	for (int i =0; i < longitud_a_copiar; i++){
+		*(original+longitud_original +i) = * (a_copiar + i);
+	}
+	
+}
