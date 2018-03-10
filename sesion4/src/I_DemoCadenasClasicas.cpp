@@ -8,6 +8,8 @@ int main( void ){
 	char cadenaC [MAX];
 	char cadenaC_2 [MAX];
 	char cadenaC_copia [MAX];
+	char subcadenaC [MAX];
+	char cadenaC_invertida [MAX];
 
 	cout << "Introduce una cadena: ";
 	cin.getline(cadenaC, MAX);
@@ -16,7 +18,7 @@ int main( void ){
 
 	cout << "Longitud de la cadena 1 : " << longitud_cadena(cadenaC) << endl;
 
-	cout << "La cadena 1 es palindromo :" << es_palindromo(cadenaC) << endl;
+	cout << "La cadena 1 es palindromo : " << es_palindromo(cadenaC) << endl;
 
 	cout << "Comparacion de cadenas : " << comparar_cadenas(cadenaC, cadenaC_2) << endl;
 
@@ -26,11 +28,15 @@ int main( void ){
 
 	encadenar_cadena(cadenaC, cadenaC_2);
 
-	cout << cadenaC << endl;
+	cout << "Nueva cadenaC encadenada : " << cadenaC << endl;
 
-	cout << extraer_subcadena(cadenaC,1,20) << endl;
+	extraer_subcadena(subcadenaC, cadenaC, 1, 20);
 
-	cout << invertir_cadena(cadenaC_2) << endl;
+	cout << "Subcadena : " << subcadenaC << endl;
+
+	invertir_cadena(cadenaC_invertida,cadenaC);
+
+	cout << "cadenaC invertida : " <<  cadenaC_invertida;
 
 	return (0);
 }

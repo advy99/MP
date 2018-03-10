@@ -46,9 +46,10 @@ int comparar_cadenas (char * cadena1, char * cadena2){
 void copiar_cadena(char * resultado, char * original){
 	int longitud = longitud_cadena(original);
 
-	for(int i = 0; i <= longitud ; i++){
+	for(int i = 0; i < longitud ; i++){
 		*(resultado + i) = *(original + i); 
 	}
+	*(resultado + longitud) = '\0';
 }
 
 void encadenar_cadena (char * original , char * a_copiar ){
@@ -58,37 +59,29 @@ void encadenar_cadena (char * original , char * a_copiar ){
 	for (int i =0; i < longitud_a_copiar; i++){
 		*(original+longitud_original +i) = * (a_copiar + i);
 	}
+	*(original + longitud_original + longitud_a_copiar) = '\0';
 
 }
 
-char * extraer_subcadena (char * cadena , int pos , int lon){
+void extraer_subcadena (char * subcadena,char * cadena , int pos , int lon){
 	int lon_original = longitud_cadena(cadena);
 
 	if (lon + pos > lon_original)
 		lon = lon_original - pos;
 
-	char subcadena[lon + 1];
-	char * p_char = subcadena;
-
 	for (int i = 0; i < lon && i < lon_original; i++){
-		*(p_char + i) = *(cadena + pos + i);
+		*(subcadena + i) = *(cadena + pos + i);
 	}
-	*(p_char + lon) = '\0';
-
-	return p_char;
+	*(subcadena + lon) = '\0';
 
 }
 
-char * invertir_cadena (char * cadena){
+void invertir_cadena (char * invertida ,char * cadena){
 	int longitud = longitud_cadena(cadena);
 
-	char invertida[longitud];
-	char * p_char = invertida;
-
 	for (int i = 0; i < longitud; i++){
-		*(p_char+i) = *(cadena+longitud - 1 -i);
+		*(invertida+i) = *(cadena+longitud - 1 -i);
 	}
-	*(p_char+longitud) = '\0';
+	*(invertida+longitud) = '\0';
 	
-	return p_char;
 }
