@@ -10,6 +10,7 @@ int main( void ){
 	char cadenaC_copia [MAX];
 	char subcadenaC [MAX];
 	char cadenaC_invertida [MAX];
+	int inicio_sub, fin_sub;
 
 	cout << "Introduce una cadena: ";
 	cin.getline(cadenaC, MAX);
@@ -30,7 +31,13 @@ int main( void ){
 
 	cout << "Nueva cadenaC encadenada : " << cadenaC << endl;
 
-	extraer_subcadena(subcadenaC, cadenaC, 1, 20);
+	cout << "Introduzca el inicio de la subcadena : ";
+	cin >> inicio_sub;
+
+	cout << "Introduzca el final de la subcadena : ";
+	cin >> fin_sub;
+
+	extraer_subcadena(subcadenaC, cadenaC, inicio_sub, fin_sub);
 
 	cout << "Subcadena : " << subcadenaC << endl;
 
