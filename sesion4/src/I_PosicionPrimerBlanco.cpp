@@ -14,6 +14,9 @@ int main(void){
 
 	p_char = cadenaC;
 
+	// Buscamos un espacio en blanco o el final de la cadena
+	//si encuentra un espacio mostramos la posicion contada,
+	//si apunta a '\0' es que no hay espacios
 	while( *p_char != ' '  && *p_char != '\0'){
 		posicion++;
 		p_char++;
