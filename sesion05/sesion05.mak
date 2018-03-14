@@ -12,7 +12,7 @@ SRC = $(HOME)/src
 INCLUDE = $(HOME)/include
 BIN = $(HOME)/bin
 OBJ = $(HOME)/obj
-LIB = $(HOME)/lib
+LIB = $(HOME)/lib	
 
 all : clean $(BIN)/I_LeeEntero
 

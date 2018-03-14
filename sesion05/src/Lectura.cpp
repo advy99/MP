@@ -1,9 +1,33 @@
+/*************************************************************/
+/**																			**/                                                         
+/**  Autor : Antonio David Villegas Yeguas                  **/
+/**  1GII - Universidad de Granada                          **/
+/**  Metodologia de la Programacion 2017/18                 **/
+/**  Makefile sesion 5                                      **/
+/**                                                         **/
+/*************************************************************/
+
 #include <iostream>
 #include <cmath>
 #include <cstring>
 #include "Lectura.h"
 
 using namespace std;
+
+
+/*************************************************************/
+/**																			**/                                                         
+/**     Función para comprobar si los elementos de un array **/
+/**  son digitos.                                           **/
+/**                                                         **/
+/**	  Recibe: Una cadena tipo C                           **/
+/**     Devuelve : Booleano                                 **/
+/**                                                         **/
+/**     Teniendo en cuenta si el primer elemento es el      **/
+/**  es el signo, recorremos el array para comprobar si     **/
+/**  estan en el intervalo de digitos en la tabla ASCII.    **/
+/**                                                         **/
+/*************************************************************/
 
 bool TodosSonDigitos(const char * cadena){
 	const char * p_char = cadena;
@@ -20,6 +44,20 @@ bool TodosSonDigitos(const char * cadena){
 
 	return son_digitos;
 }
+
+/*************************************************************/
+/**                                                         **/
+/**     Pasa una cadena a un entero, si todos sus elementos **/
+/**  son digitos.                                           **/
+/**                                                         **/
+/**     Recibe : Una cadena tipo C                          **/
+/**     Devuelve : Entero                                   **/
+/**																			**/
+/**     Lee la cadena elemento a elemento, haciendo un      **/
+/**  casting a entero, y multiplicandolo por 10 elevado a   **/ 
+/**  la posicion que tomaria como numero.                   **/
+/**																			**/
+/*************************************************************/
 
 int CadenaAEntero(const char * cadena){
 	const int CERO = '0';
@@ -47,6 +85,18 @@ int CadenaAEntero(const char * cadena){
 	return entero;
 }
 
+/********************************************************/
+/**																	 **/
+/**     Pide una cadena de enteros, si no se cumple    **/
+/**  la vuelve a pedir. 										 **/
+/**																	 **/
+/**     Recibe : Una cadena tipo C        				 **/
+/**              Entero con el tamaño maximo           **/
+/**      															 **/
+/**     Devuelve : Cadena tipo C 							 **/
+/**																	 **/
+/********************************************************/
+
 char * PedirCadenaEnteros (char * cadena, const int MAX){
 
 	cin.getline(cadena, MAX);
@@ -58,4 +108,69 @@ char * PedirCadenaEnteros (char * cadena, const int MAX){
 	}
 
 	return cadena;
+
+}
+
+/********************************************************/
+/**																	 **/
+/**     Comprueba si un numero esta en un intervalo.   **/
+/**																	 **/
+/**     Recibe : Un entero (A comprobar)	  				 **/
+/**              Dos enteros (Extremos del intervalo)  **/
+/**      															 **/
+/**     Devuelve : Un booleano	 							 **/
+/**																	 **/
+/********************************************************/
+
+bool PerteneceIntervalo(const int NUM, const int MIN, const int MAX){
+	if (MIN > MAX)
+		return false; //El intervalo a comprobar es vacio
+	
+	if (NUM < MAX && NUM > MIN)
+		return true;
+	else
+		return false;
+}
+
+/********************************************************/
+/**																	 **/
+/**     Lee un entero entre dos enteros dados por      **/
+/**  parametro.         										 **/
+/**																	 **/
+/**     Recibe : Dos entero			        				 **/
+/**      															 **/
+/**     Devuelve : Un entero		 							 **/
+/**																	 **/
+/**																	 **/
+/********************************************************/
+
+int LeerEnIntervalo(const int MIN, const int MAX ){
+	int numero;
+
+	cout << "Introduzca un numero entre " << MIN << " y " << MAX << " : ";
+	cin >> numero;
+
+	while ( !PerteneceIntervalo(numero,MIN,MAX) ){
+		cout << "Introduzca un numero entre " << MIN << " y " << MAX << " : ";
+		cin >> numero;
+	}
+
+	return numero;
+}
+
+/********************************************************/
+/**																	 **/
+/**     Lee un entero entre 0 y el entero dado por     **/
+/**  parametro.         										 **/
+/**																	 **/
+/**     Recibe : Un entero				        				 **/
+/**      															 **/
+/**     Devuelve : Un entero		 							 **/
+/**																	 **/
+/**     Sobrecarga de la funcion LeerEnIntervalo		 **/
+/**																	 **/
+/********************************************************/
+
+int LeerEnIntervalo(const int MAX){
+	return LeerEnIntervalo(0,MAX);
 }
