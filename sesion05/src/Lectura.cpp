@@ -1,5 +1,5 @@
 /*************************************************************/
-/**																			**/                                                         
+/**                                                         **/                                                         
 /**  Autor : Antonio David Villegas Yeguas                  **/
 /**  1GII - Universidad de Granada                          **/
 /**  Metodologia de la Programacion 2017/18                 **/
@@ -16,7 +16,7 @@ using namespace std;
 
 
 /*************************************************************/
-/**																			**/                                                         
+/**                                                         **/                                                         
 /**     Función para comprobar si los elementos de un array **/
 /**  son digitos.                                           **/
 /**                                                         **/
@@ -52,11 +52,11 @@ bool TodosSonDigitos(const char * cadena){
 /**                                                         **/
 /**     Recibe : Una cadena tipo C                          **/
 /**     Devuelve : Entero                                   **/
-/**																			**/
+/**                                                         **/
 /**     Lee la cadena elemento a elemento, haciendo un      **/
 /**  casting a entero, y multiplicandolo por 10 elevado a   **/ 
 /**  la posicion que tomaria como numero.                   **/
-/**																			**/
+/**                                                         **/
 /*************************************************************/
 
 int CadenaAEntero(const char * cadena){
@@ -86,15 +86,15 @@ int CadenaAEntero(const char * cadena){
 }
 
 /********************************************************/
-/**																	 **/
+/**                                                    **/
 /**     Pide una cadena de enteros, si no se cumple    **/
-/**  la vuelve a pedir. 										 **/
-/**																	 **/
+/**  la vuelve a pedir.                                **/
+/**                                                    **/
 /**     Recibe : Una cadena tipo C        				 **/
 /**              Entero con el tamaño maximo           **/
-/**      															 **/
-/**     Devuelve : Cadena tipo C 							 **/
-/**																	 **/
+/**                                                    **/
+/**     Devuelve : Cadena tipo C                       **/
+/**                                                    **/
 /********************************************************/
 
 char * PedirCadenaEnteros (char * cadena, const int MAX){
@@ -112,14 +112,14 @@ char * PedirCadenaEnteros (char * cadena, const int MAX){
 }
 
 /********************************************************/
-/**																	 **/
+/**                                                    **/
 /**     Comprueba si un numero esta en un intervalo.   **/
 /**																	 **/
 /**     Recibe : Un entero (A comprobar)	  				 **/
 /**              Dos enteros (Extremos del intervalo)  **/
-/**      															 **/
+/**                                                    **/
 /**     Devuelve : Un booleano	 							 **/
-/**																	 **/
+/**                                                    **/
 /********************************************************/
 
 bool PerteneceIntervalo(const int NUM, const int MIN, const int MAX){
@@ -135,16 +135,16 @@ bool PerteneceIntervalo(const int NUM, const int MIN, const int MAX){
 /********************************************************/
 /**																	 **/
 /**     Lee un entero entre dos enteros dados por      **/
-/**  parametro.         										 **/
-/**																	 **/
-/**     Recibe : Dos entero			        				 **/
-/**      															 **/
-/**     Devuelve : Un entero		 							 **/
-/**																	 **/
-/**																	 **/
+/**  parametro.                                        **/
+/**                                                    **/
+/**     Recibe : Dos entero                            **/
+/**                                                    **/
+/**     Devuelve : Un entero                           **/
+/**                                                    **/
+/**                                                    **/
 /********************************************************/
 
-int LeerEnIntervalo(const int MIN, const int MAX ){
+int LeerEnIntervalo(const int MAX, int MIN ){
 	int numero;
 
 	cout << "Introduzca un numero entre " << MIN << " y " << MAX << " : ";
@@ -156,21 +156,4 @@ int LeerEnIntervalo(const int MIN, const int MAX ){
 	}
 
 	return numero;
-}
-
-/********************************************************/
-/**																	 **/
-/**     Lee un entero entre 0 y el entero dado por     **/
-/**  parametro.         										 **/
-/**																	 **/
-/**     Recibe : Un entero				        				 **/
-/**      															 **/
-/**     Devuelve : Un entero		 							 **/
-/**																	 **/
-/**     Sobrecarga de la funcion LeerEnIntervalo		 **/
-/**																	 **/
-/********************************************************/
-
-int LeerEnIntervalo(const int MAX){
-	return LeerEnIntervalo(0,MAX);
 }

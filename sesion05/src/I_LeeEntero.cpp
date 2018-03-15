@@ -24,7 +24,7 @@ int main( void ){
 	cout << "Introduce un extremo superior : ";
 	cin >> ext_sup;
 
-	numero = LeerEnIntervalo(ext_inf,ext_sup);
+	numero = LeerEnIntervalo(ext_sup);
 
 	cout << endl << numero << endl;
 
