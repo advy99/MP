@@ -20,7 +20,7 @@ using namespace std;
 /**     Función para comprobar si los elementos de un array **/
 /**  son digitos.                                           **/
 /**                                                         **/
-/**	  Recibe: Una cadena tipo C                           **/
+/**     Recibe: Una cadena tipo C                           **/
 /**     Devuelve : Booleano                                 **/
 /**                                                         **/
 /**     Teniendo en cuenta si el primer elemento es el      **/
@@ -90,7 +90,7 @@ int CadenaAEntero(const char * cadena){
 /**     Pide una cadena de enteros, si no se cumple    **/
 /**  la vuelve a pedir.                                **/
 /**                                                    **/
-/**     Recibe : Una cadena tipo C        				 **/
+/**     Recibe : Una cadena tipo C                     **/
 /**              Entero con el tamaño maximo           **/
 /**                                                    **/
 /**     Devuelve : Cadena tipo C                       **/
@@ -115,10 +115,10 @@ char * PedirCadenaEnteros (char * cadena, const int MAX){
 /**                                                    **/
 /**     Comprueba si un numero esta en un intervalo.   **/
 /**																	 **/
-/**     Recibe : Un entero (A comprobar)	  				 **/
+/**     Recibe : Un entero (A comprobar)               **/
 /**              Dos enteros (Extremos del intervalo)  **/
 /**                                                    **/
-/**     Devuelve : Un booleano	 							 **/
+/**     Devuelve : Un booleano                         **/
 /**                                                    **/
 /********************************************************/
 
@@ -133,7 +133,7 @@ bool PerteneceIntervalo(const int NUM, const int MIN, const int MAX){
 }
 
 /********************************************************/
-/**																	 **/
+/**                                                    **/
 /**     Lee un entero entre dos enteros dados por      **/
 /**  parametro.                                        **/
 /**                                                    **/
