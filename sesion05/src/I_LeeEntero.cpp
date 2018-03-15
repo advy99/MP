@@ -19,12 +19,17 @@ int main( void ){
 
 	cout << endl << valor << endl;
 
-	cout << "Introduce un extremo inferior : ";
-	cin >> ext_inf;
 	cout << "Introduce un extremo superior : ";
 	cin >> ext_sup;
 
 	numero = LeerEnIntervalo(ext_sup);
+
+	cout << endl << numero << endl;
+
+	cout << "Introduce un extremo inferior : ";
+	cin >> ext_inf;
+
+	numero = LeerEnIntervalo(ext_sup, ext_inf);
 
 	cout << endl << numero << endl;
 
