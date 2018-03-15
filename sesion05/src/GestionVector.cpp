@@ -10,6 +10,7 @@
 
 #include "GestionVector.h"
 #include <iostream>
+
 /***************************************************************************/
 // CLASE GeneradorAleatorioEnteros
 //
@@ -122,4 +123,18 @@ void MinMaxVector(int * vector, const int INICIO, const int FIN,
 		p_int++;
 	}
 
+}
+
+int * PosMayor (int *pv, int izda, int dcha){
+	int max;
+	int min;
+	int *p_int = pv;
+
+	MinMaxVector(pv, izda, dcha, min, max);
+
+	while(*p_int != max){
+		p_int++;
+	}
+
+	return p_int;
 }

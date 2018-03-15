@@ -29,5 +29,4 @@ int main( void ){
 	cout << "El minimo es : " << minimo << endl;
 	cout << "El maximo es : " << maximo << endl;
 
-
 }

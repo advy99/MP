@@ -14,7 +14,7 @@ BIN = $(HOME)/bin
 OBJ = $(HOME)/obj
 LIB = $(HOME)/lib	
 
-all : clean $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array
+all : clean $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array $(BIN)/I_PosMayor
 
 $(BIN)/I_LeeEntero : $(OBJ)/I_LeeEntero.o $(OBJ)/Lectura.o
 	g++ -o $(BIN)/I_LeeEntero $(OBJ)/I_LeeEntero.o $(OBJ)/Lectura.o
@@ -40,6 +40,16 @@ $(OBJ)/GestionVector.o : $(SRC)/GestionVector.cpp $(INCLUDE)/GestionVector.h
 	g++ -c -o  $(OBJ)/GestionVector.o $(SRC)/GestionVector.cpp -I$(INCLUDE) \
 	-std=c++11
 
+#################################################################################
+
+$(BIN)/I_PosMayor : $(OBJ)/I_PosMayor.o $(OBJ)/GestionVector.o $(OBJ)/Lectura.o
+	g++ -o $(BIN)/I_PosMayor $(OBJ)/I_PosMayor.o $(OBJ)/GestionVector.o \
+          $(OBJ)/Lectura.o
+
+$(OBJ)/I_PosMayor.o : $(SRC)/I_PosMayor.cpp $(INCLUDE)/GestionVector.h \
+                      $(INCLUDE)/Lectura.h
+	g++ -c -o  $(OBJ)/I_PosMayor.o $(SRC)/I_PosMayor.cpp -I$(INCLUDE) \
+	-std=c++11
 
 clean :
 	-rm $(OBJ)/*
