@@ -14,6 +14,7 @@ int main( void ){
 	int minimo;
 	int maximo;
 	int ext_inf, ext_sup;
+	char mensaje [] = " Vector ";
 
 	cout << "Introduce el extremo inferior y superior para rellenar el vector :";
 	cin >> ext_inf;
@@ -21,7 +22,7 @@ int main( void ){
 
 	RellenarVectorAleatorios (vector, TOPE, ext_inf, ext_sup);
 
-	MostrarVector(vector,TOPE);
+	MostrarVector( mensaje ,vector,TOPE);
 	
 	MinMaxVector(vector, 0, TOPE, minimo, maximo);
 

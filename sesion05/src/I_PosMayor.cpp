@@ -10,6 +10,7 @@ int main( int argc, char * argv[] ){
 	int total_utilizados = 0;
 	int tope_izda = 0;
 	int tope_dcha = TOPE;
+	char mensaje [] = " Vector ";
 
 	if (argc == 1){
 		total_utilizados = TOPE;
@@ -32,7 +33,7 @@ int main( int argc, char * argv[] ){
 
 	RellenarVectorAleatorios(vector, total_utilizados);
 
-	MostrarVector(vector, total_utilizados);
+	MostrarVector( mensaje , vector, total_utilizados);
 
 	cout << endl;
 	cout << "El mayor elemento entre las casillas " << tope_izda << " y " 

@@ -14,7 +14,8 @@ BIN = $(HOME)/bin
 OBJ = $(HOME)/obj
 LIB = $(HOME)/lib	
 
-all : clean $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array $(BIN)/I_PosMayor
+all : clean $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array $(BIN)/I_PosMayor \
+      $(BIN)/I_MezclaArrays
 
 $(BIN)/I_LeeEntero : $(OBJ)/I_LeeEntero.o $(OBJ)/Lectura.o
 	g++ -o $(BIN)/I_LeeEntero $(OBJ)/I_LeeEntero.o $(OBJ)/Lectura.o
@@ -50,6 +51,19 @@ $(OBJ)/I_PosMayor.o : $(SRC)/I_PosMayor.cpp $(INCLUDE)/GestionVector.h \
                       $(INCLUDE)/Lectura.h
 	g++ -c -o  $(OBJ)/I_PosMayor.o $(SRC)/I_PosMayor.cpp -I$(INCLUDE) \
 	-std=c++11
+
+#################################################################################
+
+$(BIN)/I_MezclaArrays : $(OBJ)/I_MezclaArrays.o $(OBJ)/GestionVector.o \
+                        $(OBJ)/Lectura.o
+	g++ -o $(BIN)/I_MezclaArrays $(OBJ)/I_MezclaArrays.o $(OBJ)/GestionVector.o \
+                                $(OBJ)/Lectura.o
+
+$(OBJ)/I_MezclaArrays.o : $(SRC)/I_MezclaArrays.cpp $(INCLUDE)/GestionVector.h \
+                          $(INCLUDE)/Lectura.h
+	g++ -c -o $(OBJ)/I_MezclaArrays.o $(SRC)/I_MezclaArrays.cpp -I$(INCLUDE) \
+	    -std=c++11
+
 
 clean :
 	-rm $(OBJ)/*

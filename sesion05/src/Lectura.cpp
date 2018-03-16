@@ -144,7 +144,7 @@ bool PerteneceIntervalo(const int NUM, const int MIN, const int MAX){
 /**                                                    **/
 /********************************************************/
 
-int LeerEnIntervalo(const int MAX, int MIN ){
+int LeerEnIntervalo(const int MAX, const int MIN ){
 	int numero;
 
 	cout << "Introduzca un numero entre " << MIN << " y " << MAX << " : ";

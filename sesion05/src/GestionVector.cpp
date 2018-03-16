@@ -83,10 +83,20 @@ public:
 
 
 
-void MostrarVector( int * vector, const int UTILIZADOS){
+void MostrarVector(char * mensaje, int * vector, const int UTILIZADOS,
+                   int filas){
+
+	if (filas == 0)
+		filas = UTILIZADOS;
 	const int * p_int = vector; 
 
+	cout << endl << mensaje << endl;
+
 	for(int i = 0; i < UTILIZADOS; i++){
+
+		if (i % filas == 0)
+			cout << endl;
+
 		cout << *p_int << " ";
 		p_int++;
 	}
@@ -137,4 +147,29 @@ int * PosMayor (int *pv, int izda, int dcha){
 	}
 
 	return p_int;
+}
+
+void OrdenarVector(int *v, const int UTIL){
+	int izda, i;
+	bool cambio;
+	int * p_int = v;
+	int valor_temporal;
+
+	cambio = true;
+
+	for (izda = 0; izda < UTIL && cambio; izda++){
+
+		cambio = false;
+
+		for (i = UTIL-1;  i > izda; i--)
+
+			if (*(p_int+i) < *(p_int + i-1 ) ) {
+				
+				valor_temporal = *(p_int+i);
+				*(p_int+i) = *(p_int + i-1 );
+				*(p_int + i-1 ) = valor_temporal;
+
+				cambio = true;
+			}
+	}
 }
