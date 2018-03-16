@@ -90,7 +90,7 @@ void MostrarVector(char * mensaje, int * vector, const int UTILIZADOS,
 		filas = UTILIZADOS;
 	const int * p_int = vector; 
 
-	cout << endl << mensaje << endl;
+	cout << endl << endl << mensaje << endl;
 
 	for(int i = 0; i < UTILIZADOS; i++){
 
@@ -171,5 +171,26 @@ void OrdenarVector(int *v, const int UTIL){
 
 				cambio = true;
 			}
+	}
+}
+
+void MezclaVectores (int mezcla[], int &total_util_mezcla , int v1[],
+                     int util_v1, int v2[], int util_v2){
+	int *p_v1 = v1;
+	int *p_v2 = v2;
+	int *p_mezcla = mezcla;
+
+	total_util_mezcla = util_v1 + util_v2;
+
+	for (int i = 0; i < total_util_mezcla; i++){
+		if (*p_v1 < *p_v2){
+			*p_mezcla = *p_v1;
+			p_v1++;
+		}
+		else{
+			*p_mezcla = *p_v2;
+			p_v2++;
+		}
+		p_mezcla++;
 	}
 }
