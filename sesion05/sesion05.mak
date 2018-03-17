@@ -15,7 +15,7 @@ OBJ = $(HOME)/obj
 LIB = $(HOME)/lib	
 
 all : clean $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array $(BIN)/I_PosMayor \
-      $(BIN)/I_MezclaArrays
+      $(BIN)/I_MezclaArrays $(BIN)/I_Sucursales_Matriz_Clasica
 
 $(BIN)/I_LeeEntero : $(OBJ)/I_LeeEntero.o $(OBJ)/Lectura.o
 	g++ -o $(BIN)/I_LeeEntero $(OBJ)/I_LeeEntero.o $(OBJ)/Lectura.o
@@ -64,6 +64,25 @@ $(OBJ)/I_MezclaArrays.o : $(SRC)/I_MezclaArrays.cpp $(INCLUDE)/GestionVector.h \
 	g++ -c -o $(OBJ)/I_MezclaArrays.o $(SRC)/I_MezclaArrays.cpp -I$(INCLUDE) \
 	    -std=c++11
 
+#################################################################################
+
+$(BIN)/I_Sucursales_Matriz_Clasica : $(OBJ)/I_Sucursales_Matriz_Clasica.o \
+                                     $(OBJ)/GestionSucursales.o \
+												 $(OBJ)/GestionVector.o
+	g++ -g -o $(BIN)/I_Sucursales_Matriz_Clasica \
+	       $(OBJ)/I_Sucursales_Matriz_Clasica.o $(OBJ)/GestionSucursales.o \
+			 $(OBJ)/GestionVector.o
+
+$(OBJ)/I_Sucursales_Matriz_Clasica.o : $(SRC)/I_Sucursales_Matriz_Clasica.cpp \
+                                       $(INCLUDE)/GestionVector.h \
+													$(INCLUDE)/GestionSucursales.h
+	g++ -c -o $(OBJ)/I_Sucursales_Matriz_Clasica.o \
+	          $(SRC)/I_Sucursales_Matriz_Clasica.cpp -I$(INCLUDE) -std=c++11
+
+$(OBJ)/GestionSucursales.o : $(SRC)/GestionSucursales.cpp \
+							        $(INCLUDE)/GestionSucursales.h
+	g++ -c -o $(OBJ)/GestionSucursales.o $(SRC)/GestionSucursales.cpp \
+	          -I$(INCLUDE) -std=c++11
 
 clean :
 	-rm $(OBJ)/*

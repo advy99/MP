@@ -118,6 +118,7 @@ void RellenarVectorAleatorios(int * vector, const int UTILIZADOS ,
 
 }
 
+
 void MinMaxVector(int * vector, const int INICIO, const int FIN,
                   int &minimo, int &maximo){
 	int *p_int = vector + INICIO ;
@@ -135,7 +136,7 @@ void MinMaxVector(int * vector, const int INICIO, const int FIN,
 
 }
 
-int * PosMayor (int *pv, int izda, int dcha){
+int * PosMayor (int *pv,const int dcha,const int izda){
 	int max;
 	int min;
 	int *p_int = pv;
