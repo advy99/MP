@@ -9,6 +9,7 @@ void MinMaxVector(int *, const int, const int, int &, int &);
 int * PosMayor (int *, int , int );
 void OrdenarVector(int * ,const int);
 void MezclaVectores (int *,int &, int *, int , int *, int );
+
 /************************************************************/
 
 #endif
