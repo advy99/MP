@@ -266,3 +266,38 @@ void MezclaVectores (int mezcla[], int &total_util_mezcla , int v1[],
 		p_mezcla++;
 	}
 }
+
+/********************************************************************************/
+
+void Ordena (int *vec, int **ptr, int izda, int dcha){
+	int *p_vec = vec;
+	int **p_ptr = ptr;
+	int **p_intermedio;
+	for (int i = izda; i < dcha; i++){
+		*p_ptr = p_vec;
+		*p_ptr++;
+		p_vec++;
+	}
+	p_vec = vec;
+	p_ptr = ptr;
+	//OrdenarVector(*p_ptr,dcha-izda -1 )
+
+	bool cambio = true;
+	int i,j;
+	
+	for( i = izda; i < dcha && cambio; i++){
+
+		cambio = false;
+
+		for( j = dcha - 1; j > i; j--){
+			if(**(p_ptr+ j) < **(p_ptr + j -1) ){
+				p_intermedio = (p_ptr + j - 1);
+				*(p_ptr + j - 1) = *(p_ptr + j);
+				*(p_ptr + j) = *p_intermedio;
+
+				cambio = true;
+			}
+		}
+	}
+
+}

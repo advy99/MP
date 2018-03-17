@@ -15,7 +15,8 @@ OBJ = $(HOME)/obj
 LIB = $(HOME)/lib	
 
 all : inicio clean $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array $(BIN)/I_PosMayor \
-      $(BIN)/I_MezclaArrays $(BIN)/I_Sucursales_Matriz_Clasica finalizado
+      $(BIN)/I_MezclaArrays $(BIN)/I_Sucursales_Matriz_Clasica \
+		$(BIN)/I_OrdenConPunteros finalizado
 
 inicio :
 	@echo -e
@@ -128,7 +129,7 @@ $(BIN)/I_Sucursales_Matriz_Clasica : $(OBJ)/I_Sucursales_Matriz_Clasica.o \
 												 $(OBJ)/GestionVector.o
 	@echo -e
 	@echo -e Generando objeto $(BIN)/I_Sucursales_Matriz_Clasica  ...
-	g++ -g -o $(BIN)/I_Sucursales_Matriz_Clasica \
+	g++  -o $(BIN)/I_Sucursales_Matriz_Clasica \
 	       $(OBJ)/I_Sucursales_Matriz_Clasica.o $(OBJ)/GestionSucursales.o \
 			 $(OBJ)/GestionVector.o
 	@echo -e El archivo $(BIN)/I_Sucursales_Matriz_Clasica generado correctamente
@@ -152,6 +153,26 @@ $(OBJ)/GestionSucursales.o : $(SRC)/GestionSucursales.cpp \
 	          -I$(INCLUDE) -std=c++11
 	@echo -e El archivo $(OBJ)/GestionSucursales.o generado correctamente
 	@echo -e
+
+##################################################################################
+
+$(BIN)/I_OrdenConPunteros : $(OBJ)/I_OrdenConPunteros.o $(OBJ)/GestionVector.o \
+                            $(OBJ)/Lectura.o
+	@echo -e
+	@echo -e Generando objeto $(BIN)/I_OrdenConPunteros  ...
+	g++ -o $(BIN)/I_OrdenConPunteros \
+	       $(OBJ)/I_OrdenConPunteros.o \
+			 $(OBJ)/GestionVector.o \
+			 $(OBJ)/Lectura.o			 
+	@echo -e El archivo $(BIN)/I_OrdenConPunteros generado correctamente
+	@echo -e
+
+$(OBJ)/I_OrdenConPunteros.o : $(SRC)/I_OrdenConPunteros.cpp \
+                              $(INCLUDE)/GestionVector.h $(INCLUDE)/Lectura.h
+	g++ -c -o $(OBJ)/I_OrdenConPunteros.o $(SRC)/I_OrdenConPunteros.cpp \
+	          -I$(INCLUDE)
+
+##################################################################################
 
 finalizado :
 	@echo -e "/****************************************************************/"
