@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
 
 	int tope_inf, tope_sup;
 
-	RellenarVectorAleatorios(vec, TOPE);
+	RellenarVectorAleatorios(vec, TOPE, 1, 10);
 	
 	if(argc == 1){
 		tope_inf = 0;
@@ -27,10 +27,15 @@ int main(int argc, char *argv[]){
 	}
 
 	Ordena(vec, ptr, tope_inf, tope_sup);
+	
 	MostrarVector(mensaje_original, vec, TOPE);
 	MostrarVector(mensaje_puntero, *ptr, TOPE);
- 
 	
+	cout << endl << endl;
+
+	for (int i = 0; i < TOPE;i++){
+		cout << *ptr[i] << " ";
+	}
 
 
 	return 0;

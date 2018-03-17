@@ -14,7 +14,7 @@ BIN = $(HOME)/bin
 OBJ = $(HOME)/obj
 LIB = $(HOME)/lib	
 
-all : inicio clean $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array $(BIN)/I_PosMayor \
+all : inicio  $(BIN)/I_LeeEntero $(BIN)/I_MaxMin_Array $(BIN)/I_PosMayor \
       $(BIN)/I_MezclaArrays $(BIN)/I_Sucursales_Matriz_Clasica \
 		$(BIN)/I_OrdenConPunteros finalizado
 

@@ -98,7 +98,6 @@ void MostrarVector(char * mensaje, int * vector, const int UTILIZADOS,
 
 	if (filas == 0)
 		filas = UTILIZADOS;
-	const int * p_int = vector; 
 
 	cout << endl << endl << mensaje << endl;
 
@@ -107,8 +106,7 @@ void MostrarVector(char * mensaje, int * vector, const int UTILIZADOS,
 		if (i % filas == 0)
 			cout << endl;
 
-		cout << *p_int << " ";
-		p_int++;
+		cout << *(vector + i) << " ";
 	}
 } 
 
@@ -270,34 +268,36 @@ void MezclaVectores (int mezcla[], int &total_util_mezcla , int v1[],
 /********************************************************************************/
 
 void Ordena (int *vec, int **ptr, int izda, int dcha){
-	int *p_vec = vec;
-	int **p_ptr = ptr;
-	int **p_intermedio;
-	for (int i = izda; i < dcha; i++){
-		*p_ptr = p_vec;
-		*p_ptr++;
-		p_vec++;
-	}
-	p_vec = vec;
-	p_ptr = ptr;
-	//OrdenarVector(*p_ptr,dcha-izda -1 )
-
-	bool cambio = true;
-	int i,j;
 	
-	for( i = izda; i < dcha && cambio; i++){
+	bool pos_ocupada [dcha-izda] = {false};
 
-		cambio = false;
+	*ptr = vec;
+	for (int i = izda; i < dcha; i++){
+		*(ptr+i) = *ptr;
+	}
 
-		for( j = dcha - 1; j > i; j--){
-			if(**(p_ptr+ j) < **(p_ptr + j -1) ){
-				p_intermedio = (p_ptr + j - 1);
-				*(p_ptr + j - 1) = *(p_ptr + j);
-				*(p_ptr + j) = *p_intermedio;
+	int ultima_pos = 0;
 
-				cambio = true;
+
+	for(int i = izda; i < dcha; i++){
+
+		for(int j = izda; j < dcha; j++){
+			cout << **(ptr+i) << " " << *(vec+j) << " " << pos_ocupada[j] << endl;
+			if (*(vec+j) < **(ptr+i) && !pos_ocupada[j]){
+				*(ptr+i) = vec+j;
+				ultima_pos = j;
 			}
 		}
-	}
+		cout << endl << endl;
+		pos_ocupada[ultima_pos] = true;
+		cout << **(ptr+i) << " " << endl;
+		cout << endl << endl;
 
+
+
+	}
+	cout << endl;
+	for(int i = 0; i < dcha ; i++){
+		cout << pos_ocupada[i];
+	}//3 10 1 9 6 1 10 1 2 1
 }
