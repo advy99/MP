@@ -79,9 +79,19 @@ public:
 
 /////////////////////////////////////////////////////////////////////////////
 
+/******************************************************************************/
 
-
-
+/********************************************************/
+/**                                                    **/
+/**     Muestra un mensaje y a continuacion un vector  **/
+/**                                                    **/
+/**     Recibe : Un mensaje                            **/
+/**              Un vector                             **/
+/**              El tamaño util del vector             **/
+/**              El numero de filas a separar          **/
+/**            el vector, por defecto 0                **/
+/**                                                    **/
+/********************************************************/
 
 void MostrarVector(char * mensaje, int * vector, const int UTILIZADOS,
                    int filas){
@@ -102,7 +112,18 @@ void MostrarVector(char * mensaje, int * vector, const int UTILIZADOS,
 	}
 } 
 
+/******************************************************************************/
 
+/********************************************************/
+/**                                                    **/
+/**     Rellena el vector de forma aleatoria           **/
+/**                                                    **/
+/**     Recibe : Un vector                             **/
+/**              El tamaño util del vector             **/
+/**              El intervalo de numeros validos       **/
+/**           para rellenarlo con MIN y MAX            **/
+/**                                                    **/
+/********************************************************/
 
 void RellenarVectorAleatorios(int * vector, const int UTILIZADOS , 
                               const int MIN , const int MAX){
@@ -118,6 +139,18 @@ void RellenarVectorAleatorios(int * vector, const int UTILIZADOS ,
 
 }
 
+/******************************************************************************/
+
+/********************************************************/
+/**                                                    **/
+/**     Encuentra el maximo y minimo de un vector y    **/
+/**   los devuelve por referencia                      **/
+/**                                                    **/
+/**     Recibe : Un vector                             **/
+/**              El intervalo a buscarctor             **/
+/**              Dos enteros referenciados             **/
+/**                                                    **/
+/********************************************************/
 
 void MinMaxVector(int * vector, const int INICIO, const int FIN,
                   int &minimo, int &maximo){
@@ -136,6 +169,17 @@ void MinMaxVector(int * vector, const int INICIO, const int FIN,
 
 }
 
+/******************************************************************************/
+
+/********************************************************/
+/**                                                    **/
+/**     Encuentra la posicion de memoria del mayor     **/
+/**   elemento                                         **/
+/**                                                    **/
+/**     Recibe : Un vector                             **/
+/**              El intervalo donde buscar             **/
+/**                                                    **/
+/********************************************************/
 int * PosMayor (int *pv,const int dcha,const int izda){
 	int max;
 	int min;
@@ -149,6 +193,18 @@ int * PosMayor (int *pv,const int dcha,const int izda){
 
 	return p_int;
 }
+
+/******************************************************************************/
+
+/********************************************************/
+/**                                                    **/
+/**     Ordena un vector usando el metodo de           **/
+/**   la burbuja                                       **/
+/**                                                    **/
+/**     Recibe : Un vector                             **/
+/**              El tamaño util del vector             **/
+/**                                                    **/
+/********************************************************/
 
 void OrdenarVector(int *v, const int UTIL){
 	int izda, i;
@@ -174,6 +230,21 @@ void OrdenarVector(int *v, const int UTIL){
 			}
 	}
 }
+
+/******************************************************************************/
+
+/********************************************************/
+/**                                                    **/
+/**     Mezcla ordenadamente dos vectores              **/
+/**                                                    **/
+/**     Recibe : Dos vectores                          **/
+/**              El vector final                       **/
+/**              El tamaño util de todos los vectore   **/
+/**                                                    **/
+/**     El tamaño util del resultado se devuelve       **/
+/**   por referencia                                   **/
+/**                                                    **/
+/********************************************************/
 
 void MezclaVectores (int mezcla[], int &total_util_mezcla , int v1[],
                      int util_v1, int v2[], int util_v2){

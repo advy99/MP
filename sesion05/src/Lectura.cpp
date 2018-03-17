@@ -45,6 +45,8 @@ bool TodosSonDigitos(const char * cadena){
 	return son_digitos;
 }
 
+/******************************************************************************/
+
 /*************************************************************/
 /**                                                         **/
 /**     Pasa una cadena a un entero, si todos sus elementos **/
@@ -85,6 +87,8 @@ int CadenaAEntero(const char * cadena){
 	return entero;
 }
 
+/******************************************************************************/
+
 /********************************************************/
 /**                                                    **/
 /**     Pide una cadena de enteros, si no se cumple    **/
@@ -111,6 +115,8 @@ char * PedirCadenaEnteros (char * cadena, const int MAX){
 
 }
 
+/******************************************************************************/
+
 /********************************************************/
 /**                                                    **/
 /**     Comprueba si un numero esta en un intervalo.   **/
@@ -131,6 +137,8 @@ bool PerteneceIntervalo(const int NUM, const int MIN, const int MAX){
 	else
 		return false;
 }
+
+/******************************************************************************/
 
 /********************************************************/
 /**                                                    **/

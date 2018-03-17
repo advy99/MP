@@ -3,6 +3,8 @@
 
 using namespace std;
 
+/******************************************************************************/
+
 int LeerVentas( int *ventas[] ){
 	
 	int num_operaciones = 0;
@@ -32,6 +34,8 @@ int LeerVentas( int *ventas[] ){
 	return num_operaciones;
 }
 
+/******************************************************************************/
+
 void VentasPorSucursal(int *ventas[] , int * ventas_sucursal,
                        const int TOTAL_SUCURSALES, const int TOTAL_PRODUCTOS,
 							  const int INICIO_PRODUCTOS){
@@ -41,6 +45,8 @@ void VentasPorSucursal(int *ventas[] , int * ventas_sucursal,
 		}
 	}
 }
+
+/******************************************************************************/
 
 void VentasPorProducto(int *ventas[], int * ventas_productos,
                        const int TOTAL_SUCURSALES, const int TOTAL_PRODUCTOS,
@@ -53,6 +59,8 @@ void VentasPorProducto(int *ventas[], int * ventas_productos,
 
 }
 
+/******************************************************************************/
+
 int TotalVentas(int *ventas[], const int TOTAL_SUCURSALES,
                 const int TOTAL_PRODUCTOS, const int INICIO_PRODUCTOS){
 	int total_ventas = 0;
@@ -63,6 +71,8 @@ int TotalVentas(int *ventas[], const int TOTAL_SUCURSALES,
 	}
 	return total_ventas;
 }
+
+/******************************************************************************/
 
 void ListadoVentas( int *ventas, const int TOTAL,const bool POR_SUCURSAL){
 	cout << endl;
@@ -77,6 +87,9 @@ void ListadoVentas( int *ventas, const int TOTAL,const bool POR_SUCURSAL){
 		ventas++;
 	}
 }
+
+/******************************************************************************/
+
 int ConVentas(int *ventas, const int TOTAL){
 	int con_ventas = 0;
 	for (int i = 0; i < TOTAL; i++){
@@ -89,6 +102,8 @@ int ConVentas(int *ventas, const int TOTAL){
 	return con_ventas;
 }
 
+/******************************************************************************/
+
 int SumaVentas(int *ventas, const int TOTAL){
 	int total = 0;
 	for (int i = 0; i < TOTAL; i++){
@@ -98,6 +113,8 @@ int SumaVentas(int *ventas, const int TOTAL){
 
 	return total;
 }
+
+/******************************************************************************/
 
 void TablaResumen(int *ventas[],int *v_sucursal,int *v_producto,
                   const int SUCURSALES, const int PRODUCTOS,
