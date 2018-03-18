@@ -267,6 +267,18 @@ void MezclaVectores (int mezcla[], int &total_util_mezcla , int v1[],
 
 /********************************************************************************/
 
+/********************************************************/
+/**                                                    **/
+/**     Ordena un vector de punteros para que este     **/
+/**   apunte ordenadamente a los elementos de          **/
+/**    un vector                                       **/
+/**                                                    **/
+/**     Recibe : Un vector                             **/
+/**              Un vector de punteros                 **/
+/**              El intervalo a trabajar               **/
+/**                                                    **/
+/********************************************************/
+
 void Ordena (int *vec, int **ptr, int izda, int dcha){
 	
 	bool pos_ocupada [dcha-izda] = {false};
