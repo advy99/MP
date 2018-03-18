@@ -273,7 +273,7 @@ void Ordena (int *vec, int **ptr, int izda, int dcha){
 
 	*ptr = vec;
 	for (int i = izda; i < dcha; i++){
-		*(ptr+i) = *ptr;
+		*(ptr+i) = PosMayor(vec,dcha,izda);
 	}
 
 	int ultima_pos = 0;
@@ -282,16 +282,12 @@ void Ordena (int *vec, int **ptr, int izda, int dcha){
 	for(int i = izda; i < dcha; i++){
 
 		for(int j = izda; j < dcha; j++){
-			cout << **(ptr+i) << " " << *(vec+j) << " " << pos_ocupada[j] << endl;
 			if (*(vec+j) < **(ptr+i) && !pos_ocupada[j]){
 				*(ptr+i) = vec+j;
 				ultima_pos = j;
 			}
 		}
-		cout << endl << endl;
 		pos_ocupada[ultima_pos] = true;
-		cout << **(ptr+i) << " " << endl;
-		cout << endl << endl;
 
 
 
@@ -299,5 +295,5 @@ void Ordena (int *vec, int **ptr, int izda, int dcha){
 	cout << endl;
 	for(int i = 0; i < dcha ; i++){
 		cout << pos_ocupada[i];
-	}//3 10 1 9 6 1 10 1 2 1
+	}
 }

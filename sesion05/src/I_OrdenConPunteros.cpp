@@ -29,9 +29,8 @@ int main(int argc, char *argv[]){
 	Ordena(vec, ptr, tope_inf, tope_sup);
 	
 	MostrarVector(mensaje_original, vec, TOPE);
-	MostrarVector(mensaje_puntero, *ptr, TOPE);
 	
-	cout << endl << endl;
+	cout << endl << endl <<  mensaje_puntero << endl;
 
 	for (int i = 0; i < TOPE;i++){
 		cout << *ptr[i] << " ";
