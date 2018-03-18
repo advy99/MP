@@ -23,6 +23,7 @@ int main(int argc, char *argv[]){
 		tope_inf = CadenaAEntero(argv[1]);
 		tope_sup = CadenaAEntero(argv[2]);
 	}else{
+		cout << "ERROR: Numero incorrecto de argumentos." << endl;
 		return 1;
 	}
 
