@@ -272,8 +272,9 @@ void Ordena (int *vec, int **ptr, int izda, int dcha){
 	bool pos_ocupada [dcha-izda] = {false};
 
 	*ptr = vec;
+	int *pos_mayor = PosMayor(vec,dcha,izda);
 	for (int i = izda; i < dcha; i++){
-		*(ptr+i) = PosMayor(vec,dcha,izda);
+		*(ptr+i) = pos_mayor;
 	}
 
 	int ultima_pos = 0;
