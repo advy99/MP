@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]){
-	const int TOPE = 10; // Capacidad
+	const int TOPE = 50; // Capacidad
 	int  vec [TOPE]; // Array de datos
 	int *ptr [TOPE]; // Indice al array "vector"
 	char mensaje_original [] = "Vector original : "; 
@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
 
 	int tope_inf, tope_sup;
 
-	RellenarVectorAleatorios(vec, TOPE, 1, 10);
+	RellenarVectorAleatorios(vec, TOPE);
 	
 	if(argc == 1){
 		tope_inf = 0;
