@@ -15,6 +15,10 @@ int main(int argc, char *argv[]){
 	int tope_inf, tope_sup;
 
 	RellenarVectorAleatorios(vec, TOPE);
+
+	for (int  i = 0; i < TOPE; i++){
+		ptr[i] = (vec+i);
+	}
 	
 	if(argc == 1){
 		tope_inf = 0;
