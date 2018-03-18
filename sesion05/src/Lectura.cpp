@@ -3,7 +3,7 @@
 /**  Autor : Antonio David Villegas Yeguas                  **/
 /**  1GII - Universidad de Granada                          **/
 /**  Metodologia de la Programacion 2017/18                 **/
-/**  Makefile sesion 5                                      **/
+/**  Sesion 5                                               **/
 /**                                                         **/
 /*************************************************************/
 
