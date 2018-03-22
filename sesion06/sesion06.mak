@@ -14,11 +14,18 @@ BIN = $(HOME)/bin
 OBJ = $(HOME)/obj
 LIB = $(HOME)/lib
 
-all : inicio $(BIN)/II-RedimensionaVectorDinamico finalizado
+all : inicio $(BIN)/II-RedimensionaVectorDinamico \
+             $(BIN)/II-VectorDinamicoCadenas \
+				 finalizado
 
 $(BIN)/II-RedimensionaVectorDinamico : $(SRC)/II-RedimensionaVectorDinamico.cpp
 	g++ -o $(BIN)/II-RedimensionaVectorDinamico \
 	       $(SRC)/II-RedimensionaVectorDinamico.cpp
+
+#################################################################################
+
+$(BIN)/II-VectorDinamicoCadenas : $(SRC)/II-VectorDinamicoCadenas.cpp
+	g++ -o $(BIN)/II-VectorDinamicoCadenas $(SRC)/II-VectorDinamicoCadenas.cpp
 
 #################################################################################
 
