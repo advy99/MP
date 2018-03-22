@@ -19,12 +19,13 @@ int * Redimensiona (int * , TipoRedimension , int & );
 
 /*******************************************************************************/
 
+const int TAM_BLOQUE = 20;
+
 
 using namespace std;
 
 int main (int argc, char * argv[]){
 	const int TAM = 30;
-	const int TAM_BLOQUE = 20;
 
 	TipoRedimension tipo_redimension;
 
@@ -83,18 +84,27 @@ int main (int argc, char * argv[]){
 
 int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 	
+	int tam_redimensionado;
+
 	if (tipo == TipoRedimension::DeUnoEnUno){
+		tam_redimensionado = cap + 1;
+		
+	}else if (tipo == TipoRedimension::EnBloques){
+		tam_redimensionado = cap + TAM_BLOQUE;
 
-		int * nuevo_vector = new int [cap+1];
-
-		for (int i = 0; i < cap; i++){
-			nuevo_vector[i] == p[i];
-		}
-
-		cap++;
-
-		delete [] p;
+	}else if (tipo == TipoRedimension::Duplicando){
+		tam_redimensionado = 2 * cap;
 	}
+
+	int * nuevo_vector = new int [tam_redimensionado];
+
+	for (int i = 0; i < cap; i++){
+		nuevo_vector[i] == p[i];
+	}
+
+	cap = tam_redimensionado;
+
+	delete [] p;
 
 	return nuevo_vector;
 }
