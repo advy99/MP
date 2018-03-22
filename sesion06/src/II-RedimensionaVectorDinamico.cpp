@@ -34,9 +34,14 @@ int main (int argc, char * argv[]){
 	}
 	
 	if (argc > 1){
-		if ( atoi(argv[1]) == 1 ) tipo_redimension = DeUnoEnUno;
-		else if ( atoi(argv[1]) == 2 ) tipo_redimension = EnBloques;
-		else if ( atoi(argv[1]) == 3 ) tipo_redimension = Duplicando;
+		if ( atoi(argv[1]) == 1 ) tipo_redimension = TipoRedimension::DeUnoEnUno;
+
+		else if ( atoi(argv[1]) == 2 )
+			tipo_redimension = TipoRedimension::EnBloques;
+
+		else if ( atoi(argv[1]) == 3 )
+			tipo_redimension = TipoRedimension::Duplicando;
+
 		else {
 			cerr << "ERROR: Argumento no valido";
 			exit(2);
@@ -44,7 +49,7 @@ int main (int argc, char * argv[]){
 
 	}
 	else
-		tipo_redimension = DeUnoEnUno;
+		tipo_redimension = TipoRedimension::DeUnoEnUno;
 	
 
 	int tam_util = TAM;
@@ -59,9 +64,9 @@ int main (int argc, char * argv[]){
 	salir = strcmp(valor,"FIN") == 0;
 
 	while ( !salir ){
-		
+
 		if(usados == tam_util){
-			Redimensiona (vector, tipo_redimension, tam_util);
+			vector = Redimensiona (vector, tipo_redimension, tam_util);
 		}
 
 		vector[usados] == atoi(valor);
@@ -77,5 +82,19 @@ int main (int argc, char * argv[]){
 }
 
 int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
+	
+	if (tipo == TipoRedimension::DeUnoEnUno){
 
+		int * nuevo_vector = new int [cap+1];
+
+		for (int i = 0; i < cap; i++){
+			nuevo_vector[i] == p[i];
+		}
+
+		cap++;
+
+		delete [] p;
+	}
+
+	return nuevo_vector;
 }
