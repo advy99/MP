@@ -19,13 +19,14 @@ int * Redimensiona (int * , TipoRedimension , int & );
 
 /*******************************************************************************/
 
-const int TAM_BLOQUE = 20;
+const int TAM_BLOQUE = 10;
 
 
 using namespace std;
 
 int main (int argc, char * argv[]){
-	const int TAM = 30;
+	const int TAM = 5;
+	const char TERMINADOR [] = "FIN"; 
 
 	TipoRedimension tipo_redimension;
 
@@ -61,23 +62,30 @@ int main (int argc, char * argv[]){
 
 	cout << "Introduce un valor : ";
 	cin.getline(valor,TAM);
+	
 
-	salir = strcmp(valor,"FIN") == 0;
+	salir = strcmp(valor,TERMINADOR) == 0;
+
 
 	while ( !salir ){
 
 		if(usados == tam_util){
 			vector = Redimensiona (vector, tipo_redimension, tam_util);
 		}
-
-		vector[usados] == atoi(valor);
+		vector[usados] = atoi(valor);
 		usados++;
 
 		cout << "Introduce un valor : ";
 		cin.getline(valor,TAM);
 
-		salir = strcmp(valor,"FIN") == 0;
+		salir = strcmp(valor,TERMINADOR) == 0;
 
+	}
+
+	cout << "Casillas usadas : " << usados << endl;
+	cout << "Casillas totales : " << tam_util << endl; 
+	for (int i = 0; i < usados; i++){
+		cout << vector[i] << " " ;
 	}
 
 }
@@ -99,7 +107,7 @@ int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 	int * nuevo_vector = new int [tam_redimensionado];
 
 	for (int i = 0; i < cap; i++){
-		nuevo_vector[i] == p[i];
+		nuevo_vector[i] = p[i];
 	}
 
 	cap = tam_redimensionado;
