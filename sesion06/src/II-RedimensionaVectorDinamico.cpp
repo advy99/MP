@@ -19,9 +19,6 @@ int * Redimensiona (int * , TipoRedimension , int & );
 
 /*******************************************************************************/
 
-const int TAM_BLOQUE = 10;
-
-
 using namespace std;
 
 int main (int argc, char * argv[]){
@@ -90,8 +87,11 @@ int main (int argc, char * argv[]){
 
 }
 
+/*******************************************************************************/
+
 int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 	
+	const int TAM_BLOQUE = 10;
 	int tam_redimensionado;
 
 	if (tipo == TipoRedimension::DeUnoEnUno){
