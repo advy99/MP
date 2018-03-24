@@ -63,6 +63,8 @@ int encuentra_palabras (info_palabra * palabras, const char * cadena){
 	if (cadena[0] != ' '){
 		palabras->inicio = (char *) cadena;
 		n_palabras++;
+		if (cadena[1] == ' ')
+			palabras->fin = (char *) &cadena[0];
 	}
 
 	while( cadena[i] && !salir){
@@ -78,8 +80,8 @@ int encuentra_palabras (info_palabra * palabras, const char * cadena){
 					n_palabras++;
 
 				}
-				else {
-					(palabras+n_palabras-1)->fin = (char *) &cadena[i];	
+				if (cadena[i + 1] == ' ' || cadena[i + 1] == '\0' ) {
+					(palabras+n_palabras - 1 )->fin = (char *) &cadena[i];	
 				}
 			}
 		}
