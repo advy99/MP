@@ -26,6 +26,7 @@ struct info_palabra {
 /*******************************************************************************/
 
 int encuentra_palabras (info_palabra * , const char * );
+void muestra_palabras (info_palabra * , const int );
 
 /*******************************************************************************/
 
@@ -45,11 +46,11 @@ int main( void ){
 	cout << endl << la_cadena << endl;
 	cout << endl << "Tiene " << num_palabras << " palabras." << endl;
 
-	for (int i = 0; i < num_palabras; i++){
-		cout << "La palabra " << i + 1 << " comienza por la letra " 
-		     << *las_palabras[i].inicio << " y finaliza con la letra "
-			  << *las_palabras[i].fin << endl;
-	}
+
+	muestra_palabras (las_palabras, num_palabras);
+
+	return 0;
+	
 }
 
 /*******************************************************************************/
@@ -94,4 +95,24 @@ int encuentra_palabras (info_palabra * palabras, const char * cadena){
 	}
 
 	return n_palabras;
+}
+
+/*******************************************************************************/
+
+void muestra_palabras (info_palabra * palabra, const int N_PALABRAS){
+	for (int i = 0; i < N_PALABRAS; i++){
+		int j = 0;
+		cout << "La palabra " << i + 1 << " comienza por la letra " 
+		     << *(palabra+i)->inicio << " y finaliza con la letra "
+			  << *(palabra+i)->fin << endl;
+
+		cout << "La palabra es " ;
+
+		while ( ((palabra+i)->inicio)+j <= ((palabra+i)->fin) ){
+			cout << *((palabra+i)->inicio + j);
+			j++;
+		}
+
+		cout << endl;
+	}
 }
