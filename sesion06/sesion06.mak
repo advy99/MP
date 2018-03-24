@@ -17,6 +17,7 @@ LIB = $(HOME)/lib
 all : inicio $(BIN)/II-RedimensionaVectorDinamico \
              $(BIN)/II-VectorDinamicoCadenas \
 				 $(BIN)/I_EncuentraInicioPalabras \
+				 $(BIN)/I_EncuentraPalabras \
 				 finalizado
 				 
 $(BIN)/II-RedimensionaVectorDinamico : $(SRC)/II-RedimensionaVectorDinamico.cpp
@@ -34,6 +35,11 @@ $(BIN)/II-VectorDinamicoCadenas : $(SRC)/II-VectorDinamicoCadenas.cpp
 $(BIN)/I_EncuentraInicioPalabras : $(SRC)/I_EncuentraInicioPalabras.cpp
 	g++ -o $(BIN)/I_EncuentraInicioPalabras $(SRC)/I_EncuentraInicioPalabras.cpp \
 	    -std=c++11
+
+#################################################################################
+
+$(BIN)/I_EncuentraPalabras : $(SRC)/I_EncuentraPalabras.cpp
+	g++ -g -o $(BIN)/I_EncuentraPalabras $(SRC)/I_EncuentraPalabras.cpp -std=c++11
 
 #################################################################################
 
