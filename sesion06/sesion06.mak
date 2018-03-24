@@ -16,16 +16,24 @@ LIB = $(HOME)/lib
 
 all : inicio $(BIN)/II-RedimensionaVectorDinamico \
              $(BIN)/II-VectorDinamicoCadenas \
+				 $(BIN)/I_EncuentraInicioPalabras \
 				 finalizado
-
+				 
 $(BIN)/II-RedimensionaVectorDinamico : $(SRC)/II-RedimensionaVectorDinamico.cpp
 	g++ -o $(BIN)/II-RedimensionaVectorDinamico \
-	       $(SRC)/II-RedimensionaVectorDinamico.cpp
+	       $(SRC)/II-RedimensionaVectorDinamico.cpp -std=c++11
 
 #################################################################################
 
 $(BIN)/II-VectorDinamicoCadenas : $(SRC)/II-VectorDinamicoCadenas.cpp
-	g++ -o $(BIN)/II-VectorDinamicoCadenas $(SRC)/II-VectorDinamicoCadenas.cpp
+	g++ -o $(BIN)/II-VectorDinamicoCadenas $(SRC)/II-VectorDinamicoCadenas.cpp \
+	    -std=c++11
+
+#################################################################################
+
+$(BIN)/I_EncuentraInicioPalabras : $(SRC)/I_EncuentraInicioPalabras.cpp
+	g++ -o $(BIN)/I_EncuentraInicioPalabras $(SRC)/I_EncuentraInicioPalabras.cpp \
+	    -std=c++11
 
 #################################################################################
 
@@ -53,7 +61,7 @@ finalizado :
 
 #################################################################################
 
-clean : 
+clean :
 	-rm $(OBJ)/*
 
 mr.proper : clean
