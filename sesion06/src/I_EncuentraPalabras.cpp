@@ -47,8 +47,8 @@ int main( void ){
 
 	for (int i = 0; i < num_palabras; i++){
 		cout << "La palabra " << i + 1 << " comienza por la letra " 
-		     << *las_palabras[i].inicio << " y finaliza con la letra " << endl;
-		//	  << las_palabras[i].fin << endl;
+		     << *las_palabras[i].inicio << " y finaliza con la letra "
+			  << *las_palabras[i].fin << endl;
 	}
 }
 
@@ -69,13 +69,19 @@ int encuentra_palabras (info_palabra * palabras, const char * cadena){
 		
 		if(n_palabras < MAX_PALABRAS){
 
-			if (cadena [i] != ' ' && cadena[i - 1] == ' ' ){	
-				(palabras+n_palabras)->inicio = (char *) &cadena[i];
-				n_palabras++;
+			if (cadena [i] != ' ' &&
+			   (cadena[i - 1] == ' ' || cadena[i + 1] == ' ' 
+				                      || cadena[i + 1] == '\0' )){	
+				
+				if (cadena[i - 1] == ' '){
+					(palabras+n_palabras)->inicio = (char *) &cadena[i];
+					n_palabras++;
+
+				}
+				else {
+					(palabras+n_palabras-1)->fin = (char *) &cadena[i];	
+				}
 			}
-		//	else if( cadena [i + 1] == ' ' || cadena [i + 1] == '\0')
-		//		(palabras+n_palabras)->fin = (char *) &cadena[i];
-	
 		}
 		else{
 				cerr << endl << "AVISO: Numero de palabras demasiado grande." << endl 
