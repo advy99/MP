@@ -14,7 +14,7 @@ using namespace std;
 
 /*******************************************************************************/
 
-int encuentra_palabras (char ** , char * );
+int encuentra_palabras (char ** , const char * );
 
 /*******************************************************************************/
 
@@ -44,19 +44,19 @@ int main( void ){
 /*******************************************************************************/
 
 
-int encuentra_palabras (char ** palabras, char * cadena){
+int encuentra_palabras (char ** palabras, const char * cadena){
 	int n_palabras = 0;
 	int i = 1;
 
 
 	if (cadena[0] != ' '){
-		palabras[n_palabras] = cadena;
+		palabras[n_palabras] = (char *) cadena;
 		n_palabras++;
 	}
 
 	while( cadena[i] ){
 		if (cadena [i] != ' ' && cadena[i - 1] == ' ' ){
-			palabras[n_palabras] = &cadena[i];
+			palabras[n_palabras] = (char *) &cadena[i];
 			n_palabras++;
 		}
 
