@@ -39,7 +39,7 @@ $(BIN)/I_EncuentraInicioPalabras : $(SRC)/I_EncuentraInicioPalabras.cpp
 #################################################################################
 
 $(BIN)/I_EncuentraPalabras : $(SRC)/I_EncuentraPalabras.cpp
-	g++ -g -o $(BIN)/I_EncuentraPalabras $(SRC)/I_EncuentraPalabras.cpp -std=c++11
+	g++ -o $(BIN)/I_EncuentraPalabras $(SRC)/I_EncuentraPalabras.cpp -std=c++11
 
 #################################################################################
 
