@@ -18,13 +18,13 @@ const int MAX_PALABRAS = 20;
 /*******************************************************************************/
 
 struct info_palabra {
-	char * inicio;
-	char * fin;
+	char ** inicio = new char * [MAX_PALABRAS];
+	char ** fin = new char * [MAX_PALABRAS];
 };
 
 /*******************************************************************************/
 
-int encuentra_palabras (info_palabra * , const char * );
+int encuentra_palabras (info_palabra * &, const char * );
 void muestra_palabras (info_palabra * , const int );
 
 /*******************************************************************************/
@@ -46,25 +46,25 @@ int main( void ){
 	cout << endl << "Tiene " << num_palabras << " palabras." << endl;
 
 
-	muestra_palabras (las_palabras, num_palabras);
+//	muestra_palabras (las_palabras, num_palabras);
 
 	return 0;
 	
 }
 
 /*******************************************************************************/
+ 
 
-
-int encuentra_palabras (info_palabra * palabras, const char * cadena){
+int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 	int n_palabras = 0;
 	int i = 1;
 	bool salir = false;
 
 	if (cadena[0] != ' '){
-		palabras->inicio = (char *) cadena;
+		(palabras->inicio)[0] = (char *) cadena;
 		n_palabras++;
 		if (cadena[1] == ' ')
-			palabras->fin = (char *) &cadena[0];
+			(palabras->fin)[0] = (char *) &cadena[0];
 	}
 
 	while( cadena[i] && !salir){
@@ -76,12 +76,12 @@ int encuentra_palabras (info_palabra * palabras, const char * cadena){
 				                      || cadena[i + 1] == '\0' )){	
 				
 				if (cadena[i - 1] == ' '){
-					(palabras+n_palabras)->inicio = (char *) &cadena[i];
+					(palabras->inicio)[n_palabras] = (char *) &cadena[i];
 					n_palabras++;
 
 				}
 				if (cadena[i + 1] == ' ' || cadena[i + 1] == '\0' ) {
-					(palabras+n_palabras - 1 )->fin = (char *) &cadena[i];	
+					(palabras->fin)[n_palabras-1] = (char *) &cadena[i];	
 				}
 			}
 		}
