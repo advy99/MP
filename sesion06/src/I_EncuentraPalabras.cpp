@@ -80,9 +80,11 @@ int encuentra_palabras (info_palabra * palabras, const char * cadena){
 					(palabras+n_palabras)->inicio = (char *) &cadena[i];
 					n_palabras++;
 
+
 				}
 				if (cadena[i + 1] == ' ' || cadena[i + 1] == '\0' ) {
-					(palabras+n_palabras - 1 )->fin = (char *) &cadena[i];	
+					(palabras+n_palabras -1 )->fin = (char *) &cadena[i];	
+
 				}
 			}
 		}

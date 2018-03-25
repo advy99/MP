@@ -25,7 +25,7 @@ struct info_palabra {
 /*******************************************************************************/
 
 int encuentra_palabras (info_palabra * &, const char * );
-void muestra_palabras (info_palabra * , const int );
+void muestra_palabras (info_palabra * & , const int );
 
 /*******************************************************************************/
 
@@ -33,7 +33,7 @@ int main( void ){
 	
 
 	char la_cadena[MAX_CARACTERES];
-	info_palabra * las_palabras;
+	info_palabra * las_palabras = new info_palabra;
 
 	int num_palabras;
 
@@ -46,7 +46,7 @@ int main( void ){
 	cout << endl << "Tiene " << num_palabras << " palabras." << endl;
 
 
-//	muestra_palabras (las_palabras, num_palabras);
+	muestra_palabras (las_palabras, num_palabras);
 
 	return 0;
 	
@@ -63,8 +63,11 @@ int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 	if (cadena[0] != ' '){
 		(palabras->inicio)[0] = (char *) cadena;
 		n_palabras++;
-		if (cadena[1] == ' ')
+
+		
+		if (cadena[1] == ' '){
 			(palabras->fin)[0] = (char *) &cadena[0];
+		}
 	}
 
 	while( cadena[i] && !salir){
@@ -81,16 +84,17 @@ int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 
 				}
 				if (cadena[i + 1] == ' ' || cadena[i + 1] == '\0' ) {
-					(palabras->fin)[n_palabras-1] = (char *) &cadena[i];	
+					(palabras->fin)[n_palabras - 1] = (char *) &cadena[i];	
+
 				}
 			}
+			i++;
 		}
 		else{
 				cerr << endl << "AVISO: Numero de palabras demasiado grande." << endl 
 				     << "No se tendran en cuenta mas palabras" << endl;
 				salir = true;
 		}
-		i++;
 	}
 
 	return n_palabras;
@@ -98,17 +102,17 @@ int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 
 /*******************************************************************************/
 
-void muestra_palabras (info_palabra * palabra, const int N_PALABRAS){
+void muestra_palabras (info_palabra * & palabra, const int N_PALABRAS){
 	for (int i = 0; i < N_PALABRAS; i++){
 		int j = 0;
 		cout << "La palabra " << i + 1 << " comienza por la letra " 
-		     << *(palabra+i)->inicio << " y finaliza con la letra "
-			  << *(palabra+i)->fin << endl;
+		     << *(palabra->inicio)[i] << " y finaliza con la letra "
+			  << *(palabra->fin)[i] << endl;
 
 		cout << "La palabra es " ;
 
-		while ( ((palabra+i)->inicio)+j <= ((palabra+i)->fin) ){
-			cout << *((palabra+i)->inicio + j);
+		while ( (palabra->inicio)[i]+j <= (palabra->fin)[i] ){
+			cout << *(palabra->inicio[i]+j);
 			j++;
 		}
 
