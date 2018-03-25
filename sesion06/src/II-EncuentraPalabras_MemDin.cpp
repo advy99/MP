@@ -24,6 +24,8 @@ struct info_palabra {
 
 /*******************************************************************************/
 
+enum TipoRedimension {DeUnoEnUno,EnBloques,Duplicando};
+char ** Redimensiona (char ** , TipoRedimension , int & );
 int encuentra_palabras (info_palabra * &, const char * );
 void muestra_palabras (info_palabra * & , const int );
 
@@ -56,9 +58,9 @@ int main( void ){
  
 
 int encuentra_palabras (info_palabra * & palabras, const char * cadena){
+	int capacidad = MAX_PALABRAS;
 	int n_palabras = 0;
 	int i = 1;
-	bool salir = false;
 
 	if (cadena[0] != ' '){
 		(palabras->inicio)[0] = (char *) cadena;
@@ -70,9 +72,9 @@ int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 		}
 	}
 
-	while( cadena[i] && !salir){
+	while( cadena[i] ){
 		
-		if(n_palabras < MAX_PALABRAS){
+		if(n_palabras < capacidad){
 
 			if (cadena [i] != ' ' &&
 			   (cadena[i - 1] == ' ' || cadena[i + 1] == ' ' 
@@ -91,9 +93,10 @@ int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 			i++;
 		}
 		else{
-				cerr << endl << "AVISO: Numero de palabras demasiado grande." << endl 
-				     << "No se tendran en cuenta mas palabras" << endl;
-				salir = true;
+			TipoRedimension tipo = TipoRedimension::EnBloques;
+			palabras->inicio = Redimensiona(palabras->inicio, tipo, capacidad);
+			capacidad = n_palabras;
+			palabras->fin = Redimensiona(palabras->fin, tipo, capacidad);
 		}
 	}
 
@@ -118,4 +121,34 @@ void muestra_palabras (info_palabra * & palabra, const int N_PALABRAS){
 
 		cout << endl;
 	}
+}
+
+/*******************************************************************************/
+
+char ** Redimensiona (char ** p, TipoRedimension tipo, int & cap){
+	
+	const int TAM_BLOQUE = 10;
+	int tam_redimensionado;
+
+	if (tipo == TipoRedimension::DeUnoEnUno){
+		tam_redimensionado = cap + 1;
+		
+	}else if (tipo == TipoRedimension::EnBloques){
+		tam_redimensionado = cap + TAM_BLOQUE;
+
+	}else if (tipo == TipoRedimension::Duplicando){
+		tam_redimensionado = 2 * cap;
+	}
+
+	char ** nuevo_vector = new char * [tam_redimensionado];
+
+	for (int i = 0; i < cap; i++){
+		nuevo_vector[i] = p[i];
+	}
+
+	cap = tam_redimensionado;
+
+	delete [] p;
+
+	return nuevo_vector;
 }
