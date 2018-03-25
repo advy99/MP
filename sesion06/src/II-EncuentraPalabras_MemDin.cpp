@@ -100,6 +100,13 @@ int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 		}
 	}
 
+	TipoRedimension tipo = TipoRedimension::DeUnoEnUno;
+	
+	capacidad = n_palabras;
+	palabras->inicio = Redimensiona(palabras->inicio, tipo, capacidad);
+	capacidad = n_palabras;
+	palabras->fin = Redimensiona(palabras->fin, tipo, capacidad);
+
 	return n_palabras;
 }
 
