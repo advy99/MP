@@ -51,7 +51,7 @@ int encuentra_palabras (char ** palabras, const char * cadena){
 	int i = 1;
 	bool salir = false;
 
-	if (cadena[0] != ' '){
+	if ( ! isspace(cadena[0]) ){
 		palabras[n_palabras] = (char *) cadena;
 		n_palabras++;
 	}
@@ -59,7 +59,7 @@ int encuentra_palabras (char ** palabras, const char * cadena){
 	while( cadena[i] && !salir){
 		
 
-		if (cadena [i] != ' ' && cadena[i - 1] == ' ' ){
+		if ( ! isspace(cadena[i]) && isspace (cadena[i - 1]) ){
 			
 			if(n_palabras < MAX_PALABRAS){
 				palabras[n_palabras] = (char *) &cadena[i];

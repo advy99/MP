@@ -25,7 +25,7 @@ struct info_palabra {
 
 /*******************************************************************************/
 
-int encuentra_palabras (info_palabra * , const char * );
+int encuentra_palabras (info_palabra * , char * );
 void muestra_palabras (info_palabra * , const int );
 
 /*******************************************************************************/
@@ -56,35 +56,30 @@ int main( void ){
 /*******************************************************************************/
 
 
-int encuentra_palabras (info_palabra * palabras, const char * cadena){
+int encuentra_palabras (info_palabra * palabras, char * cadena){
 	int n_palabras = 0;
 	int i = 1;
 	bool salir = false;
 
-	if (cadena[0] != ' '){
-		palabras->inicio = (char *) cadena;
+	if ( ! isspace(cadena[0]) ){
+		palabras->inicio = cadena;
 		n_palabras++;
-		if (cadena[1] == ' ')
-			palabras->fin = (char *) &cadena[0];
+		if ( isspace(cadena[1]) )
+			palabras->fin = &cadena[0];
 	}
 
 	while( cadena[i] && !salir){
 		
 		if(n_palabras < MAX_PALABRAS){
 
-			if (cadena [i] != ' ' &&
-			   (cadena[i - 1] == ' ' || cadena[i + 1] == ' ' 
-				                      || cadena[i + 1] == '\0' )){	
+			if ( !isspace(cadena[i]) ){
 				
-				if (cadena[i - 1] == ' '){
-					(palabras+n_palabras)->inicio = (char *) &cadena[i];
+				if (isspace(cadena[i - 1])){
+					(palabras+n_palabras)->inicio = &cadena[i];
 					n_palabras++;
-
-
 				}
-				if (cadena[i + 1] == ' ' || cadena[i + 1] == '\0' ) {
-					(palabras+n_palabras -1 )->fin = (char *) &cadena[i];	
-
+				if (isspace(cadena[i + 1]) || !( cadena[i + 1] ) ) {
+					(palabras+n_palabras -1 )->fin = &cadena[i];	
 				}
 			}
 		}

@@ -26,7 +26,7 @@ struct info_palabra {
 
 enum TipoRedimension {DeUnoEnUno,EnBloques,Duplicando};
 char ** Redimensiona (char ** , TipoRedimension , int & );
-int encuentra_palabras (info_palabra * &, const char * );
+int encuentra_palabras (info_palabra * &, char * );
 void muestra_palabras (info_palabra * & , const int );
 
 /*******************************************************************************/
@@ -57,18 +57,18 @@ int main( void ){
 /*******************************************************************************/
  
 
-int encuentra_palabras (info_palabra * & palabras, const char * cadena){
+int encuentra_palabras (info_palabra * & palabras, char * cadena){
 	int capacidad = MAX_PALABRAS;
 	int n_palabras = 0;
 	int i = 1;
 
-	if (cadena[0] != ' '){
-		(palabras->inicio)[0] = (char *) cadena;
+	if ( ! isspace(cadena[0])){
+		(palabras->inicio)[0] = cadena;
 		n_palabras++;
 
 		
-		if (cadena[1] == ' '){
-			(palabras->fin)[0] = (char *) &cadena[0];
+		if ( isspace(cadena[1]) ){
+			(palabras->fin)[0] = &cadena[0];
 		}
 	}
 
@@ -76,17 +76,15 @@ int encuentra_palabras (info_palabra * & palabras, const char * cadena){
 		
 		if(n_palabras < capacidad){
 
-			if (cadena [i] != ' ' &&
-			   (cadena[i - 1] == ' ' || cadena[i + 1] == ' ' 
-				                      || cadena[i + 1] == '\0' )){	
+			if ( ! isspace(cadena [i]) ){	
 				
-				if (cadena[i - 1] == ' '){
-					(palabras->inicio)[n_palabras] = (char *) &cadena[i];
+				if ( isspace(cadena[i - 1]) ){
+					(palabras->inicio)[n_palabras] = &cadena[i];
 					n_palabras++;
 
 				}
-				if (cadena[i + 1] == ' ' || cadena[i + 1] == '\0' ) {
-					(palabras->fin)[n_palabras - 1] = (char *) &cadena[i];	
+				if ( isspace(cadena[i + 1]) || !( cadena[i + 1] ) ) {
+					(palabras->fin)[n_palabras - 1] = &cadena[i];	
 
 				}
 			}
