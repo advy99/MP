@@ -8,17 +8,6 @@
 /**                                                         **/
 /*************************************************************/
 
-/*************************************************************/
-/**                                                         **/
-/**  Autor : Antonio David Villegas Yeguas                  **/
-/**  1GII - Universidad de Granada                          **/
-/**  Metodologia de la Programacion 2017/18                 **/
-/**  Sesion 6 - Ejercicio 18 - Encontrar inicio y fin de    **/
-/**                          las palabras                   **/
-/**                                                         **/
-/*************************************************************/
-
-
 #include <iostream>
 
 using namespace std;
@@ -44,7 +33,7 @@ int main( void ){
 	
 
 	char la_cadena[MAX_CARACTERES];
-	info_palabra las_palabras[MAX_PALABRAS];
+	info_palabra * las_palabras;
 
 	int num_palabras;
 
