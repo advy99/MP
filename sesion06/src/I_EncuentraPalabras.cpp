@@ -109,7 +109,7 @@ void muestra_palabras (info_palabra * palabra, const int N_PALABRAS){
 			cout << *((palabra+i)->inicio + j);
 			j++;
 		}
-
+ 
 		cout << endl;
 	}
 }

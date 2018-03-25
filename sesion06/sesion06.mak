@@ -58,7 +58,7 @@ inicio :
 	@echo -e	"/**  Autor : Antonio David Villegas Yeguas                 **/"
 	@echo -e	"/**  1GII - Universidad de Granada                         **/"
 	@echo -e	"/**  Metodologia de la Programacion 2017/18                **/"
-	@echo -e	"/**  Makefile sesion 5                                     **/"
+	@echo -e	"/**  Makefile sesion 6                                     **/"
 	@echo -e	"/**                                                        **/"
 	@echo -e	"/************************************************************/"
 	@echo -e
