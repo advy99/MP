@@ -19,6 +19,7 @@ all : inicio $(BIN)/II-RedimensionaVectorDinamico \
 				 $(BIN)/I_EncuentraInicioPalabras \
 				 $(BIN)/I_EncuentraPalabras \
 				 $(BIN)/II-EncuentraPalabras_MemDin \
+				 $(BIN)/II-FactoresPrimos_VectorDinamicoPrimos \
 				 finalizado
 				 
 $(BIN)/II-RedimensionaVectorDinamico : $(SRC)/II-RedimensionaVectorDinamico.cpp
@@ -47,6 +48,13 @@ $(BIN)/I_EncuentraPalabras : $(SRC)/I_EncuentraPalabras.cpp
 $(BIN)/II-EncuentraPalabras_MemDin : $(SRC)/II-EncuentraPalabras_MemDin.cpp
 	g++ -o $(BIN)/II-EncuentraPalabras_MemDin \
 	       $(SRC)/II-EncuentraPalabras_MemDin.cpp -std=c++11
+
+#################################################################################
+
+$(BIN)/II-FactoresPrimos_VectorDinamicoPrimos : \
+                              $(SRC)/II-FactoresPrimos_VectorDinamicoPrimos.cpp
+	g++ -o $(BIN)/II-FactoresPrimos_VectorDinamicoPrimos \
+	       $(SRC)/II-FactoresPrimos_VectorDinamicoPrimos.cpp -std=c++11
 
 #################################################################################
 

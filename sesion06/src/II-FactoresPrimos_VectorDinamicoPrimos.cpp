@@ -29,10 +29,10 @@ Vector * DescomposicionPrimos (int , int = 100);
 
 int main(int argc, char * argv[]){
 
-	int numero, tope = 100;
+	int numero = 102, tope = 100;
 
 	if (argc > 3){
-		cerr << "ERROR: Numero erroneo de argumentos " << endl;
+		cout << "ERROR: Numero erroneo de argumentos " << endl;
 		exit(1);
 	}else if (argc > 2){
 		numero = atoi (argv[1]);
@@ -40,7 +40,7 @@ int main(int argc, char * argv[]){
 	}else if (argc > 1){
 		numero = atoi (argv[1]);
 	}else{
-		cerr << "ERROR: Numero erroneo de argumentos " << endl;
+		cout << "ERROR: Numero erroneo de argumentos " << endl;
 		exit(1);
 	}
 
@@ -56,23 +56,25 @@ int main(int argc, char * argv[]){
 /******************************************************************************/
 
 Vector * CalcularPrimosMenoresQue (int numero){
-	//numero--;
-	double raiz_n = sqrt (numero);
-	int raiz_aprox = ceil(raiz_n);
-	int * num = new int [raiz_aprox];
+	numero--;
+	int * num = new int [numero];
+
 
 	Vector * vector_primos = new Vector;
+
+
 	vector_primos->vector = new int [vector_primos->capacidad];
 
-	
 
-	for (int i = 0; i < raiz_aprox; i++){
+
+	for (int i = 0; i < numero; i++){
 		num [i] = i + 2;
 	}
 
-	for (int i = 0;i < raiz_aprox; i++){
+
+	for (int i = 0;i < numero; i++){
 		if (num [i] != -1){
-			for (int j = i; j < raiz_aprox; j++){
+			for (int j = i; j < numero; j++){
 				if (num[j] != -1)
 					if (num [j] != num [i] && num[j] % num[i] == 0)
 						num [j] = -1;
@@ -80,7 +82,8 @@ Vector * CalcularPrimosMenoresQue (int numero){
 		}
 	}
 
-	for(int i = 0; i < raiz_aprox; i++){
+
+	for(int i = 0; i < numero; i++){
 		if (num[i] != -1){
 			vector_primos->vector = Redimensiona (vector_primos->vector,
 			                                     TipoRedimension::DeUnoEnUno,
@@ -90,6 +93,7 @@ Vector * CalcularPrimosMenoresQue (int numero){
 	}
 
 	delete [] num;
+
 
 	return vector_primos;
 }
@@ -128,16 +132,17 @@ int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 
 Vector * DescomposicionPrimos(int numero, int tope){
 	Vector * descomposicion = new Vector;
-	Vector * primos = CalcularPrimosMenoresQue (numero);
+	Vector * primos = CalcularPrimosMenoresQue (tope);
 
 
 	int multiplicacion_total = 1;
 	int copia_num = numero;
 	int i = 0;
 
-	while (multiplicacion_total != numero ){
+	while (multiplicacion_total != numero && i < primos->capacidad){
 		if (copia_num % primos->vector[i] == 0 ){
 			multiplicacion_total = multiplicacion_total * primos->vector[i]; 
+
 			descomposicion->vector = Redimensiona (descomposicion->vector,
 			                                     TipoRedimension::DeUnoEnUno,
 															 descomposicion->capacidad);
@@ -147,6 +152,13 @@ Vector * DescomposicionPrimos(int numero, int tope){
 		}
 		else
 			i++;
+	}
+
+	if (multiplicacion_total != numero){
+		delete primos;
+		delete descomposicion;
+
+		return new Vector; 
 	}
 
 	delete primos;
