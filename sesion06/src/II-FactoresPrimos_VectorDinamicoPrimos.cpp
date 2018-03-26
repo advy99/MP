@@ -12,30 +12,39 @@
 
 using namespace std;
 
+struct Vector{
+	int * vector;
+	int capacidad;
+};
+
 /******************************************************************************/
 
 enum TipoRedimension {DeUnoEnUno,EnBloques,Duplicando};
 int * Redimensiona (int * p, TipoRedimension tipo, int & cap);
-int * CalcularPrimosMenoresQue (int , int &);
+Vector CalcularPrimosMenoresQue (int );
+//Vector DescomposicionPrimos (int, )
 
 /******************************************************************************/
 
 int main(int argc, char * argv[]){
-	int num_primos;
-	int * v = CalcularPrimosMenoresQue (20, num_primos);
 
-	for (int i = 0; i < num_primos; i++){
-		cout << v[i] << " ";
+	Vector v = CalcularPrimosMenoresQue (20);
+
+	for (int i = 0; i < v.capacidad; i++){
+		cout << v.vector[i] << " ";
 	}
 }
 
 /******************************************************************************/
 
-int * CalcularPrimosMenoresQue (int numero, int & n_primos){
+Vector CalcularPrimosMenoresQue (int numero){
 	numero--;
-	int usados = 0;
 	int * num = new int [numero];
-	int * primos = new int [usados];
+
+	Vector vector_primos;
+	vector_primos.capacidad = 0;
+	vector_primos.vector = new int [vector_primos.capacidad];
+
 	
 
 	for (int i = 0; i < numero; i++){
@@ -54,13 +63,16 @@ int * CalcularPrimosMenoresQue (int numero, int & n_primos){
 
 	for(int i = 0; i < numero; i++){
 		if (num[i] != -1){
-			primos = Redimensiona (primos, TipoRedimension::DeUnoEnUno, usados);
-			primos[usados - 1] = num[i];
+			vector_primos.vector = Redimensiona (vector_primos.vector,
+			                                     TipoRedimension::DeUnoEnUno,
+															 vector_primos.capacidad);
+			vector_primos.vector[vector_primos.capacidad - 1] = num[i];
 		}
 	}
-	n_primos = usados;
 
-	return primos;
+	delete [] num;
+
+	return vector_primos;
 }
 
 /******************************************************************************/
