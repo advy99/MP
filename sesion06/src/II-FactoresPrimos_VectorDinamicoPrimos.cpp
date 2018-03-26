@@ -21,29 +21,31 @@ struct Vector{
 
 enum TipoRedimension {DeUnoEnUno,EnBloques,Duplicando};
 int * Redimensiona (int * p, TipoRedimension tipo, int & cap);
-Vector CalcularPrimosMenoresQue (int );
-//Vector DescomposicionPrimos (int, )
+Vector * CalcularPrimosMenoresQue (int );
+Vector DescomposicionPrimos (int );
 
 /******************************************************************************/
 
 int main(int argc, char * argv[]){
 
-	Vector v = CalcularPrimosMenoresQue (20);
+	Vector * v = CalcularPrimosMenoresQue (20);
 
-	for (int i = 0; i < v.capacidad; i++){
-		cout << v.vector[i] << " ";
+	for (int i = 0; i < v->capacidad; i++){
+		cout << v->vector[i] << " ";
 	}
+
+	delete v;
 }
 
 /******************************************************************************/
 
-Vector CalcularPrimosMenoresQue (int numero){
+Vector * CalcularPrimosMenoresQue (int numero){
 	numero--;
 	int * num = new int [numero];
 
-	Vector vector_primos;
-	vector_primos.capacidad = 0;
-	vector_primos.vector = new int [vector_primos.capacidad];
+	Vector * vector_primos = new Vector;
+	vector_primos->capacidad = 0;
+	vector_primos->vector = new int [vector_primos->capacidad];
 
 	
 
@@ -63,10 +65,10 @@ Vector CalcularPrimosMenoresQue (int numero){
 
 	for(int i = 0; i < numero; i++){
 		if (num[i] != -1){
-			vector_primos.vector = Redimensiona (vector_primos.vector,
+			vector_primos->vector = Redimensiona (vector_primos->vector,
 			                                     TipoRedimension::DeUnoEnUno,
-															 vector_primos.capacidad);
-			vector_primos.vector[vector_primos.capacidad - 1] = num[i];
+															 vector_primos->capacidad);
+			vector_primos->vector[vector_primos->capacidad - 1] = num[i];
 		}
 	}
 
@@ -104,3 +106,10 @@ int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 
 	return nuevo_vector;
 }
+
+/******************************************************************************/
+
+/*Vector DescomposicionPrimos(int numero){
+
+	return descomposicion;
+}*/
