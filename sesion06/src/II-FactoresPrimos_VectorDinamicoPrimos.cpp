@@ -14,7 +14,7 @@ using namespace std;
 
 struct Vector{
 	int * vector;
-	int capacidad;
+	int capacidad = 0;
 };
 
 /******************************************************************************/
@@ -22,13 +22,28 @@ struct Vector{
 enum TipoRedimension {DeUnoEnUno,EnBloques,Duplicando};
 int * Redimensiona (int * p, TipoRedimension tipo, int & cap);
 Vector * CalcularPrimosMenoresQue (int );
-Vector DescomposicionPrimos (int );
+Vector * DescomposicionPrimos (int , int = 100);
 
 /******************************************************************************/
 
 int main(int argc, char * argv[]){
 
-	Vector * v = CalcularPrimosMenoresQue (20);
+	int numero, tope = 100;
+
+	if (argc > 3){
+		cerr << "ERROR: Numero erroneo de argumentos " << endl;
+		exit(1);
+	}else if (argc > 2){
+		numero = atoi (argv[1]);
+		tope = atoi (argv[2]);
+	}else if (argc > 1){
+		numero = atoi (argv[1]);
+	}else{
+		cerr << "ERROR: Numero erroneo de argumentos " << endl;
+		exit(1);
+	}
+
+	Vector * v = DescomposicionPrimos (numero, tope);
 
 	for (int i = 0; i < v->capacidad; i++){
 		cout << v->vector[i] << " ";
@@ -44,7 +59,6 @@ Vector * CalcularPrimosMenoresQue (int numero){
 	int * num = new int [numero];
 
 	Vector * vector_primos = new Vector;
-	vector_primos->capacidad = 0;
 	vector_primos->vector = new int [vector_primos->capacidad];
 
 	
@@ -109,7 +123,30 @@ int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 
 /******************************************************************************/
 
-/*Vector DescomposicionPrimos(int numero){
+Vector * DescomposicionPrimos(int numero, int tope){
+	Vector * descomposicion = new Vector;
+	Vector * primos = CalcularPrimosMenoresQue (numero);
+
+
+	int multiplicacion_total = 1;
+	int copia_num = numero;
+	int i = 0;
+
+	while (multiplicacion_total != numero ){
+		if (copia_num % primos->vector[i] == 0 ){
+			multiplicacion_total = multiplicacion_total * primos->vector[i]; 
+			descomposicion->vector = Redimensiona (descomposicion->vector,
+			                                     TipoRedimension::DeUnoEnUno,
+															 descomposicion->capacidad);
+			descomposicion->vector[descomposicion->capacidad - 1] = primos->vector[i];
+
+			copia_num = copia_num / primos->vector[i];
+		}
+		else
+			i++;
+	}
+
+	delete primos;
 
 	return descomposicion;
-}*/
+}
