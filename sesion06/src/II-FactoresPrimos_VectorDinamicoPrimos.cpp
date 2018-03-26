@@ -9,6 +9,7 @@
 /*************************************************************/
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -55,21 +56,23 @@ int main(int argc, char * argv[]){
 /******************************************************************************/
 
 Vector * CalcularPrimosMenoresQue (int numero){
-	numero--;
-	int * num = new int [numero];
+	//numero--;
+	double raiz_n = sqrt (numero);
+	int raiz_aprox = ceil(raiz_n);
+	int * num = new int [raiz_aprox];
 
 	Vector * vector_primos = new Vector;
 	vector_primos->vector = new int [vector_primos->capacidad];
 
 	
 
-	for (int i = 0; i < numero; i++){
+	for (int i = 0; i < raiz_aprox; i++){
 		num [i] = i + 2;
 	}
 
-	for (int i = 0;i < numero; i++){
+	for (int i = 0;i < raiz_aprox; i++){
 		if (num [i] != -1){
-			for (int j = i; j < numero; j++){
+			for (int j = i; j < raiz_aprox; j++){
 				if (num[j] != -1)
 					if (num [j] != num [i] && num[j] % num[i] == 0)
 						num [j] = -1;
@@ -77,7 +80,7 @@ Vector * CalcularPrimosMenoresQue (int numero){
 		}
 	}
 
-	for(int i = 0; i < numero; i++){
+	for(int i = 0; i < raiz_aprox; i++){
 		if (num[i] != -1){
 			vector_primos->vector = Redimensiona (vector_primos->vector,
 			                                     TipoRedimension::DeUnoEnUno,
