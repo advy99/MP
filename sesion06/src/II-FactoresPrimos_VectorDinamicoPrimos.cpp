@@ -49,7 +49,11 @@ int main(int argc, char * argv[]){
 		cout << v->vector[i] << " ";
 	}
 
+	delete v->vector;
+
 	delete v;
+
+	return 0;
 }
 
 /******************************************************************************/
@@ -153,14 +157,16 @@ Vector * DescomposicionPrimos(int numero, int tope){
 			i++;
 	}
 
+	delete primos->vector;
+	delete primos;
+
+
+
 	if (multiplicacion_total != numero){
-		delete primos;
 		delete descomposicion;
 
 		return new Vector; 
 	}
-
-	delete primos;
 
 	return descomposicion;
 }

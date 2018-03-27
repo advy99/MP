@@ -50,6 +50,11 @@ int main( void ){
 
 	muestra_palabras (las_palabras, num_palabras);
 
+	delete [] las_palabras->inicio;
+	delete [] las_palabras->fin;
+
+	delete las_palabras;
+
 	return 0;
 	
 }

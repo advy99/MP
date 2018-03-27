@@ -41,6 +41,8 @@ int main( void ){
 		cout << "La palabra " << i + 1 << " comienza por la letra "
 		     << *las_palabras[i] << endl;
 	}
+
+	return 0;
 }
 
 /*******************************************************************************/
