@@ -9,13 +9,16 @@
 
 #include <iostream>
 #include <cstring>
+#include <cctype>
 
 using namespace std;
 
 /*******************************************************************************/
 
 char ** SepararCadena(string, int &);
-int NumLineasVacias(char ** documento, int num_lineas);
+int NumLineasVacias(char ** , int );
+int NumParrafos (char ** , int );
+bool LineaEnBlanco(char ** , int );
 
 /*******************************************************************************/
 
@@ -34,12 +37,11 @@ int main(){
 	
 	
 	cout << "El archivo tiene " << num_lineas
-	     << " de las cuales " << NumLineasVacias (v, num_lineas) 
-	     << " estan vacias. " << endl;
+	     << " lineas de las cuales " << NumLineasVacias (v, num_lineas) 
+	     << " estan vacias. " << endl << endl
+		  << "El archivo esta compuesto por " << NumParrafos (v,num_lineas)
+		  << " parrafos " << endl;
 
-	for (int i = 0; i < num_lineas; i++){
-		cout << v[i] << endl;
-	}
 
 	delete [] v;
 
@@ -88,4 +90,36 @@ int NumLineasVacias(char ** documento, int num_lineas){
 			lineas_vacias++;
 	}
 	return lineas_vacias;
+}
+
+int NumParrafos (char ** documento, int num_lineas){
+	int num_parrafos = 0;
+	bool mismo_parrafo = !LineaEnBlanco(documento, 0);
+
+	for(int i = 0; i < num_lineas - 1 ; i++){
+		if (mismo_parrafo){
+			if ( LineaEnBlanco(documento, i + 1) ){
+				num_parrafos++;
+				mismo_parrafo = false;
+			}
+		}
+		else{
+			mismo_parrafo = !LineaEnBlanco(documento, i);
+		}
+	}
+	return num_parrafos;
+}
+
+bool LineaEnBlanco(char ** documento, int num_linea){
+	char * linea = documento[num_linea];
+
+	bool linea_blanco = true;
+	while ( *linea && linea_blanco){
+		if ( !isspace ( *linea ) ){
+			linea_blanco = false;
+		}
+		linea++;
+	}
+
+	return linea_blanco;
 }
