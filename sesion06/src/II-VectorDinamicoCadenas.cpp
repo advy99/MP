@@ -104,9 +104,14 @@ int NumParrafos (char ** documento, int num_lineas){
 			}
 		}
 		else{
-			mismo_parrafo = !LineaEnBlanco(documento, i);
+			mismo_parrafo = !LineaEnBlanco(documento, i + 1);
 		}
 	}
+
+	//Comprobamos ultima linea
+	if(mismo_parrafo)
+		num_parrafos++;
+
 	return num_parrafos;
 }
 

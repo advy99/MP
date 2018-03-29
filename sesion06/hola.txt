@@ -1,11 +1,9 @@
+
+ 
+
 hola
     
     
-
-    
-
-
-
 
     
 mundo
@@ -13,7 +11,4 @@ mundo
 
 rergerger   reg
 ff 
-
 cruel
- 
- 
