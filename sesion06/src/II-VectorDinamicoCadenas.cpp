@@ -15,6 +15,7 @@ using namespace std;
 /*******************************************************************************/
 
 char ** SepararCadena(string, int &);
+int NumLineasVacias(char ** documento, int num_lineas);
 
 /*******************************************************************************/
 
@@ -32,6 +33,10 @@ int main(){
 	char ** v = SepararCadena(cadena_completa, num_lineas);
 	
 	
+	cout << "El archivo tiene " << num_lineas
+	     << " de las cuales " << NumLineasVacias (v, num_lineas) 
+	     << " estan vacias. " << endl;
+
 	for (int i = 0; i < num_lineas; i++){
 		cout << v[i] << endl;
 	}
@@ -74,4 +79,13 @@ char ** SepararCadena(string cadena, int & num_lineas){
 	}
 
 	return cadenas;
+}
+
+int NumLineasVacias(char ** documento, int num_lineas){
+	int lineas_vacias;
+	for (int i = 0; i < num_lineas;i++){
+		if (documento[i][0] == '\0')
+			lineas_vacias++;
+	}
+	return lineas_vacias;
 }
