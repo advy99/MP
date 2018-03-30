@@ -55,12 +55,24 @@ int main( void ){
 
 /*******************************************************************************/
 
+/*************************************************************/
+/**                                                         **/
+/**   Busca el inicio y fin de las palabras en una frase    **/
+/**                                                         **/
+/**   Recibe: Estructura donde se almacenara el resultado   **/
+/**           Frase a buscar el inicio de las palabras      **/
+/**                                                         **/
+/**   Devuelve: Numero de palabras de la cadena             **/
+/**                                                         **/
+/*************************************************************/
 
 int encuentra_palabras (info_palabra * palabras, char * cadena){
 	int n_palabras = 0;
 	int i = 1;
 	bool salir = false;
 
+	//Comprobamos si el primer caracter es un espacio y comienza una palabra
+	//si lo es, comprobamos el siguiente por si acaba la palabra
 	if ( ! isspace(cadena[0]) ){
 		palabras->inicio = cadena;
 		n_palabras++;
@@ -68,10 +80,14 @@ int encuentra_palabras (info_palabra * palabras, char * cadena){
 			palabras->fin = &cadena[0];
 	}
 
+	//Recorre la cadena 
 	while( cadena[i] && !salir){
+		
 		
 		if(n_palabras < MAX_PALABRAS){
 
+		//Si una casilla es un caracter y la anterior o la siguien un espacio,
+		//comienza o acaba una palabra
 			if ( !isspace(cadena[i]) ){
 				
 				if (isspace(cadena[i - 1])){
@@ -96,7 +112,19 @@ int encuentra_palabras (info_palabra * palabras, char * cadena){
 
 /*******************************************************************************/
 
+/*************************************************************/
+/**                                                         **/
+/**   Muestra las palabras de una cadena                    **/
+/**                                                         **/
+/**   Recibe: Estructura con inicio y fin de las palabras   **/
+/**           Numero de palabras                            **/
+/**                                                         **/
+/**   Devuelve: Numero de palabras de la cadena             **/
+/**                                                         **/
+/*************************************************************/
+
 void muestra_palabras (info_palabra * palabra, const int N_PALABRAS){
+
 	for (int i = 0; i < N_PALABRAS; i++){
 		int j = 0;
 		cout << "La palabra " << i + 1 << " comienza por la letra " 
@@ -105,6 +133,8 @@ void muestra_palabras (info_palabra * palabra, const int N_PALABRAS){
 
 		cout << "La palabra es " ;
 
+		//Mientras el puntero al inicio sea menor que el puntero al fin
+		//muestra el caracter al que apunta
 		while ( ((palabra+i)->inicio)+j <= ((palabra+i)->fin) ){
 			cout << *((palabra+i)->inicio + j);
 			j++;
