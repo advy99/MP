@@ -12,6 +12,8 @@
 #include <iostream>
 #include <cstring>
 
+using namespace std;
+
 /*******************************************************************************/
 
 enum TipoRedimension {DeUnoEnUno,EnBloques,Duplicando};
@@ -19,7 +21,7 @@ int * Redimensiona (int * , TipoRedimension , int & );
 
 /*******************************************************************************/
 
-using namespace std;
+
 
 int main (int argc, char * argv[]){
 	const int TAM = 5;
@@ -89,11 +91,25 @@ int main (int argc, char * argv[]){
 
 /*******************************************************************************/
 
+/*************************************************************/
+/**                                                         **/
+/**   Redimensiona un vector de int                         **/
+/**                                                         **/
+/**   Recibe: Vector a redimensionar                        **/
+/**           Tipo de redimension a realizar                **/
+/**           Capacidad del vector                          **/
+/**                                                         **/
+/**   Devuelve: Direccion de memoria del vector             **/
+/**             redimensionado                              **/
+/**                                                         **/
+/*************************************************************/
+
 int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 	
 	const int TAM_BLOQUE = 10;
 	int tam_redimensionado;
 
+	//Ajusta el tamanio del nuevo vector segun el tipo de redimension
 	if (tipo == TipoRedimension::DeUnoEnUno){
 		tam_redimensionado = cap + 1;
 		
@@ -104,15 +120,19 @@ int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 		tam_redimensionado = 2 * cap;
 	}
 
+	//Declara un nuevo vector con el nuevo tamaño;
 	int * nuevo_vector = new int [tam_redimensionado];
 
+	//Copia el contenido del antiguo vector en el nuevo
 	for (int i = 0; i < cap; i++){
 		nuevo_vector[i] = p[i];
 	}
-
+	//Actualiza la capacidad
 	cap = tam_redimensionado;
 
+	//Libera la memoria consumida por el vector anriguo
 	delete [] p;
 
+	//Devolvemos la direccion del nuevo vector
 	return nuevo_vector;
 }
