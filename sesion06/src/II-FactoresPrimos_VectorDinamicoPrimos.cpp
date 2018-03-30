@@ -6,6 +6,8 @@
 /**  Sesion 6 - Ejercicio 3 - Descomposicion en factores    **/
 /**                          primos                         **/
 /**                                                         **/
+/**      PRE: El numero es positivo                         **/
+/**                                                         **/
 /*************************************************************/
 
 #include <iostream>
@@ -160,10 +162,6 @@ Vector * DescomposicionPrimos(int numero, int tope){
 	delete primos->vector;
 	delete primos;
 
-	if (multiplicacion_total == -numero){
-		descomposicion->vector[0] = -descomposicion->vector[0];
-		multiplicacion_total = -multiplicacion_total;
-	}
 
 	if (multiplicacion_total != numero){
 		delete descomposicion;
