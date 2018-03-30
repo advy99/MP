@@ -23,38 +23,75 @@ all : inicio $(BIN)/II-RedimensionaVectorDinamico \
 				 finalizado
 				 
 $(BIN)/II-RedimensionaVectorDinamico : $(SRC)/II-RedimensionaVectorDinamico.cpp
+
+	@echo
+	@echo "Generando $(BIN)/II-RedimensionaVectorDinamico"
+	@echo
 	g++ -o $(BIN)/II-RedimensionaVectorDinamico \
 	       $(SRC)/II-RedimensionaVectorDinamico.cpp -std=c++11
+	@echo
+	@echo "Ejecutable generado correctamente"
+	@echo
 
 #################################################################################
 
 $(BIN)/II-VectorDinamicoCadenas : $(SRC)/II-VectorDinamicoCadenas.cpp
+	@echo
+	@echo "Generando $(BIN)/II-VectorDinamicoCadenas"
+	@echo
 	g++ -o $(BIN)/II-VectorDinamicoCadenas $(SRC)/II-VectorDinamicoCadenas.cpp \
 	    -std=c++11
+	@echo
+	@echo "Ejecutable generado correctamente"
+	@echo
 
 #################################################################################
 
 $(BIN)/I_EncuentraInicioPalabras : $(SRC)/I_EncuentraInicioPalabras.cpp
+	@echo
+	@echo "Generando $(BIN)/I_EncuentraInicioPalabras"
+	@echo
 	g++ -o $(BIN)/I_EncuentraInicioPalabras $(SRC)/I_EncuentraInicioPalabras.cpp \
 	    -std=c++11
+	@echo
+	@echo "Ejecutable generado correctamente"
+	@echo
 
 #################################################################################
 
 $(BIN)/I_EncuentraPalabras : $(SRC)/I_EncuentraPalabras.cpp
+	@echo
+	@echo "Generando $(BIN)/I_EncuentraPalabras"
+	@echo
 	g++ -o $(BIN)/I_EncuentraPalabras $(SRC)/I_EncuentraPalabras.cpp -std=c++11
+	@echo
+	@echo "Ejecutable generado correctamente"
+	@echo
 
 #################################################################################
 
 $(BIN)/II-EncuentraPalabras_MemDin : $(SRC)/II-EncuentraPalabras_MemDin.cpp
+	@echo
+	@echo "Generando $(BIN)/II-EncuentraPalabras_MemDin"
+	@echo
 	g++ -o $(BIN)/II-EncuentraPalabras_MemDin \
 	       $(SRC)/II-EncuentraPalabras_MemDin.cpp -std=c++11
+	@echo
+	@echo "Ejecutable generado correctamente"
+	@echo
 
 #################################################################################
 
 $(BIN)/II-FactoresPrimos_VectorDinamicoPrimos : \
                               $(SRC)/II-FactoresPrimos_VectorDinamicoPrimos.cpp
+	@echo
+	@echo "Generando $(BIN)/II-FactoresPrimos_VectorDinamicoPrimos"
+	@echo
 	g++ -o $(BIN)/II-FactoresPrimos_VectorDinamicoPrimos \
 	       $(SRC)/II-FactoresPrimos_VectorDinamicoPrimos.cpp -std=c++11
+	@echo
+	@echo "Ejecutable generado correctamente"
+	@echo
 
 #################################################################################
 
