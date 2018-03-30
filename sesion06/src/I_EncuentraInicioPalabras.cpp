@@ -17,7 +17,7 @@ const int MAX_PALABRAS = 20;
 
 /*******************************************************************************/
 
-int encuentra_palabras (char ** , const char * );
+int encuentra_palabras (char ** , char * );
 
 /*******************************************************************************/
 
@@ -47,24 +47,40 @@ int main( void ){
 
 /*******************************************************************************/
 
+/*************************************************************/
+/**                                                         **/
+/**   Busca el inicio de las palabras en una frase          **/
+/**                                                         **/
+/**   Recibe: Cadena donde se almacenara el resultado       **/
+/**           Frase a buscar el inicio de las palabras      **/
+/**                                                         **/
+/**   Devuelve: Numero de palabras de la cadena             **/
+/**                                                         **/
+/*************************************************************/
 
-int encuentra_palabras (char ** palabras, const char * cadena){
+
+int encuentra_palabras (char ** palabras, char * cadena){
 	int n_palabras = 0;
 	int i = 1;
 	bool salir = false;
 
+	//Comprobamos si el primer caracter es un espacio y comienza una palabra
 	if ( ! isspace(cadena[0]) ){
-		palabras[n_palabras] = (char *) cadena;
+		palabras[n_palabras] = cadena;
 		n_palabras++;
 	}
 
-	while( cadena[i] && !salir){
-		
 
+	//Recorre la cadena 
+	while( cadena[i] && !salir){
+
+		//Si una casilla es un caracter y la anterior un espacio,
+		//comienza una palabra
 		if ( ! isspace(cadena[i]) && isspace (cadena[i - 1]) ){
 			
+			//Si queda capacidad se añade, si no avisa del error
 			if(n_palabras < MAX_PALABRAS){
-				palabras[n_palabras] = (char *) &cadena[i];
+				palabras[n_palabras] = &cadena[i];
 				n_palabras++;
 			}
 			else{
