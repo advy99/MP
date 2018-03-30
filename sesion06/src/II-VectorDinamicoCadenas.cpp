@@ -16,9 +16,9 @@ using namespace std;
 /*******************************************************************************/
 
 char ** SepararCadena(string, int &);
-int NumLineasVacias(char ** , int );
-int NumParrafos (char ** , int );
-bool LineaEnBlanco(char ** , int );
+int NumLineasVacias(char ** , const int );
+int NumParrafos (char ** , const int );
+bool LineaEnBlanco(char ** , const int );
 
 /*******************************************************************************/
 
@@ -83,20 +83,20 @@ char ** SepararCadena(string cadena, int & num_lineas){
 	return cadenas;
 }
 
-int NumLineasVacias(char ** documento, int num_lineas){
+int NumLineasVacias(char ** documento, const int NUM_LINEAS){
 	int lineas_vacias;
-	for (int i = 0; i < num_lineas;i++){
+	for (int i = 0; i < NUM_LINEAS;i++){
 		if (documento[i][0] == '\0')
 			lineas_vacias++;
 	}
 	return lineas_vacias;
 }
 
-int NumParrafos (char ** documento, int num_lineas){
+int NumParrafos (char ** documento,const int NUM_LINEAS){
 	int num_parrafos = 0;
 	bool mismo_parrafo = !LineaEnBlanco(documento, 0);
 
-	for(int i = 0; i < num_lineas - 1 ; i++){
+	for(int i = 0; i < NUM_LINEAS - 1 ; i++){
 		if (mismo_parrafo){
 			if ( LineaEnBlanco(documento, i + 1) ){
 				num_parrafos++;
@@ -105,7 +105,7 @@ int NumParrafos (char ** documento, int num_lineas){
 		}
 		else{
 			mismo_parrafo = !LineaEnBlanco(documento, i + 1);
-		}
+		} 
 	}
 
 	//Comprobamos ultima linea
@@ -115,8 +115,8 @@ int NumParrafos (char ** documento, int num_lineas){
 	return num_parrafos;
 }
 
-bool LineaEnBlanco(char ** documento, int num_linea){
-	char * linea = documento[num_linea];
+bool LineaEnBlanco(char ** documento, const int NUM_LINEAS){
+	char * linea = documento[NUM_LINEAS];
 
 	bool linea_blanco = true;
 	while ( *linea && linea_blanco){
