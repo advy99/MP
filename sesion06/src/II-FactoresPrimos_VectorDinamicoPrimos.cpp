@@ -160,7 +160,10 @@ Vector * DescomposicionPrimos(int numero, int tope){
 	delete primos->vector;
 	delete primos;
 
-
+	if (multiplicacion_total == -numero){
+		descomposicion->vector[0] = -descomposicion->vector[0];
+		multiplicacion_total = -multiplicacion_total;
+	}
 
 	if (multiplicacion_total != numero){
 		delete descomposicion;
