@@ -47,6 +47,11 @@ int main(int argc, char * argv[]){
 
 	Vector * v = DescomposicionPrimos (numero, tope);
 
+	if (v->capacidad == 0)
+		cout << "No se ha podido descomponer el numero " << numero
+		     << " con el tope de " << tope << endl
+			  << "Pruebe a cambiar de tope."; 
+
 	for (int i = 0; i < v->capacidad; i++){
 		cout << v->vector[i] << " ";
 	}
@@ -61,7 +66,6 @@ int main(int argc, char * argv[]){
 /******************************************************************************/
 
 Vector * CalcularPrimosMenoresQue (int numero){
-	numero--;
 	int * num = new int [numero];
 
 
@@ -70,8 +74,7 @@ Vector * CalcularPrimosMenoresQue (int numero){
 
 	vector_primos->vector = new int [vector_primos->capacidad];
 
-
-
+	
 	for (int i = 0; i < numero; i++){
 		num [i] = i + 2;
 	}
@@ -137,7 +140,11 @@ int * Redimensiona (int * p, TipoRedimension tipo, int & cap){
 
 Vector * DescomposicionPrimos(int numero, int tope){
 	Vector * descomposicion = new Vector;
+
+	if (tope > numero)
+		tope = numero;
 	Vector * primos = CalcularPrimosMenoresQue (tope);
+
 
 
 	int multiplicacion_total = 1;
