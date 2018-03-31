@@ -83,7 +83,6 @@ int encuentra_palabras (info_palabra * palabras, char * cadena){
 	//Recorre la cadena 
 	while( cadena[i] && !salir){
 		
-		
 		if(n_palabras < MAX_PALABRAS){
 
 		//Si una casilla es un caracter y la anterior o la siguien un espacio,
