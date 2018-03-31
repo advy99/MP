@@ -50,6 +50,18 @@ int main(){
 
 /*******************************************************************************/
 
+/*************************************************************/
+/**                                                         **/
+/**   Separa un string en vectores de cadenas clasicas      **/
+/**                                                         **/
+/**   Recibe: String donde se almacenan las lineas          **/
+/**           Numero de lineas del documento                **/
+/**                                                         **/
+/**   Devuelve: Puntero a vector de char donde se           **/
+/**           almacenan las filas                           **/
+/**                                                         **/
+/*************************************************************/
+
 char ** SepararCadena(string cadena, int & num_lineas){
 	int tam_cadena_completa;
 	int j = 0;
@@ -83,8 +95,22 @@ char ** SepararCadena(string cadena, int & num_lineas){
 	return cadenas;
 }
 
+/*******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   Cuenta el numero de lineas vacias en un documento     **/
+/**                                                         **/
+/**   Recibe: Vector donde se almacenan las lineas          **/
+/**           Numero de lineas del documento                **/
+/**                                                         **/
+/**   Devuelve: Numero de lineas vacias del documento       **/
+/**                                                         **/
+/*************************************************************/
+
 int NumLineasVacias(char ** documento, const int NUM_LINEAS){
 	int lineas_vacias;
+	//Si el primer elemento de la linea es el fin de linea, la linea esta vacia
 	for (int i = 0; i < NUM_LINEAS;i++){
 		if (documento[i][0] == '\0')
 			lineas_vacias++;
@@ -92,10 +118,26 @@ int NumLineasVacias(char ** documento, const int NUM_LINEAS){
 	return lineas_vacias;
 }
 
+/*******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   Cuenta el numero de parrafos en un documento          **/
+/**                                                         **/
+/**   Recibe: Vector donde se almacenan las lineas          **/
+/**           Numero de lineas del documento                **/
+/**                                                         **/
+/**   Devuelve: Numero de parrafos del documento            **/
+/**                                                         **/
+/*************************************************************/
+
 int NumParrafos (char ** documento,const int NUM_LINEAS){
 	int num_parrafos = 0;
+	//Comprobamos si en la primera linea comienza un parrafo
 	bool mismo_parrafo = !LineaEnBlanco(documento, 0);
 
+	//Comprobamos hasta la ultima linea, si la siguiente linea esta en blanco,
+	//acaba el parrafo, y continua hasta que la siguiente no este en blanco,
 	for(int i = 0; i < NUM_LINEAS - 1 ; i++){
 		if (mismo_parrafo){
 			if ( LineaEnBlanco(documento, i + 1) ){
@@ -115,11 +157,28 @@ int NumParrafos (char ** documento,const int NUM_LINEAS){
 	return num_parrafos;
 }
 
-bool LineaEnBlanco(char ** documento, const int NUM_LINEAS){
-	char * linea = documento[NUM_LINEAS];
+/*******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   Comprueba si una linea de un documento esta en blanco **/
+/**                                                         **/
+/**   Recibe: Vector donde se almacenan las lineas          **/
+/**           Linea a comprobar si esta en blanco           **/
+/**                                                         **/
+/**   Devuelve: Verdadero o false                           **/
+/**                                                         **/
+/*************************************************************/
+
+bool LineaEnBlanco(char ** documento, const int NUM_LINEA){
+	//Nos centramos en la linea que queremos comprobar
+	char * linea = documento[NUM_LINEA];
 
 	bool linea_blanco = true;
+	//Recorremos la linea
 	while ( *linea && linea_blanco){
+		//Si encontramos un elemento que no sea un espaciador esa linea no
+		//esta vacia
 		if ( !isspace ( *linea ) ){
 			linea_blanco = false;
 		}
