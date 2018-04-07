@@ -10,10 +10,10 @@ Matriz2D_1 CreaMatriz(int filas, int columnas){
 	nueva_matriz.filas = filas;
 	nueva_matriz.columnas = columnas;
 
-	nueva_matriz.datos = new int * [filas];
+	nueva_matriz.datos = new TipoBase * [filas];
 
 	for (int i = 0; i < filas; i++){
-		nueva_matriz.datos[i] = new int [columnas];
+		nueva_matriz.datos[i] = new TipoBase [columnas];
 	}
 
 	return nueva_matriz;
