@@ -78,3 +78,16 @@ Matriz2D_1 CopiaMatriz (Matriz2D_1 matriz){
 	
 	return nueva_matriz;
 }
+
+Matriz2D_1 ExtraeSubmatriz (Matriz2D1 matriz,int fila_inicio, int columna_inicio,
+                                             int fila_fin   , int columna_fin){
+	Matriz2D_1 nueva_matriz = CreaMatriz(filas_inicio - filas_fin, 
+	                                     columnas_inicio - columnas_fin);
+	for (int i = 0; i < nueva_matriz.filas; i++){
+		for(int j = 0; j < nueva_matriz.columnas; j++){
+			nueva_matriz.datos[i][j] = 
+			                         matriz[i + filas_inicio][j + columnas_inicio];
+		}
+	}
+	return nueva_matriz;
+}
