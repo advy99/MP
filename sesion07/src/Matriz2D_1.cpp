@@ -137,3 +137,15 @@ Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 matriz ){
 
 	return nueva_matriz;
 }
+
+Matriz2D_1 MatrizTraspuesta(Matriz2D_1 matriz){
+	Matriz2D_1 nueva_matriz = CopiaMatriz(matriz);
+
+	for (int i = 0; i < nueva_matriz.filas; i++){
+		for (int  j = 0; j < nueva_matriz.columnas; j++){
+			nueva_matriz.datos[j][i] = matriz.datos[i][j];
+		}
+	}
+
+	return nueva_matriz;
+}
