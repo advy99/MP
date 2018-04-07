@@ -149,3 +149,18 @@ Matriz2D_1 MatrizTraspuesta(Matriz2D_1 matriz){
 
 	return nueva_matriz;
 }
+
+Matriz2D_1 InvertirFilas (Matriz2D_1 matriz){
+	Matriz2D_1 nueva_matriz = CopiaMatriz(matriz);
+	int * copia_direccion_columnas [nueva_matriz.filas];
+
+	for(int i = 0 ; i < nueva_matriz.filas; i++){
+		copia_direccion_columnas[i] = nueva_matriz.datos[i];
+	}
+
+	for(int i = 0 ; i < nueva_matriz.filas; i++){
+		nueva_matriz.datos[i] = copia_direccion_columnas[nueva_matriz.filas-1 -i];
+	}
+
+	return nueva_matriz;
+}
