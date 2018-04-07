@@ -16,7 +16,7 @@ Matriz2D_1 CreaMatriz(int filas, int columnas){
 		nueva_matriz.datos[i] = new int [columnas];
 	}
 
-	return nueva_matriz
+	return nueva_matriz;
 }
 
 void LiberaMatriz2D_1 (Matriz2D_1 & matriz){
@@ -59,9 +59,9 @@ Matriz2D_1 CreaMatrizAleatorios(int filas, int columnas){
 }
 
 void MostrarMatriz (Matriz2D_1 matriz){
-	for (int i = 0; i < nueva_matriz.filas;i++){
-		for (int j = 0; j < nueva_matriz.columnas;j++){
-			cout << nueva_matriz.datos[i][j] << " ";
+	for (int i = 0; i < matriz.filas;i++){
+		for (int j = 0; j < matriz.columnas;j++){
+			cout << matriz.datos[i][j] << " ";
 		}
 		cout << endl;
 	} 
@@ -79,19 +79,21 @@ Matriz2D_1 CopiaMatriz (Matriz2D_1 matriz){
 	return nueva_matriz;
 }
 
-Matriz2D_1 ExtraeSubmatriz (Matriz2D1 matriz,int fila_inicio, int columna_inicio,
+Matriz2D_1 ExtraeSubmatriz (Matriz2D_1 matriz,int fila_inicio, int columna_inicio,
                                              int fila_fin   , int columna_fin){
-	Matriz2D_1 nueva_matriz = CreaMatriz(filas_inicio - filas_fin, 
-	                                     columnas_inicio - columnas_fin);
+	Matriz2D_1 nueva_matriz = CreaMatriz(fila_inicio - fila_fin, 
+	                                     columna_inicio - columna_fin);
 	for (int i = 0; i < nueva_matriz.filas; i++){
 		for(int j = 0; j < nueva_matriz.columnas; j++){
 			nueva_matriz.datos[i][j] = 
-			                         matriz[i + filas_inicio][j + columnas_inicio];
+			                     matriz.datos[i + fila_inicio][j + columna_inicio];
 		}
 	}
 	return nueva_matriz;
 }
 
+
+//PRE: fila a eliminar valida
 Matriz2D_1 EliminaFila (int fila, Matriz2D_1 matriz){
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas - 1, matriz.columnas);
 	
@@ -99,7 +101,7 @@ Matriz2D_1 EliminaFila (int fila, Matriz2D_1 matriz){
 	bool ha_pasado_fila = i > fila;
 
 	while(i < nueva_matriz.filas){
-		if (i != fila){
+		if (i != fila || ha_pasado_fila){
 			if(!ha_pasado_fila)
 				for (int j = 0; j < nueva_matriz.columnas;j++){
 					nueva_matriz.datos[i][j] = matriz.datos[i][j];
@@ -108,27 +110,34 @@ Matriz2D_1 EliminaFila (int fila, Matriz2D_1 matriz){
 				for (int j = 0; j < nueva_matriz.columnas;j++){
 					nueva_matriz.datos[i][j] = matriz.datos[i+1][j];
 				}
+			i++;
 		}
 		else{
 			ha_pasado_fila = true;
 		}
+		
 	}
 
 	return nueva_matriz;
 }
 
+//PRE: columna a eliminar valida
+
 Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 matriz ){
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas - 1);
 
 	for (int i = 0; i < nueva_matriz.filas; i++){
-		for (int j = 0; j < nueva_matriz.columnas; j++){
-			bool ha_pasado_columna = j > columna;
+		int j = 0;
+		bool ha_pasado_columna = j > columna;
+
+		while(j < nueva_matriz.columnas){
 			
-			if (j != columna){
+			if (j != columna || ha_pasado_columna){
 				if (!ha_pasado_columna)
 					nueva_matriz.datos[i][j] = matriz.datos[i][j];
 				else
 					nueva_matriz.datos[i][j] = matriz.datos[i][j+1];
+				j++;
 			}
 			else
 				ha_pasado_columna = true;
