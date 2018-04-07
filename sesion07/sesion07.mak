@@ -16,8 +16,10 @@ LIB = $(HOME)/lib
 
 all : inicio \
       $(BIN)/II_Demo-Matriz2D_1 \
+		$(BIN)/II_ProblemaAsignacion \
 		finalizado
 
+###############################################################################
 
 $(BIN)/II_Demo-Matriz2D_1 : $(OBJ)/II_Demo-Matriz2D_1.o \
                             $(OBJ)/Matriz2D_1.o \
@@ -47,7 +49,20 @@ $(OBJ)/GeneradorAleatorioEnteros.o : $(SRC)/GeneradorAleatorioEnteros.cpp \
 	g++ -c -o $(OBJ)/GeneradorAleatorioEnteros.o \
 	          $(SRC)/GeneradorAleatorioEnteros.cpp -I$(INCLUDE)
 
+################################################################################
 
+
+$(BIN)/II_ProblemaAsignacion : $(OBJ)/II_ProblemaAsignacion.o \
+                               $(OBJ)/Matriz2D_1.o \
+										 $(OBJ)/GeneradorAleatorioEnteros.o
+	g++ -o $(BIN)/II_ProblemaAsignacion $(OBJ)/II_ProblemaAsignacion.o \
+                                       $(OBJ)/Matriz2D_1.o \
+													$(OBJ)/GeneradorAleatorioEnteros.o
+
+$(OBJ)/II_ProblemaAsignacion.o : $(SRC)/II_ProblemaAsignacion.cpp \
+                                 $(INCLUDE)/Matriz2D_1.h
+	g++ -c -o $(OBJ)/II_ProblemaAsignacion.o $(SRC)/II_ProblemaAsignacion.cpp \
+	    -I$(INCLUDE)
 
 ################################################################################
 

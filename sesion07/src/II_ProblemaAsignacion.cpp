@@ -15,7 +15,7 @@ using namespace std;
 
 
 int main(){
-	const int MAX_COSTE = 100;
+	const int MAX_COSTE = 500;
 	
 	int min;
 	int pos_min;
@@ -25,31 +25,31 @@ int main(){
 	cout << "Introduce el numero de tecnicos : ";
 	cin >> num;
 
-	Matriz2D_1 precio_pedidos = CreaMatrizAleatorios(num, num);
+	Matriz2D_1 precio_pedidos = CreaYLeeMatriz(num, num);
 	Matriz2D_1 asignaciones = CreaMatriz(num,num);
-	Vector ya_asignados;
+	bool * ya_asignados;
 
-	asignados = new bool [num];
+	ya_asignados = new bool [num];
 
 	for (int i = 0; i < num; i++){
-		asignados[i] = false;
+		ya_asignados[i] = false;
 		for (int j = 0; j < num; j++){
 			asignaciones.datos[i][j] = 0;
 		}
 	}
 	
-	for (int i = 0; i < precio_pedidos.filas){
+	for (int i = 0; i < precio_pedidos.filas; i++){
 		min = MAX_COSTE;
 
 		for (int j = 0; j < precio_pedidos.columnas; j++){
-			if (min > precio_pedidos[i][j] && !ya_asignados[j]){
-				min = precio_pedidos[i][j];
+			if (min > precio_pedidos.datos[i][j] && !ya_asignados[j]){
+				min = precio_pedidos.datos[i][j];
 				pos_min = j;
 			}
 		}
 		ya_asignados[pos_min] = true;
 		asignaciones.datos[i][pos_min] = 1;
-		coste = coste + precio_pedidos[i][pos_min];
+		coste = coste + precio_pedidos.datos[i][pos_min];
 	}
 
 	cout << "Matriz precios : " << endl << endl;
