@@ -44,3 +44,15 @@ Matriz2D_1 CreaYLeeMatriz(int filas, int columnas){
 	return nueva_matriz;
 }
 
+Matriz2D_1 CreaMatrizAleatorios(int filas, int columnas){
+	Matriz2D_1 nueva_matriz = CreaMatriz (filas, columnas);
+	GeneradorAleatorioEnteros generador(1,500);
+
+	for (int i = 0; i < nueva_matriz.filas;i++){
+		for (int j = 0; j < nueva_matriz.columnas;j++){
+			nueva_matriz.datos[i][j] = generador.Siguiente();
+		}
+	} 
+
+	return nueva_matriz;
+}
