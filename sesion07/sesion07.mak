@@ -18,6 +18,7 @@ all : inicio \
       $(BIN)/II_Demo-Matriz2D_1 \
 		$(BIN)/II_ProblemaAsignacion \
 		$(BIN)/II_ProblemaViajanteComercio \
+		$(BIN)/II_Demo-Matriz2D_2 \
 		finalizado
 
 ###############################################################################
@@ -80,6 +81,32 @@ $(OBJ)/II_ProblemaViajanteComercio.o : $(SRC)/II_ProblemaViajanteComercio.cpp \
 	g++ -c -o $(OBJ)/II_ProblemaViajanteComercio.o \
 	          $(SRC)/II_ProblemaViajanteComercio.cpp \
 	         -I$(INCLUDE) -std=c++11
+
+################################################################################
+
+$(BIN)/II_Demo-Matriz2D_2 : $(OBJ)/II_Demo-Matriz2D_2.o \
+                            $(OBJ)/Matriz2D_2.o \
+									 $(OBJ)/GeneradorAleatorioEnteros.o
+
+	g++ -o $(BIN)/II_Demo-Matriz2D_2 $(OBJ)/II_Demo-Matriz2D_2.o \
+	                                 $(OBJ)/Matriz2D_2.o \
+												$(OBJ)/GeneradorAleatorioEnteros.o
+
+
+$(OBJ)/II_Demo-Matriz2D_2.o : $(SRC)/II_Demo-Matriz2D_2.cpp \
+                              $(INCLUDE)/Matriz2D_2.h \
+								    	$(INCLUDE)/TipoBase.h
+
+	g++ -c -o $(OBJ)/II_Demo-Matriz2D_2.o $(SRC)/II_Demo-Matriz2D_2.cpp \
+	       -I$(INCLUDE) -std=c++11
+
+$(OBJ)/Matriz2D_2.o : $(SRC)/Matriz2D_2.cpp \
+							 $(INCLUDE)/Matriz2D_2.h \
+							 $(INCLUDE)/TipoBase.h \
+							 $(INCLUDE)/GeneradorAleatorioEnteros.h
+	g++ -c -o $(OBJ)/Matriz2D_2.o $(SRC)/Matriz2D_2.cpp \
+										   -I$(INCLUDE) -std=c++11
+
 
 inicio :
 	@echo -e
