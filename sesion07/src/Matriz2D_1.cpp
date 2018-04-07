@@ -1,5 +1,6 @@
 #include "Matriz2D_1.h"
 #include "TipoBase.h"
+#include "GeneradorAleatorioEnteros.h"
 
 
 Matriz2D_1 CreaMatriz(int filas, int columnas){
