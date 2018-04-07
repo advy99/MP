@@ -33,22 +33,27 @@ int main(){
 	cin >> filas;
 
 	cout << "Matriz sin la fila " << filas <<" : " << endl << endl;
-	MostrarMatriz(EliminaFila(filas,matriz));
+	matriz = EliminaFila(filas,matriz);
+	MostrarMatriz(matriz);
 	cout << endl<< endl;
 
 	cout << "Introduce una columna a eliminar : ";
 	cin >> columnas;
 
 	cout << "Matriz sin la columna " << columnas <<" : " << endl << endl;
-	MostrarMatriz(EliminaColumna(columnas,matriz));
+	matriz = EliminaColumna(columnas,matriz);
+	MostrarMatriz(matriz);
 	cout << endl<< endl;
 
 	cout << "Matriz traspuesta : " << endl << endl;
-	MostrarMatriz(MatrizTraspuesta(matriz));
+	matriz = MatrizTraspuesta(matriz);
+	MostrarMatriz(matriz);
+
 	cout << endl<< endl;
 
 	cout << "Matriz con filas invertidas : " << endl << endl;
-	MostrarMatriz(InvertirFilas(matriz));
+	matriz = InvertirFilas(matriz);
+	MostrarMatriz(matriz);
 	cout << endl<< endl;
 
 	LiberaMatriz2D_1(matriz);

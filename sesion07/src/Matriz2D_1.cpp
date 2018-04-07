@@ -94,7 +94,7 @@ Matriz2D_1 ExtraeSubmatriz (Matriz2D_1 matriz,int fila_inicio, int columna_inici
 
 
 //PRE: fila a eliminar valida
-Matriz2D_1 EliminaFila (int fila, Matriz2D_1 matriz){
+Matriz2D_1 EliminaFila (int fila, Matriz2D_1 & matriz){
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas - 1, matriz.columnas);
 	
 	int i = 0;
@@ -118,12 +118,14 @@ Matriz2D_1 EliminaFila (int fila, Matriz2D_1 matriz){
 		
 	}
 
+	LiberaMatriz2D_1(matriz);
+
 	return nueva_matriz;
 }
 
 //PRE: columna a eliminar valida
 
-Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 matriz ){
+Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 & matriz ){
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas - 1);
 
 	for (int i = 0; i < nueva_matriz.filas; i++){
@@ -144,10 +146,12 @@ Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 matriz ){
 		}
 	}
 
+	LiberaMatriz2D_1(matriz);
+
 	return nueva_matriz;
 }
 
-Matriz2D_1 MatrizTraspuesta(Matriz2D_1 matriz){
+Matriz2D_1 MatrizTraspuesta(Matriz2D_1 & matriz){
 	Matriz2D_1 nueva_matriz = CopiaMatriz(matriz);
 
 	for (int i = 0; i < nueva_matriz.filas; i++){
@@ -155,11 +159,13 @@ Matriz2D_1 MatrizTraspuesta(Matriz2D_1 matriz){
 			nueva_matriz.datos[j][i] = matriz.datos[i][j];
 		}
 	}
+	LiberaMatriz2D_1(matriz);
+
 
 	return nueva_matriz;
 }
 
-Matriz2D_1 InvertirFilas (Matriz2D_1 matriz){
+Matriz2D_1 InvertirFilas (Matriz2D_1 & matriz){
 	Matriz2D_1 nueva_matriz = CopiaMatriz(matriz);
 	int * copia_direccion_columnas [nueva_matriz.filas];
 
@@ -170,6 +176,8 @@ Matriz2D_1 InvertirFilas (Matriz2D_1 matriz){
 	for(int i = 0 ; i < nueva_matriz.filas; i++){
 		nueva_matriz.datos[i] = copia_direccion_columnas[nueva_matriz.filas-1 -i];
 	}
+
+	LiberaMatriz2D_1(matriz);
 
 	return nueva_matriz;
 }

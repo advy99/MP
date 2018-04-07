@@ -16,9 +16,9 @@ Matriz2D_1 CreaYLeeMatriz(int, int);
 Matriz2D_1 CreaMatrizAleatorios(int , int );
 void MostrarMatriz (Matriz2D_1 );
 Matriz2D_1 ExtraeSubmatriz (Matriz2D_1, int , int , int , int );
-Matriz2D_1 EliminaFila (int , Matriz2D_1  );
-Matriz2D_1 EliminaColumna (int , Matriz2D_1 );
-Matriz2D_1 MatrizTraspuesta(Matriz2D_1 );
-Matriz2D_1 InvertirFilas (Matriz2D_1 );
+Matriz2D_1 EliminaFila (int , Matriz2D_1 & );
+Matriz2D_1 EliminaColumna (int , Matriz2D_1 & );
+Matriz2D_1 MatrizTraspuesta(Matriz2D_1 & );
+Matriz2D_1 InvertirFilas (Matriz2D_1 & );
 
 #endif
