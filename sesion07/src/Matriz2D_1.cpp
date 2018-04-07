@@ -1,6 +1,7 @@
 #include "Matriz2D_1.h"
 #include "TipoBase.h"
 #include "GeneradorAleatorioEnteros.h"
+#include <iostream>
 
 
 Matriz2D_1 CreaMatriz(int filas, int columnas){
@@ -55,4 +56,13 @@ Matriz2D_1 CreaMatrizAleatorios(int filas, int columnas){
 	} 
 
 	return nueva_matriz;
+}
+
+void MostrarMatriz (Matriz2D_1 matriz){
+	for (int i = 0; i < nueva_matriz.filas;i++){
+		for (int j = 0; j < nueva_matriz.columnas;j++){
+			cout << nueva_matriz.datos[i][j] << " ";
+		}
+		cout << endl;
+	} 
 }
