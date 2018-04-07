@@ -62,4 +62,7 @@ int main(){
 
 	cout << "El coste total es de " << coste << endl;
 
+	LiberaMatriz2D_1(precio_pedidos);
+	LiberaMatriz2D_1(asignaciones);
+	delete [] ya_asignados;
 }
