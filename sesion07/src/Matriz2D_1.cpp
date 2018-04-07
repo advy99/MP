@@ -92,7 +92,7 @@ Matriz2D_1 ExtraeSubmatriz (Matriz2D1 matriz,int fila_inicio, int columna_inicio
 	return nueva_matriz;
 }
 
-Matriz2D_1 EliminaFila (int fila, Matriz2D_1 & matriz){
+Matriz2D_1 EliminaFila (int fila, Matriz2D_1 matriz){
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas - 1, matriz.columnas);
 	
 	int i = 0;
@@ -111,6 +111,27 @@ Matriz2D_1 EliminaFila (int fila, Matriz2D_1 & matriz){
 		}
 		else{
 			ha_pasado_fila = true;
+		}
+	}
+
+	return nueva_matriz;
+}
+
+Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 matriz ){
+	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas - 1);
+
+	for (int i = 0; i < nueva_matriz.filas; i++){
+		for (int j = 0; j < nueva_matriz.columnas; j++){
+			bool ha_pasado_columna = j > columna;
+			
+			if (j != columna){
+				if (!ha_pasado_columna)
+					nueva_matriz.datos[i][j] = matriz.datos[i][j];
+				else
+					nueva_matriz.datos[i][j] = matriz.datos[i][j+1];
+			}
+			else
+				ha_pasado_columna = true;
 		}
 	}
 
