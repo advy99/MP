@@ -66,3 +66,15 @@ void MostrarMatriz (Matriz2D_1 matriz){
 		cout << endl;
 	} 
 }
+
+Matriz2D_1 CopiaMatriz (Matriz2D_1 matriz){
+	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas);
+
+	for (int i = 0; i < nueva_matriz.filas;i++){
+		for (int j = 0; j < nueva_matriz.columnas;j++){
+			nueva_matriz.datos[i][j] = matriz.datos[i][j];
+		}
+	} 
+	
+	return nueva_matriz;
+}
