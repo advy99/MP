@@ -17,6 +17,7 @@ LIB = $(HOME)/lib
 all : inicio \
       $(BIN)/II_Demo-Matriz2D_1 \
 		$(BIN)/II_ProblemaAsignacion \
+		$(BIN)/II_ProblemaViajanteComercio \
 		finalizado
 
 ###############################################################################
@@ -34,20 +35,20 @@ $(OBJ)/II_Demo-Matriz2D_1.o : $(SRC)/II_Demo-Matriz2D_1.cpp \
 								    	$(INCLUDE)/TipoBase.h
 
 	g++ -c -o $(OBJ)/II_Demo-Matriz2D_1.o $(SRC)/II_Demo-Matriz2D_1.cpp \
-	       -I$(INCLUDE)
+	       -I$(INCLUDE) -std=c++11
 
 $(OBJ)/Matriz2D_1.o : $(SRC)/Matriz2D_1.cpp \
 							 $(INCLUDE)/Matriz2D_1.h \
 							 $(INCLUDE)/TipoBase.h \
 							 $(INCLUDE)/GeneradorAleatorioEnteros.h
 	g++ -c -o $(OBJ)/Matriz2D_1.o $(SRC)/Matriz2D_1.cpp \
-										   -I$(INCLUDE)
+										   -I$(INCLUDE) -std=c++11
 
 
 $(OBJ)/GeneradorAleatorioEnteros.o : $(SRC)/GeneradorAleatorioEnteros.cpp \
                                      $(INCLUDE)/GeneradorAleatorioEnteros.h
 	g++ -c -o $(OBJ)/GeneradorAleatorioEnteros.o \
-	          $(SRC)/GeneradorAleatorioEnteros.cpp -I$(INCLUDE)
+	          $(SRC)/GeneradorAleatorioEnteros.cpp -I$(INCLUDE) -std=c++11
 
 ################################################################################
 
@@ -62,10 +63,23 @@ $(BIN)/II_ProblemaAsignacion : $(OBJ)/II_ProblemaAsignacion.o \
 $(OBJ)/II_ProblemaAsignacion.o : $(SRC)/II_ProblemaAsignacion.cpp \
                                  $(INCLUDE)/Matriz2D_1.h
 	g++ -c -o $(OBJ)/II_ProblemaAsignacion.o $(SRC)/II_ProblemaAsignacion.cpp \
-	    -I$(INCLUDE)
+	    -I$(INCLUDE) -std=c++11
 
 ################################################################################
 
+$(BIN)/II_ProblemaViajanteComercio : $(OBJ)/II_ProblemaViajanteComercio.o \
+                                     $(OBJ)/Matriz2D_1.o \
+					       					 $(OBJ)/GeneradorAleatorioEnteros.o
+	g++ -o $(BIN)/II_ProblemaViajanteComercio \
+	                                       $(OBJ)/II_ProblemaViajanteComercio.o \
+                                          $(OBJ)/Matriz2D_1.o \
+                                          $(OBJ)/GeneradorAleatorioEnteros.o
+
+$(OBJ)/II_ProblemaViajanteComercio.o : $(SRC)/II_ProblemaViajanteComercio.cpp \
+                                       $(INCLUDE)/Matriz2D_1.h
+	g++ -c -o $(OBJ)/II_ProblemaViajanteComercio.o \
+	          $(SRC)/II_ProblemaViajanteComercio.cpp \
+	         -I$(INCLUDE) -std=c++11
 
 inicio :
 	@echo -e
