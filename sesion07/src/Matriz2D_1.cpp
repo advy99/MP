@@ -14,6 +14,7 @@ Matriz2D_1 CreaMatriz(int filas, int columnas){
 		nueva_matriz.datos[i] = new int [columnas];
 	}
 
+	return nueva_matriz
 }
 
 void LiberaMatriz2D_1 (Matriz2D_1 & matriz){
@@ -27,5 +28,18 @@ void LiberaMatriz2D_1 (Matriz2D_1 & matriz){
 	matriz.columnas = 0;
 
 	matriz.datos = 0;
+}
+
+Matriz2D_1 CreaYLeeMatriz(int filas, int columnas){
+	Matriz2D_1 nueva_matriz = CreaMatriz (filas, columnas);
+
+	for (int i = 0; i < nueva_matriz.filas;i++){
+		for (int j = 0; j < nueva_matriz.columnas;j++){
+			cout << "Introduce el elemento " << i << ", " << j << " :";
+			cin >> nueva_matriz.datos[i][j];
+		}
+	} 
+
+	return nueva_matriz;
 }
 

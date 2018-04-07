@@ -12,5 +12,6 @@ typedef struct {
 
 Matriz2D_1 CreaMatriz(int, int);
 void LiberaMatriz2D_1 (Matriz2D_1 &);
+Matriz2D_1 CreaYLeeMatriz(int, int);
 
 #endif
