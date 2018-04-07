@@ -1,4 +1,3 @@
- 
 /*************************************************************/
 /**                                                         **/
 /**  Autor : Antonio David Villegas Yeguas                  **/
@@ -24,7 +23,7 @@ int main(){
 	cout << "Introduce el numero de columnas de la matriz : ";
 	cin >> columnas;
 
-	Matriz2D_2 matriz = CreaMatrizAleatorios(filas,columnas);
+	Matriz2D_2 matriz = CreaMatrizAleatorios_2(filas,columnas);
 
 	cout << "Matriz :" << endl << endl;
 	MostrarMatriz(matriz);

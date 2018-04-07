@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-Matriz2D_2 CreaMatriz(int filas, int columnas){
+Matriz2D_2 CreaMatriz_2(int filas, int columnas){
 	Matriz2D_2 nueva_matriz;
 
 	nueva_matriz.filas = filas;
@@ -20,7 +20,7 @@ Matriz2D_2 CreaMatriz(int filas, int columnas){
 	return nueva_matriz;
 }
 
-void LiberaMatriz2D (Matriz2D_2 & matriz){
+void LiberaMatriz2D_2 (Matriz2D_2 & matriz){
 
 
 	delete [] matriz.datos[0];
@@ -35,8 +35,8 @@ void LiberaMatriz2D (Matriz2D_2 & matriz){
 	matriz.datos = 0;
 }
 
-Matriz2D_2 CreaYLeeMatriz(int filas, int columnas){
-	Matriz2D_2 nueva_matriz = CreaMatriz (filas, columnas);
+Matriz2D_2 CreaYLeeMatriz_2(int filas, int columnas){
+	Matriz2D_2 nueva_matriz = CreaMatriz_2 (filas, columnas);
 
 	for (int i = 0; i < nueva_matriz.filas;i++){
 		for (int j = 0; j < nueva_matriz.columnas;j++){
@@ -48,8 +48,8 @@ Matriz2D_2 CreaYLeeMatriz(int filas, int columnas){
 	return nueva_matriz;
 }
 
-Matriz2D_2 CreaMatrizAleatorios(int filas, int columnas){
-	Matriz2D_2 nueva_matriz = CreaMatriz (filas, columnas);
+Matriz2D_2 CreaMatrizAleatorios_2(int filas, int columnas){
+	Matriz2D_2 nueva_matriz = CreaMatriz_2 (filas, columnas);
 	GeneradorAleatorioEnteros generador(1,500);
 
 	for (int i = 0; i < nueva_matriz.filas;i++){
@@ -72,7 +72,7 @@ void MostrarMatriz (Matriz2D_2 matriz){
 }
 
 Matriz2D_2 CopiaMatriz (Matriz2D_2 matriz){
-	Matriz2D_2 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas);
+	Matriz2D_2 nueva_matriz = CreaMatriz_2(matriz.filas, matriz.columnas);
 
 	for (int i = 0; i < nueva_matriz.filas;i++){
 		for (int j = 0; j < nueva_matriz.columnas;j++){
@@ -85,7 +85,7 @@ Matriz2D_2 CopiaMatriz (Matriz2D_2 matriz){
 
 Matriz2D_2 ExtraeSubmatriz (Matriz2D_2 matriz,int fila_inicio, int columna_inicio,
                                              int fila_fin   , int columna_fin){
-	Matriz2D_2 nueva_matriz = CreaMatriz(fila_inicio - fila_fin, 
+	Matriz2D_2 nueva_matriz = CreaMatriz_2(fila_inicio - fila_fin, 
 	                                     columna_inicio - columna_fin);
 	for (int i = 0; i < nueva_matriz.filas; i++){
 		for(int j = 0; j < nueva_matriz.columnas; j++){
@@ -99,7 +99,7 @@ Matriz2D_2 ExtraeSubmatriz (Matriz2D_2 matriz,int fila_inicio, int columna_inici
 
 //PRE: fila a eliminar valida
 Matriz2D_2 EliminaFila (int fila, Matriz2D_2 & matriz){
-	Matriz2D_2 nueva_matriz = CreaMatriz(matriz.filas - 1, matriz.columnas);
+	Matriz2D_2 nueva_matriz = CreaMatriz_2(matriz.filas - 1, matriz.columnas);
 	
 	int i = 0;
 	bool ha_pasado_fila = i > fila;
@@ -122,7 +122,7 @@ Matriz2D_2 EliminaFila (int fila, Matriz2D_2 & matriz){
 		
 	}
 
-	LiberaMatriz2D(matriz);
+	LiberaMatriz2D_2(matriz);
 
 	return nueva_matriz;
 }
@@ -130,7 +130,7 @@ Matriz2D_2 EliminaFila (int fila, Matriz2D_2 & matriz){
 //PRE: columna a eliminar valida
 
 Matriz2D_2 EliminaColumna (int columna, Matriz2D_2 & matriz ){
-	Matriz2D_2 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas - 1);
+	Matriz2D_2 nueva_matriz = CreaMatriz_2(matriz.filas, matriz.columnas - 1);
 
 	for (int i = 0; i < nueva_matriz.filas; i++){
 		int j = 0;
@@ -150,7 +150,7 @@ Matriz2D_2 EliminaColumna (int columna, Matriz2D_2 & matriz ){
 		}
 	}
 
-	LiberaMatriz2D(matriz);
+	LiberaMatriz2D_2(matriz);
 
 	return nueva_matriz;
 }
@@ -167,7 +167,7 @@ Matriz2D_2 MatrizTraspuesta(Matriz2D_2 & matriz){
 			nueva_matriz.datos[j][i] = matriz.datos[i][j];
 		}
 	}
-	LiberaMatriz2D(matriz);
+	LiberaMatriz2D_2(matriz);
 
 
 	return nueva_matriz;
@@ -185,7 +185,7 @@ Matriz2D_2 InvertirFilas (Matriz2D_2 & matriz){
 		nueva_matriz.datos[i] = copia_direccion_columnas[nueva_matriz.filas-1 -i];
 	}
 
-	LiberaMatriz2D(matriz);
+	LiberaMatriz2D_2(matriz);
 
 	return nueva_matriz;
 }

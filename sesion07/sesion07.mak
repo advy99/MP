@@ -19,6 +19,7 @@ all : inicio \
 		$(BIN)/II_ProblemaAsignacion \
 		$(BIN)/II_ProblemaViajanteComercio \
 		$(BIN)/II_Demo-Matriz2D_2 \
+		$(BIN)/II_Demo-Conversiones-Matriz2D \
 		finalizado
 
 ###############################################################################
@@ -107,6 +108,24 @@ $(OBJ)/Matriz2D_2.o : $(SRC)/Matriz2D_2.cpp \
 	g++ -c -o $(OBJ)/Matriz2D_2.o $(SRC)/Matriz2D_2.cpp \
 										   -I$(INCLUDE) -std=c++11
 
+################################################################################
+
+$(BIN)/II_Demo-Conversiones-Matriz2D : $(OBJ)/II_Demo-Conversiones-Matriz2D.o \
+                                       $(OBJ)/Matriz2D_1.o \
+													$(OBJ)/Matriz2D_2.o \
+													$(OBJ)/GeneradorAleatorioEnteros.o
+	g++ -o $(BIN)/II_Demo-Conversiones-Matriz2D \
+	       $(OBJ)/II_Demo-Conversiones-Matriz2D.o \
+		 	 $(OBJ)/Matriz2D_1.o \
+			 $(OBJ)/Matriz2D_2.o \
+			 $(OBJ)/GeneradorAleatorioEnteros.o
+
+$(OBJ)/II_Demo-Conversiones-Matriz2D.o : $(SRC)/II_Demo-Conversiones-Matriz2D.cpp \
+                                       $(INCLUDE)/Matriz2D_1.h \
+													$(INCLUDE)/Matriz2D_2.h
+	g++ -c -o $(OBJ)/II_Demo-Conversiones-Matriz2D.o \
+	          $(SRC)/II_Demo-Conversiones-Matriz2D.cpp\
+	         -I$(INCLUDE) -std=c++11
 
 inicio :
 	@echo -e
