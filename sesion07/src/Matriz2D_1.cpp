@@ -18,11 +18,14 @@ Matriz2D_1 CreaMatriz(int filas, int columnas){
 
 void LiberaMatriz2D_1 (Matriz2D_1 & matriz){
 	for (int i = 0; i < matriz.filas; i++){
-		delete [] nueva_matriz.datos[i];
+		delete [] matriz.datos[i];
 	}
-	
-	delete [] nueva_matriz.datos;
 
-	nueva_matriz.datos = 0;
+	delete [] matriz.datos;
+
+	matriz.filas = 0;
+	matriz.columnas = 0;
+
+	matriz.datos = 0;
 }
 
