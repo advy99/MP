@@ -31,6 +31,7 @@ int main(){
 
 	ya_asignados = new bool [num];
 
+	//Inicializamos ya_asignados a false y asignciones a 0
 	for (int i = 0; i < num; i++){
 		ya_asignados[i] = false;
 		for (int j = 0; j < num; j++){
@@ -38,15 +39,18 @@ int main(){
 		}
 	}
 	
+	//Recorremos los precios
 	for (int i = 0; i < precio_pedidos.filas; i++){
 		min = MAX_COSTE;
-
+		
+		//Buscamos el precio mas bajo de la fila, si esa columna no esta asignada
 		for (int j = 0; j < precio_pedidos.columnas; j++){
 			if (min > precio_pedidos.datos[i][j] && !ya_asignados[j]){
 				min = precio_pedidos.datos[i][j];
 				pos_min = j;
 			}
 		}
+		//Actualizamos los datos, con la nueva columna asignada a la fila i
 		ya_asignados[pos_min] = true;
 		asignaciones.datos[i][pos_min] = 1;
 		coste = coste + precio_pedidos.datos[i][pos_min];

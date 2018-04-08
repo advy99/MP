@@ -47,9 +47,23 @@ int main(){
 	return 0;
 }
 
+/******************************************************************************/
+
+/******************************************************************************/
+/**                                                                          **/
+/**      FilasIndependientesAFilas : Convierte Matriz2D_1 a Matriz2D_2       **/
+/**                                                                          **/
+/**   RECIBE : matriz                                                        **/
+/**                                                                          **/
+/**   DEVUELVE : matriz                                                      **/
+/**                                                                          **/
+/******************************************************************************/
+
 Matriz2D_2 FilasIndependientesAFilas (Matriz2D_1 & matriz){
+	//Creamos una Matriz2D_2 del mismo tamaño que la Matriz2D_1
 	Matriz2D_2 nueva_matriz = CreaMatriz_2(matriz.filas, matriz.columnas);
 
+	//Copiamos su contenido
 	for (int i = 0; i < nueva_matriz.filas; i++){
 		for (int j = 0; j < nueva_matriz.filas; j++){
 			nueva_matriz.datos[i][j] = matriz.datos[i][j];
@@ -60,9 +74,21 @@ Matriz2D_2 FilasIndependientesAFilas (Matriz2D_1 & matriz){
 	return nueva_matriz;
 }
 
+/******************************************************************************/
+/**                                                                          **/
+/**      FilasAFilasIndependientes : Convierte Matriz2D_2 a Matriz2D_1       **/
+/**                                                                          **/
+/**   RECIBE : matriz                                                        **/
+/**                                                                          **/
+/**   DEVUELVE : matriz                                                      **/
+/**                                                                          **/
+/******************************************************************************/
+
 Matriz2D_1 FilasAFilasIndependientes (Matriz2D_2 & matriz){
+	//Creamos una Matriz2D_1 del mismo tamaño que la Matriz2D_2
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas);
 
+	//Copiamos su contenido
 	for (int i = 0; i < nueva_matriz.filas; i++){
 		for (int j = 0; j < nueva_matriz.filas; j++){
 			nueva_matriz.datos[i][j] = matriz.datos[i][j];
