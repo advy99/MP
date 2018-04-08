@@ -155,14 +155,15 @@ void MostrarMatriz (Matriz2D_1 matriz){
 /**      CopiaMatriz: Copia una matriz dada en otra                          **/
 /**                                                                          **/
 /**   RECIBE : Matriz                                                        **/
+/**            Matriz donde realizar la copia                                **/
 /**                                                                          **/
-/**   DEVUELVE : Copia de la matriz                                          **/
 /**                                                                          **/
 /******************************************************************************/
 
-Matriz2D_1 CopiaMatriz (Matriz2D_1 matriz){
-	//Creamos una nueva matriz con las mismas dimensiones
-	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas);
+void CopiaMatriz (Matriz2D_1 matriz, Matriz2D_1 & nueva_matriz){
+	//Liberamos y reservamos el espacio, por si tienen tamaño distinto
+	LiberaMatriz2D_1(nueva_matriz);
+	nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas);
 
 	//Copiamos los elementos de una matriz en otra
 	for (int i = 0; i < nueva_matriz.filas;i++){
@@ -170,9 +171,6 @@ Matriz2D_1 CopiaMatriz (Matriz2D_1 matriz){
 			nueva_matriz.datos[i][j] = matriz.datos[i][j];
 		}
 	} 
-	
-	//Devolvemos la nueva matriz
-	return nueva_matriz;
 }
 
 /******************************************************************************/
@@ -223,7 +221,7 @@ Matriz2D_1 ExtraeSubmatriz (Matriz2D_1 matriz,int fila_inicio, int columna_inici
 /**                                                                          **/
 /******************************************************************************/
 
-Matriz2D_1 EliminaFila (int fila, Matriz2D_1 & matriz){
+void EliminaFila (int fila, Matriz2D_1 & matriz){
 	//Creamos matriz con una fla menos
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas - 1, matriz.columnas);
 	
@@ -252,11 +250,10 @@ Matriz2D_1 EliminaFila (int fila, Matriz2D_1 & matriz){
 		}
 		
 	}
-
-	//Liberamos matriz
-	LiberaMatriz2D_1(matriz);
-	//Devolvemos la nueva matriz
-	return nueva_matriz;
+	//Cambiamos la nueva matriz
+	CopiaMatriz(nueva_matriz, matriz);
+	//Liberamos la nueva_matriz;
+	LiberaMatriz2D_1(nueva_matriz);
 }
 
 
@@ -275,7 +272,7 @@ Matriz2D_1 EliminaFila (int fila, Matriz2D_1 & matriz){
 /**                                                                          **/
 /******************************************************************************/
 
-Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 & matriz ){
+void EliminaColumna (int columna, Matriz2D_1 & matriz ){
 	//Crea una matriz con una columna menos
 	Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas - 1);
 
@@ -303,10 +300,9 @@ Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 & matriz ){
 		}
 	}
 
-	//Liberamos la matriz
-	LiberaMatriz2D_1(matriz);
-	//Devolvemos la matriz
-	return nueva_matriz;
+	CopiaMatriz(nueva_matriz, matriz);
+	//Liberamos la matriz copia
+	LiberaMatriz2D_1(nueva_matriz);
 }
 
 /******************************************************************************/
@@ -323,24 +319,24 @@ Matriz2D_1 EliminaColumna (int columna, Matriz2D_1 & matriz ){
 /**                                                                          **/
 /******************************************************************************/
 
-Matriz2D_1 MatrizTraspuesta(Matriz2D_1 & matriz){
+void MatrizTraspuesta(Matriz2D_1 & matriz){
 
-	//Si el numero de filas y columnas es distinto, devuelve la misma matriz
-	if (matriz.filas != matriz.columnas)
-		return matriz;
+	//Si el numero de filas y columnas es distinto, no es posible
+	if (matriz.filas == matriz.columnas){
+		
 
-	Matriz2D_1 nueva_matriz = CopiaMatriz(matriz);
+		Matriz2D_1 nueva_matriz = CreaMatriz(matriz.filas,matriz.columnas);
 
-	//Copiamos las posiciones i,j en las casillas j,i para trasponerla
-	for (int i = 0; i < nueva_matriz.filas; i++){
-		for (int  j = 0; j < nueva_matriz.columnas; j++){
-			nueva_matriz.datos[j][i] = matriz.datos[i][j];
+		//Copiamos las posiciones i,j en las casillas j,i para trasponerla
+		for (int i = 0; i < nueva_matriz.filas; i++){
+			for (int  j = 0; j < nueva_matriz.columnas; j++){
+				nueva_matriz.datos[j][i] = matriz.datos[i][j];
+			}
 		}
+		CopiaMatriz(nueva_matriz, matriz);
+		LiberaMatriz2D_1(nueva_matriz);
 	}
-	LiberaMatriz2D_1(matriz);
 
-
-	return nueva_matriz;
 }
 
 /******************************************************************************/
@@ -357,21 +353,17 @@ Matriz2D_1 MatrizTraspuesta(Matriz2D_1 & matriz){
 /**                                                                          **/
 /******************************************************************************/
 
-Matriz2D_1 InvertirFilas (Matriz2D_1 & matriz){
-	Matriz2D_1 nueva_matriz = CopiaMatriz(matriz);
-	int * copia_direccion_columnas [nueva_matriz.filas];
+void InvertirFilas (Matriz2D_1 & matriz){
+	int * copia_direccion_columnas [matriz.filas];
 
 	//Creamos una copia de las direcciones de las columnas
-	for(int i = 0 ; i < nueva_matriz.filas; i++){
-		copia_direccion_columnas[i] = nueva_matriz.datos[i];
+	for(int i = 0 ; i < matriz.filas; i++){
+		copia_direccion_columnas[i] = matriz.datos[i];
 	}
 
 	//Asignamos las direcciones en orden inverso
-	for(int i = 0 ; i < nueva_matriz.filas; i++){
-		nueva_matriz.datos[i] = copia_direccion_columnas[nueva_matriz.filas-1 -i];
+	for(int i = 0 ; i < matriz.filas; i++){
+		matriz.datos[i] = copia_direccion_columnas[matriz.filas-1 -i];
 	}
 
-	LiberaMatriz2D_1(matriz);
-
-	return nueva_matriz;
 }
