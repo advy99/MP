@@ -117,7 +117,7 @@ Matriz2D_2 CreaYLeeMatriz_2(int filas, int columnas){
 
 Matriz2D_2 CreaMatrizAleatorios_2(int filas, int columnas){
 	//Crea la matriz
-	Matriz2D_2 nueva_matriz = CreaMatriz (filas, columnas);
+	Matriz2D_2 nueva_matriz = CreaMatriz_2 (filas, columnas);
 	//Establecemos el generador de aleatorios entre 1 y 500
 	GeneradorAleatorioEnteros generador(1,500);
 
@@ -165,7 +165,7 @@ void MostrarMatriz (Matriz2D_2 matriz){
 
 Matriz2D_2 CopiaMatriz (Matriz2D_2 matriz){
 	//Creamos una nueva matriz con las mismas dimensiones
-	Matriz2D_2 nueva_matriz = CreaMatriz(matriz.filas, matriz.columnas);
+	Matriz2D_2 nueva_matriz = CreaMatriz_2(matriz.filas, matriz.columnas);
 
 	//Copiamos los elementos de una matriz en otra
 	for (int i = 0; i < nueva_matriz.filas;i++){
