@@ -75,3 +75,16 @@ void LiberaLista(Lista & l){
 bool ListaVacia(const Lista l){
 	return (l==0);
 }
+
+int CuentaElementos (const Lista l){
+	int num_elementos = 0;
+
+	PNodo aux = l;
+
+	while (aux != 0){
+		num_elementos++;
+		aux = aux->sig;
+	}
+
+	return num_elementos;
+}
