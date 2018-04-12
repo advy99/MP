@@ -7,7 +7,12 @@ int main(){
 	Lista lista;
 	
 	LeeLista(lista);
+	
 	PintaLista(lista);
 
+	LiberaLista(lista);
+
+	PintaLista(lista);
+	
 	return 0;
 }

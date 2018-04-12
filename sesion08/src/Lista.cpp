@@ -46,9 +46,28 @@ void PintaLista(const Lista l){
 
 	PNodo p_ultimo_nodo = l;
 
+	cout << endl;
+
 	while (p_ultimo_nodo != 0){
 		cout << p_ultimo_nodo->valor << endl;
 		p_ultimo_nodo = p_ultimo_nodo->sig;
 	}
 
+	cout << endl;
+}
+
+void LiberaLista(Lista & l){
+
+	if (l != 0){
+		PNodo nodo_actual = l;
+
+		while (nodo_actual->sig != 0){
+			nodo_actual = nodo_actual->sig;
+			delete l;
+			l = nodo_actual;
+		}
+
+		delete nodo_actual;
+	}
+	l = 0;
 }
