@@ -71,3 +71,7 @@ void LiberaLista(Lista & l){
 	}
 	l = 0;
 }
+
+bool ListaVacia(const Lista l){
+	return (l==0);
+}

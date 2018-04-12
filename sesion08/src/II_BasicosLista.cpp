@@ -12,7 +12,11 @@ int main(){
 
 	LiberaLista(lista);
 
-	PintaLista(lista);
-	
+	if( ListaVacia(lista) )
+		cout << "La lista esta vacia" << endl;
+	else
+		PintaLista(lista);
+
+
 	return 0;
 }
