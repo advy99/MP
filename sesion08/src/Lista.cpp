@@ -58,7 +58,7 @@ void PintaLista(const Lista l){
 
 void LiberaLista(Lista & l){
 
-	if (l != 0){
+	if ( !ListaVacia(l) ){
 		PNodo nodo_actual = l;
 
 		while (nodo_actual->sig != 0){
