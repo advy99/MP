@@ -24,5 +24,7 @@ bool ExisteElemento (const Lista & l, const TipoBase v );
 void InsertaOrdenadamente (Lista &l, TipoBase v);
 void EliminaValor (Lista &l, TipoBase v);
 
+void MezclaListas (Lista &l, Lista &l1, Lista &l2);
+
 
 #endif

@@ -139,36 +139,46 @@ void OrdenaSeleccionLista (Lista & l){
 
 //PRE : La lista esta ordenada
 void InsertaOrdenadamente (Lista & l, TipoBase v){
-	PNodo anterior = l;
-	PNodo siguiente = l;
 
-	//Buscamos la posicion del siguiente
-	while (siguiente->sig != 0 && siguiente->valor <= v){
-		siguiente = siguiente->sig;
-	}
 
-	//si estamos en el ultimo valor, añadimos el siguiente nodo
-	if (siguiente->sig == 0){
 
-		siguiente->sig = new Nodo;
-		siguiente = siguiente->sig;
+	if (CuentaElementos(l) != 0){
+		PNodo anterior = l;
+		PNodo siguiente = l;
 
-		siguiente->valor = v;
-		siguiente->sig = 0;
-	}
-	else{
-		//Buscamos el nodo anterior
-		while (anterior->sig != siguiente){
-			anterior = anterior->sig;
+		//Buscamos la posicion del siguiente
+		while (siguiente->sig != 0 && siguiente->valor <= v){
+			siguiente = siguiente->sig;
 		}
 
-		PNodo direccion_siguiente = siguiente;
+		//si estamos en el ultimo valor, añadimos el siguiente nodo
+		if (siguiente->sig == 0){
 
-		anterior->sig = new Nodo;
-		anterior = anterior->sig;
+			siguiente->sig = new Nodo;
+			siguiente = siguiente->sig;
 
-		anterior->sig = direccion_siguiente;
-		anterior->valor = v;
+			siguiente->valor = v;
+			siguiente->sig = 0;
+		}
+		else{
+			//Buscamos el nodo anterior
+			while (anterior->sig != siguiente){
+				anterior = anterior->sig;
+			}
+
+			PNodo direccion_siguiente = siguiente;
+
+			anterior->sig = new Nodo;
+			anterior = anterior->sig;
+
+			anterior->sig = direccion_siguiente;
+			anterior->valor = v;
+		}
+	}
+	else{
+		l = new Nodo;
+		l->valor = v;
+		l->sig = 0;
 	}
 
 }
@@ -194,17 +204,64 @@ void EliminaValor (Lista & l, TipoBase v){
 
 	if (ExisteElemento (l, v)){
 
-		while (a_eliminar->sig != 0 && a_eliminar->valor < v){
+		while (a_eliminar->sig != 0 && a_eliminar->valor != v){
 			a_eliminar = a_eliminar->sig;
 		}
 
-		while (anterior->sig != a_eliminar)
-			anterior = anterior->sig;
+		if (a_eliminar != l){
+			while (anterior->sig != a_eliminar)
+				anterior = anterior->sig;
+		}
+
 		siguiente = a_eliminar->sig;
+
 
 		anterior->sig = siguiente;
 
 		delete a_eliminar;
 
 	}
+}
+
+
+void MezclaListas(Lista & l, Lista & l1, Lista & l2){
+	LiberaLista(l);
+	PNodo nuevo;
+
+	while (l1 != 0 && l2 != 0){
+
+		if (l1->valor < l2->valor){
+			InsertaOrdenadamente(l,l1->valor);
+
+			nuevo = l1->sig;
+			EliminaValor(l1, l1->valor);
+
+			l1 = nuevo;
+		}
+		else{
+			InsertaOrdenadamente(l,l2->valor);
+			
+			nuevo = l2->sig;
+
+			EliminaValor(l2, l2->valor);
+			l2 = nuevo;
+		}
+	}
+
+	if( l1 == 0){
+
+		while (l2 != 0){
+			InsertaOrdenadamente(l,l2->valor);
+			EliminaValor(l2, l2->valor);
+			l2 = l2->sig;
+		}
+	}
+	else{
+		while (l1 != 0){
+			InsertaOrdenadamente(l,l1->valor);
+			EliminaValor(l1, l1->valor);
+			l1 = l1->sig;
+		}
+	}
+
 }

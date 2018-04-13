@@ -17,7 +17,8 @@ LIB = $(HOME)/lib
 all : inicio \
 		$(BIN)/II_BasicosLista \
 		$(BIN)/II_OrdenarLista \
-		$(BIN)/II_GestionarListaOrdenada
+		$(BIN)/II_GestionarListaOrdenada \
+		$(BIN)/II_MezclarListasOrdenadas
 
 ################################################################################
 
@@ -55,6 +56,19 @@ $(OBJ)/II_GestionarListaOrdenada.o : $(SRC)/II_GestionarListaOrdenada.cpp \
                                   $(INCLUDE)/Lista.h
 	g++ -c -o $(OBJ)/II_GestionarListaOrdenada.o \
 	                                       $(SRC)/II_GestionarListaOrdenada.cpp \
+	                                       -I$(INCLUDE)
+
+################################################################################
+
+$(BIN)/II_MezclarListasOrdenadas : $(OBJ)/II_MezclarListasOrdenadas.o \
+                                   $(LIB)/libLista.a
+	g++ -o $(BIN)/II_MezclarListasOrdenadas $(OBJ)/II_MezclarListasOrdenadas.o \
+	                                  -L$(LIB) -lLista
+
+$(OBJ)/II_MezclarListasOrdenadas.o : $(SRC)/II_MezclarListasOrdenadas.cpp \
+                                  $(INCLUDE)/Lista.h
+	g++ -c -o $(OBJ)/II_MezclarListasOrdenadas.o \
+	                                       $(SRC)/II_MezclarListasOrdenadas.cpp \
 	                                       -I$(INCLUDE)
 
 
