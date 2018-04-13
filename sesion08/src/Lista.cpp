@@ -172,3 +172,39 @@ void InsertaOrdenadamente (Lista & l, TipoBase v){
 	}
 
 }
+
+bool ExisteElemento (const Lista & l, const TipoBase v ){
+	PNodo aux = l;
+	bool existe_elemento = false;
+
+	while (aux->sig != 0 && !existe_elemento){
+		if (aux->valor == v)
+			existe_elemento = true;
+		aux = aux->sig;
+	}
+
+	return existe_elemento;
+}
+
+
+void EliminaValor (Lista & l, TipoBase v){
+	PNodo a_eliminar = l;
+	PNodo anterior = l;
+	PNodo siguiente;
+
+	if (ExisteElemento (l, v)){
+
+		while (a_eliminar->sig != 0 && a_eliminar->valor < v){
+			a_eliminar = a_eliminar->sig;
+		}
+
+		while (anterior->sig != a_eliminar)
+			anterior = anterior->sig;
+		siguiente = a_eliminar->sig;
+
+		anterior->sig = siguiente;
+
+		delete a_eliminar;
+
+	}
+}

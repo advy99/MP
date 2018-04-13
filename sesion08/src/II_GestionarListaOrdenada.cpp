@@ -30,5 +30,12 @@ int main(){
 
 	PintaLista(lista);
 
+	cout << "Introduce un valor a eliminar:" ;
+	cin >> valor;
+
+	EliminaValor(lista, valor);
+
+	PintaLista(lista);
+
 	LiberaLista(lista);
 }

@@ -20,6 +20,7 @@ int  CuentaElementos (const Lista l);
 bool EstaOrdenada (const Lista l);
 void OrdenaSeleccionLista (Lista &l);
 
+bool ExisteElemento (const Lista & l, const TipoBase v );
 void InsertaOrdenadamente (Lista &l, TipoBase v);
 void EliminaValor (Lista &l, TipoBase v);
 
