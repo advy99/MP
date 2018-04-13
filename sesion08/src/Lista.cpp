@@ -136,3 +136,39 @@ void OrdenaSeleccionLista (Lista & l){
 
 	
 }
+
+//PRE : La lista esta ordenada
+void InsertaOrdenadamente (Lista & l, TipoBase v){
+	PNodo anterior = l;
+	PNodo siguiente = l;
+
+	//Buscamos la posicion del siguiente
+	while (siguiente->sig != 0 && siguiente->valor <= v){
+		siguiente = siguiente->sig;
+	}
+
+	//si estamos en el ultimo valor, añadimos el siguiente nodo
+	if (siguiente->sig == 0){
+
+		siguiente->sig = new Nodo;
+		siguiente = siguiente->sig;
+
+		siguiente->valor = v;
+		siguiente->sig = 0;
+	}
+	else{
+		//Buscamos el nodo anterior
+		while (anterior->sig != siguiente){
+			anterior = anterior->sig;
+		}
+
+		PNodo direccion_siguiente = siguiente;
+
+		anterior->sig = new Nodo;
+		anterior = anterior->sig;
+
+		anterior->sig = direccion_siguiente;
+		anterior->valor = v;
+	}
+
+}

@@ -3,7 +3,8 @@
 /**  Autor : Antonio David Villegas Yeguas                  **/
 /**  1GII - Universidad de Granada                          **/
 /**  Metodologia de la Programacion 2017/18                 **/
-/**  Sesion 8 - Ejercicio 13 - Ordenar lista                **/
+/**  Sesion 8 - Ejercicio 14 - Insertar y eliminar en       **/
+/**                          una lista ordenadamente        **/
 /**                                                         **/
 /*************************************************************/
 
@@ -13,22 +14,21 @@
 using namespace std;
 
 int main(){
-	Lista mi_lista;
+	Lista lista;
+	double valor;
 
-	LeeLista(mi_lista);
-	
-	PintaLista(mi_lista);
+	LeeLista(lista);
 
-	if ( EstaOrdenada(mi_lista) ){
-		cout << endl << "La lista esta ordenada" << endl;
-	}
-	else{
-		cout << endl << "La lista no esta ordenada" << endl;
-	}
+	OrdenaSeleccionLista(lista);
 
-	OrdenaSeleccionLista(mi_lista);
+	PintaLista(lista);
 
-	PintaLista(mi_lista);
+	cout << "Introduce un nuevo valor:" ;
+	cin >> valor;
 
-	LiberaLista(mi_lista);
+	InsertaOrdenadamente(lista, valor);
+
+	PintaLista(lista);
+
+	LiberaLista(lista);
 }
