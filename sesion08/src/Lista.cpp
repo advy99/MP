@@ -88,3 +88,26 @@ int CuentaElementos (const Lista l){
 
 	return num_elementos;
 }
+
+bool EstaOrdenada (const Lista l){
+	bool esta_ordenada = true;
+
+	PNodo aux = l;
+
+	TipoBase elemento_anterior = aux->valor;
+	aux = aux->sig;
+
+	while (aux != 0 && esta_ordenada){
+
+		if (elemento_anterior > aux->valor){
+			esta_ordenada = false;
+		}
+		else{
+			elemento_anterior = aux->valor;
+			aux = aux->sig;
+		}
+
+	}
+
+	return esta_ordenada;
+}

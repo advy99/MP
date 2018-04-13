@@ -15,7 +15,8 @@ OBJ = $(HOME)/obj
 LIB = $(HOME)/lib
 
 all : inicio \
-		$(BIN)/II_BasicosLista
+		$(BIN)/II_BasicosLista \
+		$(BIN)/II_OrdenarLista
 
 ################################################################################
 
@@ -31,6 +32,16 @@ $(OBJ)/II_BasicosLista.o : $(SRC)/II_BasicosLista.cpp $(INCLUDE)/Lista.h
 $(OBJ)/Lista.o : $(SRC)/Lista.cpp $(INCLUDE)/TipoBase.h $(INCLUDE)/Lista.h
 	g++ -c -o $(OBJ)/Lista.o $(SRC)/Lista.cpp -I$(INCLUDE)
 
+
+################################################################################
+
+$(BIN)/II_OrdenarLista : $(OBJ)/II_OrdenarLista.o \
+                         $(LIB)/libLista.a
+	g++ -o $(BIN)/II_OrdenarLista $(OBJ)/II_OrdenarLista.o \
+	                              -L$(LIB) -lLista
+
+$(OBJ)/II_OrdenarLista.o : $(SRC)/II_OrdenarLista.cpp $(INCLUDE)/Lista.h
+	g++ -c -o $(OBJ)/II_OrdenarLista.o $(SRC)/II_OrdenarLista.cpp -I$(INCLUDE)
 
 
 $(LIB)/libLista.a : $(OBJ)/Lista.o
