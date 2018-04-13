@@ -111,3 +111,31 @@ bool EstaOrdenada (const Lista l){
 
 	return esta_ordenada;
 }
+
+void OrdenaSeleccionLista (Lista & l){
+	int elementos_lista = CuentaElementos (l);
+
+	TipoBase minimo;
+	PNodo minimo_nodo;
+
+	for (PNodo aux = l; aux != 0; aux = aux->sig){
+		//minimo = aux->valor;
+		minimo_nodo = aux;
+
+		for (PNodo interno = aux->sig; interno != 0; interno = interno->sig){
+
+			if (interno->valor < minimo_nodo->valor){
+				//minimo = interno->valor;
+				minimo_nodo = interno;
+			}
+
+		}
+
+		TipoBase intermedio = aux->valor;
+		aux->valor = minimo_nodo->valor;
+		minimo_nodo->valor = intermedio;
+
+	}
+
+	
+}

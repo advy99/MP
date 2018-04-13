@@ -17,5 +17,9 @@ int main(){
 		cout << endl << "La lista no esta ordenada" << endl;
 	}
 
+	OrdenaSeleccionLista(mi_lista);
+
+	PintaLista(mi_lista);
+
 	LiberaLista(mi_lista);
 }
