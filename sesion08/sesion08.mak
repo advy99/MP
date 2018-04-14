@@ -18,7 +18,7 @@ all : inicio \
 		$(BIN)/II_BasicosLista \
 		$(BIN)/II_OrdenarLista \
 		$(BIN)/II_GestionarListaOrdenada \
-		$(BIN)/II_MezclarListasOrdenadas
+		$(BIN)/II_MezclarListasOrdenadas 
 
 ################################################################################
 

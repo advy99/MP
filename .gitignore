@@ -3,3 +3,5 @@ bin/
 */bin/
 obj/
 *.tar
+*/lib/
+lib/
