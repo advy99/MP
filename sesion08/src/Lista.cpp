@@ -344,7 +344,7 @@ void EliminaValor (Lista & l, TipoBase v){
 	if (ExisteElemento (l, v)){
 
 		//Buscamos el nodo en el que se almacena el valor
-		while (a_eliminar->sig != 0 && a_eliminar->valor != v){
+		while (a_eliminar != 0 && a_eliminar->valor != v){
 			a_eliminar = a_eliminar->sig;
 		}
 
@@ -352,15 +352,18 @@ void EliminaValor (Lista & l, TipoBase v){
 		if (a_eliminar != l){
 			while (anterior->sig != a_eliminar)
 				anterior = anterior->sig;
+		
+			//El siguiente nodo es la direccion que apunta el que queremos eliminar
+			siguiente = a_eliminar->sig;
+
+
+			//Hacemos el salto del anterior al siguiente, dejando el "hueco"
+			//que ocupa el nodo a eliminar
+			anterior->sig = siguiente;
 		}
-
-		//El siguiente nodo es la direccion que apunta el que queremos eliminar
-		siguiente = a_eliminar->sig;
-
-
-		//Hacemos el salto del anterior al siguiente, dejando el "hueco"
-		//que ocupa el nodo a eliminar
-		anterior->sig = siguiente;
+		else{
+			l = l->sig;
+		}
 
 		//Eliminamos el nodo
 		delete a_eliminar;
