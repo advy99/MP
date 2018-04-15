@@ -255,12 +255,12 @@ void InsertaOrdenadamente (Lista & l, TipoBase v){
 		PNodo siguiente = l;
 
 		//Buscamos la posicion del siguiente
-		while (siguiente->sig != 0 && siguiente->valor <= v){
+		while (siguiente != 0 && siguiente->valor <= v){
 			siguiente = siguiente->sig;
 		}
 
 		//Si el siguiente es el ultimo, se ha de añadir al final
-		if (siguiente->sig == 0){
+		if (siguiente == 0){
 
 			siguiente->sig = new Nodo;
 			siguiente = siguiente->sig;
