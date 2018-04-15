@@ -7,7 +7,7 @@ using namespace std;
 void LeeLista(Lista & l){
 
 	PNodo ultimo;
-	double valor;
+	TipoBase valor;
 
 
 	cout << "Introduce un valor: ";
