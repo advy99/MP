@@ -18,7 +18,8 @@ all : inicio \
 		$(BIN)/II_BasicosLista \
 		$(BIN)/II_OrdenarLista \
 		$(BIN)/II_GestionarListaOrdenada \
-		$(BIN)/II_MezclarListasOrdenadas 
+		$(BIN)/II_MezclarListasOrdenadas \
+		finalizado
 
 ################################################################################
 
@@ -26,6 +27,9 @@ $(BIN)/II_BasicosLista : $(OBJ)/II_BasicosLista.o \
                          $(LIB)/libLista.a
 	g++ -o $(BIN)/II_BasicosLista $(OBJ)/II_BasicosLista.o \
 	                              -L$(LIB) -lLista
+
+$(LIB)/libLista.a : $(OBJ)/Lista.o
+	ar -rvs $(LIB)/libLista.a $(OBJ)/Lista.o
 
 
 $(OBJ)/II_BasicosLista.o : $(SRC)/II_BasicosLista.cpp $(INCLUDE)/Lista.h
@@ -72,8 +76,7 @@ $(OBJ)/II_MezclarListasOrdenadas.o : $(SRC)/II_MezclarListasOrdenadas.cpp \
 	                                       -I$(INCLUDE)
 
 
-$(LIB)/libLista.a : $(OBJ)/Lista.o
-	ar -rvs $(LIB)/libLista.a $(OBJ)/Lista.o
+
 
 
 inicio :
@@ -105,3 +108,4 @@ clean :
 
 mr.proper : clean
 	-rm $(BIN)/*
+	-rm $(LIB)/*
