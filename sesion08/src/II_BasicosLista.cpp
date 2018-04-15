@@ -62,7 +62,7 @@ double Media(const Lista l){
 }
 
 double Varianza(const Lista l){
-	double varianza;
+	double varianza = 0;
 	double media = Media (l);
 
 	PNodo aux = l;

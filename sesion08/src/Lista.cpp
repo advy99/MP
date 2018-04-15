@@ -39,7 +39,6 @@ void LeeLista(Lista & l){
 		}
 	}
 
-
 }
 
 void PintaLista(const Lista l){
@@ -85,7 +84,6 @@ int CuentaElementos (const Lista l){
 		num_elementos++;
 		aux = aux->sig;
 	}
-
 	return num_elementos;
 }
 
