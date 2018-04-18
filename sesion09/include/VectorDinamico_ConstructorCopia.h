@@ -11,6 +11,7 @@ class VectorDinamico{
 		Vector vector;
 		int ocupadas;
 		int reservadas;
+		TipoRedimension tipo_redimension;
 
 	public:
 
@@ -26,7 +27,7 @@ class VectorDinamico{
 		void NuevoElemento(const TipoBase);
 		
 		TipoRedimension RedimensionUsada() const;
-		void SetTipoRedimension();
+		void SetTipoRedimension(const TipoRedimension );
 	
 	private:
 		int CasillasReservadas() const;
@@ -35,6 +36,7 @@ class VectorDinamico{
 		void ReservarMemoria(const int);
 		void LiberarMemoria();
 		void CopiarDatos(const VectorDinamico &);
+		void Redimensiona();
 
 };
 
