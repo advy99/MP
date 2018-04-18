@@ -1,6 +1,7 @@
 #include "VectorDinamico_ConstructorCopia.h"
 #include "TipoBase.h"
 #include "RedimensionVector.h"
+#include <cstring>
 
 VectorDinamico::VectorDinamico(){
 	ReservarMemoria(TAM_INICIAL);
@@ -85,5 +86,36 @@ void VectorDinamico::AjustarTamanio(){
 	LiberarMemoria();
 	vector = nuevo_vector;
 	reservadas = ocupadas;
-	
+
+}
+
+void VectorDinamico::Redimensiona(){
+	const int TAM_BLOQUE = 10;
+	int tam_redimensionado;
+
+	//Ajusta el tamanio del nuevo vector segun el tipo de redimension
+	if (tipo_redimension == TipoRedimension::DeUnoEnUno){
+		tam_redimensionado = cap + 1;
+		
+	}else if (tipo_redimension == TipoRedimension::EnBloques){
+		tam_redimensionado = cap + TAM_BLOQUE;
+
+	}else if (tipo_redimension == TipoRedimension::Duplicando){
+		tam_redimensionado = 2 * cap;
+	}
+
+	//Declara un nuevo vector con el nuevo tamaño;
+	Vector nuevo_vector = new TipoBase [tam_redimensionado];
+
+	//Copia el contenido del antiguo vector en el nuevo
+	memcpy(nuevo_vector, vector, ocupadas*sizeof(TipoBase));
+	//Actualiza la capacidad
+	cap = tam_redimensionado;
+
+	//Libera la memoria consumida por el vector anriguo
+	LiberarMemoria();
+
+	vector = nuevo_vector;
+	reservadas = tam_redimensionado;
+
 }
