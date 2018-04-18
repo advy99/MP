@@ -80,5 +80,10 @@ int VectorDinamico::CasillasReservadas() const{
 }
 
 void VectorDinamico::AjustarTamanio(){
-
+	Vector nuevo_vector = new TipoBase [ocupadas];
+	memcpy(nuevo_vector, vector, ocupadas*sizeof(TipoBase));
+	LiberarMemoria();
+	vector = nuevo_vector;
+	reservadas = ocupadas;
+	
 }
