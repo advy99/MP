@@ -59,6 +59,9 @@ void LeeLista(Lista & l){
 
 		}
 	}
+	else{
+		l = 0;
+	}
 
 }
 
@@ -250,7 +253,7 @@ void InsertaOrdenadamente (Lista & l, TipoBase v){
 
 	//Si tiene elementos:
 
-	if (CuentaElementos(l) != 0){
+	if (l){
 		PNodo anterior = l;
 		PNodo siguiente = l;
 
