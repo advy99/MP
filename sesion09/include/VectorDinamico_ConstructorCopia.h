@@ -19,18 +19,22 @@ class VectorDinamico{
 		VectorDinamico(const VectorDinamico &);
 		~VectorDinamico();
 
-		bool EstaVacio();
-		int CasillasOcupadas();
+		bool EstaVacio() const;
+		int CasillasOcupadas() const;
 		
-		TipoBase Valor(const int );
+		TipoBase Valor(const int ) const;
 		void NuevoElemento(const TipoBase);
 		
-		TipoRedimension RedimensionUsada();
+		TipoRedimension RedimensionUsada() const;
 		void SetTipoRedimension();
 	
 	private:
-		int CasillasReservadas();
+		int CasillasReservadas() const;
 		void AjustarTamanio();
+
+		void ReservarMemoria(const int);
+		void LiberarMemoria();
+		void CopiarDatos(const VectorDinamico &);
 
 };
 
