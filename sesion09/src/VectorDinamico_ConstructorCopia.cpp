@@ -39,7 +39,7 @@ void VectorDinamico::ReservarMemoria(const int num_a_reservar){
 }
 
 void VectorDinamico::CopiarDatos(const VectorDinamico & otro_vector){
-	memcpy(vector, otro_vector.vector, ocupadas*sizeof(TipoBase);
+	memcpy(vector, otro_vector.vector, ocupadas*sizeof(TipoBase));
 }
 
 void VectorDinamico::LiberarMemoria(){
@@ -79,3 +79,6 @@ int VectorDinamico::CasillasReservadas() const{
 	return reservadas;
 }
 
+void VectorDinamico::AjustarTamanio(){
+
+}
