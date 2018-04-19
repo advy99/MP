@@ -1,5 +1,6 @@
-#include "Matriz2D_1ConstructorCopia.h"
+#include "Matriz2D_1_ConstructorCopia.h"
 #include "TipoBase.h"
+#include "GeneradorAleatorioEnteros.h"
 #include <cstring>
 
 Matriz2D::Matriz2D(){
@@ -10,27 +11,30 @@ Matriz2D::Matriz2D(){
 }
 
 Matriz2D::Matriz2D(const int tam){
-	ReservarMemoria(tam, tam);
 
 	filas = tam;
 	columnas = tam;
+	ReservarMemoria(tam, tam);
+
+	
 
 }
 
 Matriz2D::Matriz2D(const int nuevas_filas, const int nuevas_columnas){
-	ReservarMemoria(nuevas_filas, nuevas_columnas);
 
 	filas = nuevas_filas;
 	columnas = nuevas_columnas;
+
+	ReservarMemoria(nuevas_filas, nuevas_columnas);
 	
 }
 
 Matriz2D::Matriz2D(const int nuevas_filas, const int nuevas_columnas,
                    const TipoBase valor_inicial){
-	ReservarMemoria(nuevas_filas, nuevas_columnas);
-
 	filas = nuevas_filas;
 	columnas = nuevas_columnas;
+
+	ReservarMemoria(nuevas_filas, nuevas_columnas);
 	
 	Inicializar(valor_inicial);
 }
@@ -71,7 +75,7 @@ void Matriz2D::LiberarMemoria(){
 void Matriz2D::ReservarMemoria(const int nuevas_filas, const int nuevas_columnas){
 	datos = new TipoBase * [nuevas_filas];
 
-	for (int i = 0; i < filas; i++){
+	for (int i = 0; i < nuevas_filas; i++){
 		datos[i] = new TipoBase[nuevas_columnas];
 	}
 }
@@ -93,4 +97,40 @@ void Matriz2D::ModificarValor(const int fila, const int columna,
 
 TipoBase Matriz2D::LeerValor(const int fila, const int columna) const{
 	return datos[fila][columna];
+}
+
+void Matriz2D::CambiarTamanio(const int n_filas, const int n_columnas){
+	
+	Matriz2D n_matriz (n_filas, n_columnas);
+
+	for (int i = 0; i < n_filas; i++){
+		memcpy(n_matriz.datos[i], datos[i], n_columnas * sizeof(TipoBase));
+	}
+
+	LiberarMemoria();
+
+	filas = n_filas;
+	columnas = n_columnas;
+	ReservarMemoria(n_filas, n_columnas);
+	CopiarDatos(n_matriz);
+
+}
+
+int Matriz2D::Filas() const{
+	return filas;
+}
+
+int Matriz2D::Columnas() const{
+	return columnas;
+}
+
+void Matriz2D::RellenarAleatorios(const int min, const int max){
+	GeneradorAleatorioEnteros generador(min, max);
+
+	for (int i = 0; i < filas; i++){
+		for (int j = 0; j < columnas; j++){
+			ModificarValor(i,j, generador.Siguiente());
+		}
+	}
+
 }

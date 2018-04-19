@@ -16,6 +16,7 @@ LIB = $(HOME)/lib
 
 all : inicio \
 		$(BIN)/III_Demo-VectorDinamico_ConstructorCopia \
+		$(BIN)/III_Demo-Matriz2D_1_ConstructorCopia \
 		finalizado
 
 ################################################################################
@@ -42,7 +43,7 @@ $(OBJ)/VectorDinamico_ConstructorCopia.o : \
 			$(INCLUDE)/RedimensionVector.h
 	g++ -c -o $(OBJ)/VectorDinamico_ConstructorCopia.o \
              $(SRC)/VectorDinamico_ConstructorCopia.cpp \
-				 -I$(INCLUDE)
+				 -I$(INCLUDE) -std=c++11
 
 
 $(LIB)/libVectorDinamico_ConstructorCopia.a : \
@@ -50,6 +51,42 @@ $(LIB)/libVectorDinamico_ConstructorCopia.a : \
 	ar -rvs $(LIB)/libVectorDinamico_ConstructorCopia.a \
 	          $(OBJ)/VectorDinamico_ConstructorCopia.o
 
+###############################################################################
+
+$(BIN)/III_Demo-Matriz2D_1_ConstructorCopia : \
+               $(OBJ)/III_Demo-Matriz2D_1_ConstructorCopia.o \
+					$(LIB)/libMatriz2D_1_ConstructorCopia.a \
+					$(OBJ)/GeneradorAleatorioEnteros.o
+	g++ -o $(BIN)/III_Demo-Matriz2D_1_ConstructorCopia \
+               $(OBJ)/III_Demo-Matriz2D_1_ConstructorCopia.o \
+					$(OBJ)/GeneradorAleatorioEnteros.o \
+					-L$(LIB) -lMatriz2D_1_ConstructorCopia
+
+$(OBJ)/III_Demo-Matriz2D_1_ConstructorCopia.o : \
+            $(SRC)/III_Demo-Matriz2D_1_ConstructorCopia.cpp \
+				$(INCLUDE)/TipoBase.h \
+				$(INCLUDE)/Matriz2D_1_ConstructorCopia.h
+	g++ -c -o $(OBJ)/III_Demo-Matriz2D_1_ConstructorCopia.o \
+	          $(SRC)/III_Demo-Matriz2D_1_ConstructorCopia.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+$(OBJ)/GeneradorAleatorioEnteros.o : $(SRC)/GeneradorAleatorioEnteros.cpp \
+                                     $(INCLUDE)/GeneradorAleatorioEnteros.h
+	g++ -c -o $(OBJ)/GeneradorAleatorioEnteros.o \
+	          $(SRC)/GeneradorAleatorioEnteros.cpp \
+				 -I$(INCLUDE) -std=c++11
+			
+$(LIB)/libMatriz2D_1_ConstructorCopia.a : \
+             $(OBJ)/Matriz2D_1_ConstructorCopia.o
+	ar -rvs $(LIB)/libMatriz2D_1_ConstructorCopia.a \
+              $(OBJ)/Matriz2D_1_ConstructorCopia.o
+
+$(OBJ)/Matriz2D_1_ConstructorCopia.o : $(SRC)/Matriz2D_1_ConstructorCopia.cpp \
+            $(INCLUDE)/TipoBase.h \
+            $(INCLUDE)/Matriz2D_1_ConstructorCopia.h \
+				$(INCLUDE)/GeneradorAleatorioEnteros.h
+	g++ -c -o $(OBJ)/Matriz2D_1_ConstructorCopia.o \
+	          $(SRC)/Matriz2D_1_ConstructorCopia.cpp -I$(INCLUDE) -std=c++11
 
 inicio :
 	@echo -e

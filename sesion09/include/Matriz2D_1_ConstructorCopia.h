@@ -20,11 +20,15 @@ class Matriz2D{
 		bool EstaVacia() const;
 		void ModificarValor (const int ,const int ,const TipoBase );
 		TipoBase LeerValor (const int ,const int ) const;
+		void CambiarTamanio(const int, const int);
+		int Filas() const;
+		int Columnas() const;
+		void RellenarAleatorios(const int, const int);
 
 	private:
 		void Inicializar(const TipoBase);
 		void LiberarMemoria();
-		void ReservarMemoria();
+		void ReservarMemoria(const int, const int);
 		void CopiarDatos(const Matriz2D &);
 
 };
