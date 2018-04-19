@@ -2,7 +2,7 @@
 #define VECTORDINAMICO
 
 #include "TipoBase.h"
-#include "RedimensionVector.h";
+#include "RedimensionVector.h"
 
 class VectorDinamico{
 	private:

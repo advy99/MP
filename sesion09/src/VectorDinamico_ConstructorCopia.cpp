@@ -32,7 +32,7 @@ VectorDinamico::VectorDinamico(const VectorDinamico & otro_vector){
 VectorDinamico::~VectorDinamico(){
 	LiberarMemoria();
 	ocupadas = 0;
-	usadas = 0;
+	reservadas = 0;
 }
 
 void VectorDinamico::ReservarMemoria(const int num_a_reservar){
@@ -95,13 +95,13 @@ void VectorDinamico::Redimensiona(){
 
 	//Ajusta el tamanio del nuevo vector segun el tipo de redimension
 	if (tipo_redimension == TipoRedimension::DeUnoEnUno){
-		tam_redimensionado = cap + 1;
+		tam_redimensionado = reservadas + 1;
 		
 	}else if (tipo_redimension == TipoRedimension::EnBloques){
-		tam_redimensionado = cap + TAM_BLOQUE;
+		tam_redimensionado = reservadas + TAM_BLOQUE;
 
 	}else if (tipo_redimension == TipoRedimension::Duplicando){
-		tam_redimensionado = 2 * cap;
+		tam_redimensionado = 2 * reservadas;
 	}
 
 	//Declara un nuevo vector con el nuevo tamaño;
@@ -110,12 +110,11 @@ void VectorDinamico::Redimensiona(){
 	//Copia el contenido del antiguo vector en el nuevo
 	memcpy(nuevo_vector, vector, ocupadas*sizeof(TipoBase));
 	//Actualiza la capacidad
-	cap = tam_redimensionado;
+	reservadas = tam_redimensionado;
 
 	//Libera la memoria consumida por el vector anriguo
 	LiberarMemoria();
 
 	vector = nuevo_vector;
-	reservadas = tam_redimensionado;
 
 }
