@@ -33,10 +33,12 @@ VectorDinamico::~VectorDinamico(){
 	LiberarMemoria();
 	ocupadas = 0;
 	reservadas = 0;
+	vector = 0;
 }
 
 void VectorDinamico::ReservarMemoria(const int num_a_reservar){
 	vector = new TipoBase [num_a_reservar];
+	reservadas = num_a_reservar;
 }
 
 void VectorDinamico::CopiarDatos(const VectorDinamico & otro_vector){
