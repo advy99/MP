@@ -28,6 +28,7 @@ class VectorDinamico{
 		
 		TipoRedimension RedimensionUsada() const;
 		void SetTipoRedimension(const TipoRedimension );
+		void SetValor(const int, const TipoBase);
 	
 	private:
 		int CasillasReservadas() const;

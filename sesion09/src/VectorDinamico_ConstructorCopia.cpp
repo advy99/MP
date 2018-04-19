@@ -118,3 +118,7 @@ void VectorDinamico::Redimensiona(){
 	vector = nuevo_vector;
 
 }
+
+void VectorDinamico::SetValor(const int posicion, const TipoBase valor){
+	vector[posicion] = valor;
+}
