@@ -126,16 +126,27 @@ void Lista::Insertar(const TipoBase valor, const int pos){
 }
 
 void Lista::Borrar(const int pos){
+
 	PNodo aux = sig;
-	PNodo anterior;
 
-	for (int i = 1; i < pos; i++){
-		anterior = aux;
-		aux = aux->sig;
+	if (pos == 1){
+		sig = aux->sig;
 	}
-	anterior->sig = aux->sig;
+	else{
+		PNodo anterior;
 
+		for (int i = 1; i < pos; i++){
+			anterior = aux;
+			aux = aux->sig;
+		}
+
+		anterior->sig = aux->sig;
+	}
+
+	aux->sig = 0;
+	aux->valor = 0;
 	delete aux;
+
 
 }
 

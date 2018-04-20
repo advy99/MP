@@ -15,6 +15,7 @@ using namespace std;
 
 int main(){
 	TipoBase valor;
+	int pos;
 	Lista l1;
 	Lista l2(5);
 	Lista l3(9,2);
@@ -69,8 +70,16 @@ int main(){
 	}
 	cout << endl << endl;
 
+	cout << "Introuce una posicion a eliminar en el la lista 2 : ";
+	cin >> pos;
+	l2.Borrar(pos);
 
-
+	cout << endl << "Mostramos l2: " << endl;
+	cout << endl << endl;
+	for (int i = 1; i <= l2.NumeroNodos(); i++){
+		cout << l2.LeerValor(i) << " ";
+	}
+	cout << endl << endl;
 
 	return 0;
 }
