@@ -141,14 +141,21 @@ void Lista::Borrar(const int pos){
 
 void Lista::AniadirValor(const TipoBase valor){
 	PNodo aux = sig;
-
-	while(aux->sig != 0){
+	if (sig != 0){
+		while(aux->sig != 0){
+			aux = aux->sig;
+		}
+		aux->sig = new Lista;
 		aux = aux->sig;
+		aux->valor = valor;
+		aux->sig = 0;
 	}
-	aux->sig = new Lista;
-	aux = aux->sig;
-	aux->valor = valor;
-	aux->sig = 0;
+	else{
+		sig = new Lista;
+		aux = sig;
+		aux->valor = valor;
+		aux->sig = 0;
+	}
 }
 
 TipoBase Lista::LeerValor(const int pos) const{

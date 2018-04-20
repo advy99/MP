@@ -14,6 +14,7 @@
 using namespace std;
 
 int main(){
+	TipoBase valor;
 	Lista l1;
 	Lista l2(5);
 	Lista l3(9,2);
@@ -22,10 +23,54 @@ int main(){
 	cout << "La lista l2 tiene: " << l2.NumeroNodos() << " nodos" << endl;
 	cout << "La lista l3 tiene: " << l3.NumeroNodos() << " nodos" << endl;
 
-	cout << endl << endl;
-	for (int i = 0; i < l3.NumeroNodos(); i++){
+	cout << endl << "Mostramos l3: " << endl;
+	for (int i = 1; i <= l3.NumeroNodos(); i++){
 		cout << l3.LeerValor(i) << " ";
 	}
+	cout << endl << endl;
+
+	if (l1.EstaVacio()){
+		cout << "l1 esta vacio" << endl;
+	}
+	else{
+		cout << "l1 no esta vacio" << endl;
+	}
+
+	cout << "Inserte un valor para l1 : ";
+	cin >> valor;
+
+	while(valor > 0){
+		l1.AniadirValor(valor);
+		cout << "Inserte un valor para l1 : ";
+		cin >> valor;
+	}
+
+	cout << endl << "Mostramos l1: " << endl;
+	for (int i = 1; i <= l1.NumeroNodos(); i++){
+		cout << l1.LeerValor(i) << " ";
+	}
+	cout << endl << endl;
+
+
+	cout << endl << "Modificamos valores de l2: " << endl;
+	cout << endl << endl;
+	for (int i = 1; i <= l2.NumeroNodos(); i++){
+		cout << "Inserte un valor para l2 : ";
+		cin >> valor;
+		l2.ModificarValor(i, valor);
+	}
+	cout << endl << endl;
+
+
+	cout << endl << "Mostramos l2: " << endl;
+	cout << endl << endl;
+	for (int i = 1; i <= l2.NumeroNodos(); i++){
+		cout << l2.LeerValor(i) << " ";
+	}
+	cout << endl << endl;
+
+
+
 
 	return 0;
 }
