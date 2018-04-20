@@ -3,15 +3,13 @@
 
 #include "TipoBase.h"
 
-typedef Lista * PNodo;
-typedef Lista * Nodo;
 
 //El primer nodo lo consideramos nulo, la lista empieza a partir del segundo
 //nodo
 class Lista{
 	private:
 		TipoBase valor;
-		PNodo sig;
+		Lista * sig;
 
 	public:
 		Lista();
@@ -35,6 +33,9 @@ class Lista{
 		void Inicializar(const TipoBase);
 
 };
+
+typedef Lista * PNodo;
+typedef Lista * Nodo;
 
 
 #endif
