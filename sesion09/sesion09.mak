@@ -20,6 +20,7 @@ all : inicio \
 		$(BIN)/III_Demo-Lista_ConstructorCopia \
 		$(BIN)/III_Demo-Matriz2D_2_ConstructorCopia \
 		$(BIN)/III_Demo-Pila_ConstructorCopia \
+		$(BIN)/III_Demo-Cola_ConstructorCopia \
 		finalizado
 
 ################################################################################
@@ -176,6 +177,32 @@ $(OBJ)/Pila_ConstructorCopia.o : $(SRC)/Pila_ConstructorCopia.cpp \
 	g++ -c -o $(OBJ)/Pila_ConstructorCopia.o $(SRC)/Pila_ConstructorCopia.cpp \
 	                                          -I$(INCLUDE) -std=c++11
 
+
+################################################################################
+
+$(BIN)/III_Demo-Cola_ConstructorCopia : \
+                  $(OBJ)/III_Demo-Cola_ConstructorCopia.o \
+						$(LIB)/libCola_ConstructorCopia.a
+	g++ -o $(BIN)/III_Demo-Cola_ConstructorCopia \
+                  $(OBJ)/III_Demo-Cola_ConstructorCopia.o \
+						-L$(LIB) -lCola_ConstructorCopia
+
+$(OBJ)/III_Demo-Cola_ConstructorCopia.o : \
+                  $(SRC)/III_Demo-Cola_ConstructorCopia.cpp \
+						$(INCLUDE)/Cola_ConstructorCopia.h \
+						$(INCLUDE)/TipoBase.h
+	g++ -c -o $(OBJ)/III_Demo-Cola_ConstructorCopia.o \
+	          $(SRC)/III_Demo-Cola_ConstructorCopia.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+$(LIB)/libCola_ConstructorCopia.a : $(OBJ)/Cola_ConstructorCopia.o 
+	ar -rvs $(LIB)/libCola_ConstructorCopia.a $(OBJ)/Cola_ConstructorCopia.o
+
+$(OBJ)/Cola_ConstructorCopia.o : $(SRC)/Cola_ConstructorCopia.cpp \
+                                  $(INCLUDE)/Cola_ConstructorCopia.h \
+											 $(INCLUDE)/TipoBase.h
+	g++ -c -o $(OBJ)/Cola_ConstructorCopia.o $(SRC)/Cola_ConstructorCopia.cpp \
+	                                          -I$(INCLUDE) -std=c++11
 inicio :
 	@echo -e
 	@echo -e	"/************************************************************/"
