@@ -15,7 +15,7 @@ class Pila{
 
 		bool EstaVacia()const;
 		void AniadeValor(const TipoBase);
-		void SacarValor(const TipoBase);
+		TipoBase SacarValor();
 		TipoBase ValorEnTope()const;
 };
 

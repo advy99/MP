@@ -19,6 +19,7 @@ all : inicio \
 		$(BIN)/III_Demo-Matriz2D_1_ConstructorCopia \
 		$(BIN)/III_Demo-Lista_ConstructorCopia \
 		$(BIN)/III_Demo-Matriz2D_2_ConstructorCopia \
+		$(BIN)/III_Demo-Pila_ConstructorCopia \
 		finalizado
 
 ################################################################################
@@ -147,6 +148,33 @@ $(OBJ)/Matriz2D_2_ConstructorCopia.o : $(SRC)/Matriz2D_2_ConstructorCopia.cpp \
 				$(INCLUDE)/GeneradorAleatorioEnteros.h
 	g++ -c -o $(OBJ)/Matriz2D_2_ConstructorCopia.o \
 	          $(SRC)/Matriz2D_2_ConstructorCopia.cpp -I$(INCLUDE) -std=c++11
+
+
+################################################################################
+
+$(BIN)/III_Demo-Pila_ConstructorCopia : \
+                  $(OBJ)/III_Demo-Pila_ConstructorCopia.o \
+						$(LIB)/libPila_ConstructorCopia.a
+	g++ -o $(BIN)/III_Demo-Pila_ConstructorCopia \
+                  $(OBJ)/III_Demo-Pila_ConstructorCopia.o \
+						-L$(LIB) -lPila_ConstructorCopia
+
+$(OBJ)/III_Demo-Pila_ConstructorCopia.o : \
+                  $(SRC)/III_Demo-Pila_ConstructorCopia.cpp \
+						$(INCLUDE)/Pila_ConstructorCopia.h \
+						$(INCLUDE)/TipoBase.h
+	g++ -c -o $(OBJ)/III_Demo-Pila_ConstructorCopia.o \
+	          $(SRC)/III_Demo-Pila_ConstructorCopia.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+$(LIB)/libPila_ConstructorCopia.a : $(OBJ)/Pila_ConstructorCopia.o 
+	ar -rvs $(LIB)/libPila_ConstructorCopia.a $(OBJ)/Pila_ConstructorCopia.o
+
+$(OBJ)/Pila_ConstructorCopia.o : $(SRC)/Pila_ConstructorCopia.cpp \
+                                  $(INCLUDE)/Pila_ConstructorCopia.h \
+											 $(INCLUDE)/TipoBase.h
+	g++ -c -o $(OBJ)/Pila_ConstructorCopia.o $(SRC)/Pila_ConstructorCopia.cpp \
+	                                          -I$(INCLUDE) -std=c++11
 
 inicio :
 	@echo -e

@@ -60,19 +60,17 @@ Lista::Lista(const Lista & otra_lista){
 	PNodo aux_otra = otra_lista.sig;
 	PNodo l_actual;
 	if (aux_otra != 0){
-		aux_otra = aux_otra->sig;
-
 		sig = new Lista;
 		l_actual = sig;
 		l_actual->valor = aux_otra->valor;
-	
+		aux_otra = aux_otra->sig;
 
 		while (aux_otra->sig != 0){
 			l_actual->sig = new Lista;
 			l_actual = l_actual->sig;
-			aux_otra = aux_otra->sig;
 
 			l_actual->valor = aux_otra->valor;
+			aux_otra = aux_otra->sig;
 		}
 	}
 

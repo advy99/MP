@@ -3,24 +3,26 @@
 
 Pila::Pila(){
 	valor = 0;
-	ultimo_elemento = 0;
+	sig = 0;
 }
 
 Pila::Pila(const Pila & otra){
 	PNodo aux;
 	PNodo aux_otra = otra.sig;
 	if (aux_otra != 0){
-		aux_otra = aux_otra->sig;
 		sig = new Pila;
 		aux = sig;
 		aux->valor = aux_otra->valor;
+		aux_otra = aux_otra->sig;
+
 
 		while (aux_otra->sig != 0){
-			aux->sig = new Nodo;
+			aux->sig = new Pila;
 			aux = aux->sig;
+			aux->valor = aux_otra->valor;
+
 			aux_otra = aux_otra->sig;
 
-			aux->valor = aux_otra.valor;
 
 		}
 	}
@@ -48,26 +50,27 @@ bool Pila::EstaVacia()const{
 void Pila::AniadeValor(const TipoBase v){
 	PNodo nuevo_valor = new Pila;
 
-	nuevo_valor->valot = v;
+	nuevo_valor->valor = v;
 	nuevo_valor->sig = sig;
 
 	sig = nuevo_valor;
 }
 
 TipoBase Pila::SacarValor(){
-	TipoBase valor;
+	TipoBase v;
 	PNodo a_sacar = sig;
 
 	sig = a_sacar->sig;
 	
-	valor = a_sacar->valor;
+	v = a_sacar->valor;
 	a_sacar->sig = 0;
 
 	delete a_sacar;
 
-	return valor;
+	return v;
 }
 
-TipoBase Lista::ValorEnTope()const{
-	return (sig->valor);
+TipoBase Pila::ValorEnTope()const{
+	PNodo aux = sig;
+	return (aux->valor);
 }
