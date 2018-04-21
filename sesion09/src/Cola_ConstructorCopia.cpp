@@ -16,7 +16,7 @@ Cola::Cola(const Cola & otra){
 		aux_otra = aux_otra->sig;
 
 
-		while (aux_otra->sig != 0){
+		while (aux_otra != 0){
 			aux->sig = new Cola;
 			aux = aux->sig;
 			aux->valor = aux_otra->valor;
