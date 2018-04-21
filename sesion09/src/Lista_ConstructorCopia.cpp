@@ -65,14 +65,15 @@ Lista::Lista(const Lista & otra_lista){
 		sig = new Lista;
 		l_actual = sig;
 		l_actual->valor = aux_otra->valor;
-	}
+	
 
-	while (aux_otra->sig != 0){
-		l_actual->sig = new Lista;
-		l_actual = l_actual->sig;
-		aux_otra = aux_otra->sig;
+		while (aux_otra->sig != 0){
+			l_actual->sig = new Lista;
+			l_actual = l_actual->sig;
+			aux_otra = aux_otra->sig;
 
-		l_actual->valor = aux_otra->valor;
+			l_actual->valor = aux_otra->valor;
+		}
 	}
 
 }
