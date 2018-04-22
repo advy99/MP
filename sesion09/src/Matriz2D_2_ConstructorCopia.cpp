@@ -17,7 +17,7 @@
 
 /*************************************************************/
 /**                                                         **/
-/**   Constructor sin parametros, reserva memoria e         **/
+/**   Constructor sin parametros, inicia a matriz vacia e   **/
 /**  inicializa las variables                               **/
 /**                                                         **/
 /*************************************************************/
