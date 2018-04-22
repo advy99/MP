@@ -292,7 +292,7 @@ int Matriz2D::Filas() const{
 
 /*************************************************************/
 /**                                                         **/
-/**   Filas: Devuelve el numero de columnas usadas          **/
+/**   Columnas: Devuelve el numero de columnas usadas       **/
 /**                                                         **/
 /**   Devuelve: Numero de columnas                          **/
 /**                                                         **/
