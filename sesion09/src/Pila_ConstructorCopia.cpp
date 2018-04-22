@@ -153,7 +153,7 @@ TipoBase Pila::SacarValor(){
 /**                                                         **/
 /**   ValorEnTope: Devuelve el valor en el tope de la pila  **/
 /**                                                         **/
-/**   Devuelve: Valor en el tope                                **/
+/**   Devuelve: Valor en el tope                            **/
 /**                                                         **/
 /*************************************************************/
 
