@@ -347,3 +347,88 @@ Matriz2D & Matriz2D :: operator = (const Matriz2D & otra){
 
 	return (*this);
 }
+
+Matriz2D & Matriz2D :: operator = (const TipoBase valor){
+
+	Inicializar(valor);
+
+	return (*this);
+}
+
+TipoBase & Matriz2D :: operator () (const int fila, const int columna) const{
+
+	return (datos[fila][columna]);
+
+}
+
+Matriz2D Matriz2D :: operator + () const{
+
+	return (*this);
+
+}
+
+Matriz2D Matriz2D :: operator - (){
+
+	Matriz2D otra(filas, columnas);
+
+	for (int i = 0; i < otra.filas; i++){
+		for (int j = 0; j < otra.columnas; j++){
+			otra.datos[i][j] = -datos[i][j];
+		}
+	}
+
+	return (otra);
+}
+
+Matriz2D Matriz2D :: operator + (const Matriz2D & m_izd,
+                                 const Matriz2D & m_dcha){
+
+	Matriz2D otra;
+
+	if (m_izd.filas == m_dcha.filas && m_izd.columnas == m_dcha.columnas){
+
+		otra.ReservarMemoria (m_izda.filas, m_izda.columnas);
+
+		for (int i = 0; i < otra.filas; i++){
+			for (int j = 0; j < otra.columnas; j++){
+				otra.datos[i][j] = m_izda[i][j] + m_dcha[i][j];
+			}
+		}
+
+	}
+
+	return (otra);
+}
+
+Matriz2D Matriz2D :: operator + (const Matriz2D & m_izda,
+                                 const TipoBase valor){
+
+	Matriz2D m_dcha( m_izda.filas, m_izda.columnas, valor);
+
+	return ( m_izda + m_dcha );
+}
+
+Matriz2D Matriz2D :: operator + (const TipoBase valor,
+                                 const Matriz2D & m_dcha){
+	
+	return ( m_dcha + valor );
+}
+
+Matriz2D Matriz2D :: operator - (const Matriz2D & m_izd,
+                                 const Matriz2D & m_dcha){
+									
+	return (m_izd + (-m_dcha) );
+
+}
+
+Matriz2D Matriz2D :: operator - (const Matriz2D & m_izda,
+                                 const TipoBase valor){
+
+	return (m_izda + (-valor) );
+}
+
+Matriz2D Matriz2D :: operator - (const TipoBase valor,
+                                 const Matriz2D & m_dcha){
+	return ( valor + (-m_dcha) );
+}
+

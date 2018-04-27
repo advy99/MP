@@ -22,7 +22,18 @@ class Matriz2D{
 
 		//Operadores
 		Matriz2D & operator = (const Matriz2D &);
+		Matriz2D & operator = (const TipoBase);
+		TipoBase & operator () (const int, const int) const; 
+		Matriz2D operator + () const;
+		Matriz2D operator - ();
 
+		friend Matriz2D operator + (const Matriz2D &, const Matriz2D &);
+		friend Matriz2D operator + (const Matriz2D &, const TipoBase);
+		friend Matriz2D operator + (const TipoBase, const Matriz2D &);
+
+		friend Matriz2D operator - (const Matriz2D &, const Matriz2D &);
+		friend Matriz2D operator - (const Matriz2D &, const TipoBase);
+		friend Matriz2D operator - (const TipoBase, const Matriz2D &);
 
 		//Metodos
 
