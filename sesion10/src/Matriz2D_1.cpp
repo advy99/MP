@@ -432,3 +432,29 @@ Matriz2D Matriz2D :: operator - (const TipoBase valor,
 	return ( valor + (-m_dcha) );
 }
 
+Matriz2D & Matriz2D :: operator += (const TipoBase valor){
+	return (*this + valor);
+}
+
+Matriz2D & Matriz2D :: operator -= (const TipoBase valor){
+	return (*this - valor);
+}
+
+bool Matriz2D :: operator == (const Matriz2D & otra) const{
+	bool es_igual = (filas == otra.filas) && (columnas == otra.columnas);
+
+	if (es_igual){
+		for (int i = 0; i < filas && es_igual; i++){
+			for (int j = 0; j < filas && es_igual ; j++){
+				es_igual = datos[i][j] == otra.datos[i][j];
+			}
+		}
+	}
+
+	return es_igual;
+
+}
+
+bool Matriz2D :: operator != (const Matriz2D & otra) const{
+	return ( !(*this == otra) );
+}

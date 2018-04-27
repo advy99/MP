@@ -35,6 +35,14 @@ class Matriz2D{
 		friend Matriz2D operator - (const Matriz2D &, const TipoBase);
 		friend Matriz2D operator - (const TipoBase, const Matriz2D &);
 
+
+		Matriz2D & operator += (const TipoBase);
+		Matriz2D & operator -= (const TipoBase);
+
+		bool operator == (const Matriz2D &) const;
+		bool operator != (const Matriz2D &) const;
+
+
 		//Metodos
 
 		bool EstaVacia() const;
