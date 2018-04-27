@@ -62,5 +62,7 @@ class Matriz2D{
 };
 
 
+void PintaMatriz (const Matriz2D m, const char * const msg);
+
 
 #endif

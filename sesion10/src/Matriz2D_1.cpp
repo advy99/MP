@@ -3,14 +3,17 @@
 /**  Autor : Antonio David Villegas Yeguas                  **/
 /**  1GII - Universidad de Granada                          **/
 /**  Metodologia de la Programacion 2017/18                 **/
-/**  Sesion 9 - Ejercicio 2 - Clase Matriz                  **/
+/**  Sesion 10 - Ejercicio 2 - Clase Matriz                 **/
 /**                                                         **/
 /*************************************************************/
 
-#include "Matriz2D_1_ConstructorCopia.h"
+#include <iostream>
+#include "Matriz2D_1.h"
 #include "TipoBase.h"
 #include "GeneradorAleatorioEnteros.h"
 #include <cstring>
+
+using namespace std;
 
 /******************************************************************************/
 
@@ -341,7 +344,7 @@ Matriz2D & Matriz2D :: operator = (const Matriz2D & otra){
 
 	LiberarMemoria();
 
-	ReservarMemoria(otra.fils, otra.cols);
+	ReservarMemoria(otra.filas, otra.columnas);
 
 	CopiarDatos(otra);
 
@@ -380,18 +383,17 @@ Matriz2D Matriz2D :: operator - (){
 	return (otra);
 }
 
-Matriz2D Matriz2D :: operator + (const Matriz2D & m_izd,
-                                 const Matriz2D & m_dcha){
+Matriz2D operator + (const Matriz2D & m_izda,  const Matriz2D & m_dcha){
 
 	Matriz2D otra;
 
-	if (m_izd.filas == m_dcha.filas && m_izd.columnas == m_dcha.columnas){
+	if (m_izda.filas == m_dcha.filas && m_izda.columnas == m_dcha.columnas){
 
 		otra.ReservarMemoria (m_izda.filas, m_izda.columnas);
 
 		for (int i = 0; i < otra.filas; i++){
 			for (int j = 0; j < otra.columnas; j++){
-				otra.datos[i][j] = m_izda[i][j] + m_dcha[i][j];
+				otra.datos[i][j] = m_izda.datos[i][j] + m_dcha.datos[i][j];
 			}
 		}
 
@@ -400,44 +402,46 @@ Matriz2D Matriz2D :: operator + (const Matriz2D & m_izd,
 	return (otra);
 }
 
-Matriz2D Matriz2D :: operator + (const Matriz2D & m_izda,
-                                 const TipoBase valor){
+Matriz2D operator + (const Matriz2D & m_izda, const TipoBase valor){
 
 	Matriz2D m_dcha( m_izda.filas, m_izda.columnas, valor);
 
 	return ( m_izda + m_dcha );
 }
 
-Matriz2D Matriz2D :: operator + (const TipoBase valor,
-                                 const Matriz2D & m_dcha){
+Matriz2D operator + (const TipoBase valor, const Matriz2D & m_dcha){
 	
 	return ( m_dcha + valor );
 }
 
-Matriz2D Matriz2D :: operator - (const Matriz2D & m_izd,
-                                 const Matriz2D & m_dcha){
-									
-	return (m_izd + (-m_dcha) );
+Matriz2D operator - (const Matriz2D & m_izd, const Matriz2D & m_dcha){
+								
+	Matriz2D otra = m_dcha;
+	return (m_izd + (-otra) );
 
 }
 
-Matriz2D Matriz2D :: operator - (const Matriz2D & m_izda,
-                                 const TipoBase valor){
+Matriz2D operator - (const Matriz2D & m_izda, const TipoBase valor){
 
 	return (m_izda + (-valor) );
 }
 
-Matriz2D Matriz2D :: operator - (const TipoBase valor,
-                                 const Matriz2D & m_dcha){
-	return ( valor + (-m_dcha) );
+Matriz2D operator - (const TipoBase valor, const Matriz2D & m_dcha){
+
+	Matriz2D otra = m_dcha;
+	return ( valor + (-otra) );
 }
 
 Matriz2D & Matriz2D :: operator += (const TipoBase valor){
-	return (*this + valor);
+
+	(*this) = (*this) + valor;
+	return (*this);
 }
 
 Matriz2D & Matriz2D :: operator -= (const TipoBase valor){
-	return (*this - valor);
+
+	(*this) = (*this) - valor;
+	return (*this);
 }
 
 bool Matriz2D :: operator == (const Matriz2D & otra) const{
@@ -458,3 +462,28 @@ bool Matriz2D :: operator == (const Matriz2D & otra) const{
 bool Matriz2D :: operator != (const Matriz2D & otra) const{
 	return ( !(*this == otra) );
 }
+
+
+
+
+
+
+
+// Muestra el contenido de una matriz, precedido del mensaje "msg"
+void PintaMatriz (const Matriz2D m, const char * const msg)
+{
+	cout << endl; 
+	cout << "--------------------------------------------------" << endl;
+	cout << msg << endl;
+	
+	for (int f=0; f<m.Filas(); f++) {
+		
+		for (int c=0; c<m.Columnas(); c++)
+			cout << m.LeerValor (f,c) << " ";	
+		cout << endl;
+	}
+	cout << "--------------------------------------------------" << endl;  
+	cout << endl;
+}
+/***************************************************************************/
+/***************************************************************************/
