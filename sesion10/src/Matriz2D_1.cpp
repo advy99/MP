@@ -342,11 +342,13 @@ void Matriz2D::RellenarAleatorios(const int min, const int max){
 
 Matriz2D & Matriz2D :: operator = (const Matriz2D & otra){
 
-	LiberarMemoria();
+	if (this != &otra){
+		LiberarMemoria();
 
-	ReservarMemoria(otra.filas, otra.columnas);
+		ReservarMemoria(otra.filas, otra.columnas);
 
-	CopiarDatos(otra);
+		CopiarDatos(otra);
+	}
 
 	return (*this);
 }
