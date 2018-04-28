@@ -10,7 +10,7 @@
 #include <iostream>
 #include "TipoBase.h"
 #include "Matriz2D_1.h"
-
+#include <cstring>
 
 using namespace std;
 
@@ -34,4 +34,6 @@ int main(){
 	PintaMatriz(1 - mi_matriz2 , " 1 - Matriz 2:");
 
 
+
+	return 0;
 }

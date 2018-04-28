@@ -265,8 +265,131 @@ TipoBase & Lista :: operator [] (const int pos){
 }
 
 
+Lista & Lista :: operator += (const TipoBase valor){
+	AniadirValor(valor);
+
+	return (*this);
+}
+
+Lista & Lista :: operator -= (const TipoBase valor){
+	EliminarValor(valor);
+
+	return (*this);
+}
 
 
+Lista & operator + (const Lista & l1, const Lista & l2){
+	Lista nueva_lista = l1;
+
+	TipoNodo * aux = l2.primero;
+
+	while (aux != 0){
+		nueva_lista += aux->info;
+		aux = aux->sig;
+	}
+
+	return (nueva_lista);
+}
+
+Lista & operator + (const Lista & l, const TipoBase valor){
+	Lista l2;
+
+	l2.AniadeValor(valor);
+
+	return (l + l2);
+}
+
+Lista & operator + (const TipoBase valor, const Lista & l){
+	Lista l2;
+
+	l2.AniadeValor(valor);
+
+	return (l2 + l);
+}
+
+Lista & operator - (const Lista & l1, const Lista & l2){
+	Lista nueva_lista = l1;
+
+	TipoNodo * aux = l2.primero;
+
+	while (aux != 0){
+		l1.EliminarValor(aux->info);
+		aux = aux->sig;
+	}
+}
+
+Lista & operator - (const Lista & l, const TipoBase valor){
+	Lista l2;
+
+	l2.AniadeValor(valor);
+
+	return (l - l2);
+}
+
+Lista & operator - (const TipoBase valor, const Lista & l){
+	Lista l2;
+
+	l2.AniadeValor(valor);
+
+	return (l2 - l);
+}
+
+bool Lista :: operator == (const Lista & l){
+
+	bool es_igual = Tamanio() == l.Tamanio() ;
+
+	if (this != &l){
+		TipoNodo * explicita = l.primero;
+		TipoNodo * implicita = primero;
+
+
+		while (explicita != 0 && es_igual){
+			es_igual = explicita->info == implicita->info;
+			explicita = explicita->sig;
+			implicita = implicita->sig;
+		}
+	}
+
+	return es_igual;	
+}
+
+bool Lista :: operator != (const Lista & l){
+	return ( !(*this == l) );
+}
+
+bool Lista :: operator > (const Lista & l){
+
+	bool es_mayor = false;
+
+	if (this != &l && *this != l){
+
+		TipoNodo * implicita = primero;
+		TIpoNodo * explicita = l.primero;
+
+		while (implicita && explicita && !es_mayor ){
+
+			if( implicita->info > explicita->info)
+				es_mayor = true;
+
+			implicita = implicita->sig;
+			explicita = explicita->sig;
+		} 
+	}
+
+	return es_mayor;
+}
+
+bool Lista :: operator >= (const Lista & l){
+	return ( (this > l) || (this == l) );
+}
+
+bool Lista :: operator < (const Lista & l){
+	return ( !(this > l) && !(this == l) );
+}
+
+bool Lista :: operator <= (const Lista & l){
+	return (! (this > l) );
+}
 
 /***************************************************************************/
 /***************************************************************************/
