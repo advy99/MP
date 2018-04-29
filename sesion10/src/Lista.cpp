@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "Lista.h"
+#include "TipoBase.h"
 
 using namespace std; 
 
@@ -255,7 +256,7 @@ Lista & Lista :: operator = (const TipoBase valor){
 }
 
 TipoBase & Lista :: operator [] (const int pos){
-	TipoNodo * aux = sig;
+	TipoNodo * aux = primero;
 
 	for (int i = 1; i < pos; i++){
 		aux = aux->sig;
@@ -278,7 +279,7 @@ Lista & Lista :: operator -= (const TipoBase valor){
 }
 
 
-Lista & operator + (const Lista & l1, const Lista & l2){
+Lista operator + (const Lista & l1, const Lista & l2){
 	Lista nueva_lista = l1;
 
 	TipoNodo * aux = l2.primero;
@@ -291,45 +292,47 @@ Lista & operator + (const Lista & l1, const Lista & l2){
 	return (nueva_lista);
 }
 
-Lista & operator + (const Lista & l, const TipoBase valor){
+Lista operator + (const Lista & l, const TipoBase valor){
 	Lista l2;
 
-	l2.AniadeValor(valor);
+	l2.AniadirValor(valor);
 
 	return (l + l2);
 }
 
-Lista & operator + (const TipoBase valor, const Lista & l){
+Lista operator + (const TipoBase valor, const Lista & l){
 	Lista l2;
 
-	l2.AniadeValor(valor);
+	l2.AniadirValor(valor);
 
 	return (l2 + l);
 }
 
-Lista & operator - (const Lista & l1, const Lista & l2){
+Lista operator - (const Lista & l1, const Lista & l2){
 	Lista nueva_lista = l1;
 
 	TipoNodo * aux = l2.primero;
 
 	while (aux != 0){
-		l1.EliminarValor(aux->info);
+		nueva_lista.EliminarValor(aux->info);
 		aux = aux->sig;
 	}
+
+	return nueva_lista;
 }
 
-Lista & operator - (const Lista & l, const TipoBase valor){
+Lista operator - (const Lista & l, const TipoBase valor){
 	Lista l2;
 
-	l2.AniadeValor(valor);
+	l2.AniadirValor(valor);
 
 	return (l - l2);
 }
 
-Lista & operator - (const TipoBase valor, const Lista & l){
+Lista operator - (const TipoBase valor, const Lista & l){
 	Lista l2;
 
-	l2.AniadeValor(valor);
+	l2.AniadirValor(valor);
 
 	return (l2 - l);
 }
@@ -364,7 +367,7 @@ bool Lista :: operator > (const Lista & l){
 	if (this != &l && *this != l){
 
 		TipoNodo * implicita = primero;
-		TIpoNodo * explicita = l.primero;
+		TipoNodo * explicita = l.primero;
 
 		while (implicita && explicita && !es_mayor ){
 
@@ -380,15 +383,15 @@ bool Lista :: operator > (const Lista & l){
 }
 
 bool Lista :: operator >= (const Lista & l){
-	return ( (this > l) || (this == l) );
+	return ( (*this > l) || (*this == l) );
 }
 
 bool Lista :: operator < (const Lista & l){
-	return ( !(this > l) && !(this == l) );
+	return ( !(*this > l) && !(*this == l) );
 }
 
 bool Lista :: operator <= (const Lista & l){
-	return (! (this > l) );
+	return (! (*this > l) );
 }
 
 /***************************************************************************/

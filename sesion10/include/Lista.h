@@ -67,13 +67,13 @@ class Lista {
 		Lista & operator += (const TipoBase valor);
 		Lista & operator -= (const TipoBase valor);
 
-		friend Lista & operator + (const Lista & l1, const Lista & l2);
-		friend Lista & operator + (const Lista & l, const TipoBase valor);
-		friend Lista & operator + (const TipoBase valor, const Lista & l);
+		friend Lista operator + (const Lista & l1, const Lista & l2);
+		friend Lista operator + (const Lista & l, const TipoBase valor);
+		friend Lista operator + (const TipoBase valor, const Lista & l);
 
-		friend Lista & operator - (const Lista & l1, const Lista & l2);
-		friend Lista & operator - (const Lista & l, const TipoBase valor);
-		friend Lista & operator - (const TipoBase valor, const Lista & l);
+		friend Lista operator - (const Lista & l1, const Lista & l2);
+		friend Lista operator - (const Lista & l, const TipoBase valor);
+		friend Lista operator - (const TipoBase valor, const Lista & l);
 
 		bool operator == (const Lista & l);
 		bool operator != (const Lista & l);
@@ -81,7 +81,7 @@ class Lista {
 		bool operator >  (const Lista & l);
 		bool operator >= (const Lista & l);
 		bool operator <  (const Lista & l);
-		bool operator >= (const Lista & l;)
+		bool operator <= (const Lista & l);
 
 
 	private:

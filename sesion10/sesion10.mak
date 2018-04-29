@@ -16,6 +16,7 @@ LIB = $(HOME)/lib
 
 all : inicio \
       $(BIN)/IV_Demo-Matriz2D_1_Todo \
+		$(BIN)/IV_Demo-Lista_Todo \
 		finalizado
 
 ################################################################################
@@ -57,6 +58,28 @@ $(OBJ)/GeneradorAleatorioEnteros.o : $(SRC)/GeneradorAleatorioEnteros.cpp \
 	g++ -c -o $(OBJ)/GeneradorAleatorioEnteros.o \
 	          $(SRC)/GeneradorAleatorioEnteros.cpp \
 				 -I$(INCLUDE) -std=c++11
+
+
+################################################################################
+
+$(BIN)/IV_Demo-Lista_Todo : $(OBJ)/IV_Demo-Lista_Todo.o \
+                            $(LIB)/libLista.a
+	g++ -o $(BIN)/IV_Demo-Lista_Todo $(OBJ)/IV_Demo-Lista_Todo.o \
+	                                 -L$(LIB) -lLista
+
+
+$(OBJ)/IV_Demo-Lista_Todo.o : $(SRC)/IV_Demo-Lista_Todo.cpp \
+                              $(INCLUDE)/Lista.h
+
+	g++ -c -o $(OBJ)/IV_Demo-Lista_Todo.o $(SRC)/IV_Demo-Lista_Todo.cpp \
+	          -I$(INCLUDE) -std=c++11
+
+$(LIB)/libLista.a : $(OBJ)/Lista.o
+	ar -rvs $(LIB)/libLista.a $(OBJ)/Lista.o
+
+$(OBJ)/Lista.o : $(SRC)/Lista.cpp $(INCLUDE)/TipoBase.h
+
+	g++ -c -o $(OBJ)/Lista.o $(SRC)/Lista.cpp -I$(INCLUDE) -std=c++11
 
 
 ################################################################################
