@@ -50,11 +50,11 @@ bool Punto :: operator != (const Punto & otro){
 /******************************************************************************/
 /******************************************************************************/
 
-PoliLinea :: PoliLinea()
-             :p(0),
-				  num(0)
-{
+PoliLinea :: PoliLinea(){
+	p = 0;
+	num = 0;
 }
+
 
 PoliLinea :: PoliLinea (const PoliLinea & otra){
 
@@ -73,9 +73,8 @@ void PoliLinea :: AniadirPunto (const Punto nuevo_punto){
 	
 	Redimensiona (num+1);
 
-	num++;
+	p[num - 1] = nuevo_punto;
 
-	p[num] = nuevo_punto;
 }
 
 void PoliLinea :: EliminarPunto (const int posicion){
@@ -85,6 +84,10 @@ void PoliLinea :: EliminarPunto (const int posicion){
 	
 	Redimensiona (num - 1);
 
+}
+
+int PoliLinea :: NumPuntos () const{
+	return num;
 }
 
 PoliLinea & PoliLinea :: operator = (const PoliLinea & otra){
@@ -101,12 +104,12 @@ PoliLinea & PoliLinea :: operator = (const PoliLinea & otra){
 	return (*this);
 }
 
-Punto & PoliLinea :: operator [] (const int punto){
+Punto & PoliLinea :: operator [] (const int punto) const{
 
 	return ( p[punto] );	
 }
 
-bool PoliLinea :: operator == (const PoliLinea & otra){
+bool PoliLinea :: operator == (const PoliLinea & otra) const{
 	bool es_igual = num == otra.num;
 
 	if (es_igual){
@@ -119,11 +122,12 @@ bool PoliLinea :: operator == (const PoliLinea & otra){
 	return es_igual;
 }
 
-bool PoliLinea :: operator != (const PoliLinea & otra){
+bool PoliLinea :: operator != (const PoliLinea & otra) const{
 	return ( !(*this == otra) );
 }
 
 PoliLinea operator + (const PoliLinea & poli_linea, const Punto & punto){
+
 	PoliLinea nueva = poli_linea;
 
 	nueva.AniadirPunto (punto);
@@ -134,8 +138,9 @@ PoliLinea operator + (const PoliLinea & poli_linea, const Punto & punto){
 PoliLinea operator + (const Punto & punto, const PoliLinea & poli_linea){
 
 	PoliLinea nueva = poli_linea;
-	
+
 	nueva.AniadirPunto(punto);
+
 
 	for (int i = 0; i < poli_linea.num; i++){
 		nueva.AniadirPunto( poli_linea[i] );
@@ -153,7 +158,6 @@ PoliLinea operator + (const Punto & punto, const PoliLinea & poli_linea){
 
 
 void PoliLinea :: ReservarMemoria (const int num_puntos){
-	LiberarMemoria ();
 	
 	p = new Punto [num_puntos];
 
@@ -162,9 +166,12 @@ void PoliLinea :: ReservarMemoria (const int num_puntos){
 
 
 void  PoliLinea :: LiberarMemoria(){
-	delete [] p;
 
-	num = 0;
+	if ( p != 0){
+		delete [] p;
+		num = 0;
+	}
+	
 }
 
 void PoliLinea :: CopiarDatos (const PoliLinea & otra){
@@ -173,7 +180,7 @@ void PoliLinea :: CopiarDatos (const PoliLinea & otra){
 	num = otra.num;
 }
 
-void Redimensiona (const int nuevo_tam){
+void PoliLinea :: Redimensiona (const int nuevo_tam){
 	Punto * nuevo_vector = new Punto [nuevo_tam];
 
 	memcpy(nuevo_vector, p, num * sizeof (Punto) );

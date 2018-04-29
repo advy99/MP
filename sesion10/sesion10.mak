@@ -17,6 +17,7 @@ LIB = $(HOME)/lib
 all : inicio \
       $(BIN)/IV_Demo-Matriz2D_1_Todo \
 		$(BIN)/IV_Demo-Lista_Todo \
+		$(BIN)/IV_Demo-PoliLinea \
 		finalizado
 
 ################################################################################
@@ -80,6 +81,25 @@ $(LIB)/libLista.a : $(OBJ)/Lista.o
 $(OBJ)/Lista.o : $(SRC)/Lista.cpp $(INCLUDE)/TipoBase.h
 
 	g++ -c -o $(OBJ)/Lista.o $(SRC)/Lista.cpp -I$(INCLUDE) -std=c++11
+
+
+################################################################################
+
+$(BIN)/IV_Demo-PoliLinea : $(OBJ)/IV_Demo-PoliLinea.o \
+                           $(LIB)/libPoliLinea.a
+	g++ -o $(BIN)/IV_Demo-PoliLinea $(OBJ)/IV_Demo-PoliLinea.o \
+	                               -L$(LIB) -lPoliLinea
+
+$(OBJ)/IV_Demo-PoliLinea.o : $(SRC)/IV_Demo-PoliLinea.cpp \
+                             $(INCLUDE)/PoliLinea.h
+	g++ -c -o $(OBJ)/IV_Demo-PoliLinea.o $(SRC)/IV_Demo-PoliLinea.cpp \
+	                                     -I$(INCLUDE) -std=c++11
+
+$(LIB)/libPoliLinea.a : $(OBJ)/PoliLinea.o
+	ar -rvs $(LIB)/libPoliLinea.a $(OBJ)/PoliLinea.o
+
+$(OBJ)/PoliLinea.o : $(SRC)/PoliLinea.cpp $(INCLUDE)/PoliLinea.h
+	g++ -c -o $(OBJ)/PoliLinea.o $(SRC)/PoliLinea.cpp -I$(INCLUDE) -std=c++11
 
 
 ################################################################################

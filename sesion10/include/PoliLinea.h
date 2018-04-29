@@ -1,3 +1,12 @@
+/*************************************************************/
+/**                                                         **/
+/**  Autor : Antonio David Villegas Yeguas                  **/
+/**  1GII - Universidad de Granada                          **/
+/**  Metodologia de la Programacion 2017/18                 **/
+/**  Sesion 10 - Ejercicio 9 - PoliLinea                    **/
+/**                                                         **/
+/*************************************************************/
+
 #ifndef POLILINEA
 #define POLILINEA
 
@@ -35,16 +44,17 @@ class PoliLinea{
 
 		void AniadirPunto(const Punto nuevo_punto);
 		void EliminarPunto (const int posicion);
+		int NumPuntos () const;
 
 		PoliLinea & operator = (const PoliLinea & otra);
-		Punto & operator [] (const int pos);
+		Punto & operator [] (const int pos) const;
 		
-		bool operator == (const PoliLinea & otra);
-		bool operator != (const PoliLinea & otra);
+		bool operator == (const PoliLinea & otra) const ;
+		bool operator != (const PoliLinea & otra) const;
 
 		friend PoliLinea operator + (const PoliLinea & poli_linea,
 		                             const Punto & punto);
-											  
+
 		friend PoliLinea operator + (const Punto & punto,
 		                             const PoliLinea & poli_linea);
 
