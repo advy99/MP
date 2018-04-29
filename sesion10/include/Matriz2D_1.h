@@ -1,3 +1,12 @@
+/*************************************************************/
+/**                                                         **/
+/**  Autor : Antonio David Villegas Yeguas                  **/
+/**  1GII - Universidad de Granada                          **/
+/**  Metodologia de la Programacion 2017/18                 **/
+/**  Sesion 10 - Ejercicio 2 - Matrices - Operadores        **/
+/**                                                         **/
+/*************************************************************/
+
 #ifndef MATRIZ2D_1
 #define MATRIZ2D_1
 
