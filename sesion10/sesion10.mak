@@ -20,6 +20,7 @@ all : inicio \
 		$(BIN)/IV_Demo-PoliLinea \
 		$(BIN)/IV_Demo-RedCiudades \
 		$(BIN)/IV_Demo-VectorDinamico_Todo \
+		$(BIN)/IV_Demo-Matriz2D_2_Todo \
 		finalizado
 
 ################################################################################
@@ -155,6 +156,41 @@ $(LIB)/libVectorDinamico.a : \
          $(OBJ)/VectorDinamico.o
 	ar -rvs $(LIB)/libVectorDinamico.a \
 	          $(OBJ)/VectorDinamico.o
+
+
+
+################################################################################
+
+$(BIN)/IV_Demo-Matriz2D_2_Todo : $(OBJ)/IV_Demo-Matriz2D_2_Todo.o \
+                                 $(LIB)/libMatriz2D_2.a \
+											$(OBJ)/GeneradorAleatorioEnteros.o
+	
+	g++ -o $(BIN)/IV_Demo-Matriz2D_2_Todo $(OBJ)/IV_Demo-Matriz2D_2_Todo.o \
+	                                      $(OBJ)/GeneradorAleatorioEnteros.o \
+                                         -L$(LIB) -lMatriz2D_2
+
+
+$(LIB)/libMatriz2D_2.a : $(OBJ)/Matriz2D_2.o
+	ar -rvs $(LIB)/libMatriz2D_2.a $(OBJ)/Matriz2D_2.o
+
+
+
+$(OBJ)/IV_Demo-Matriz2D_2_Todo.o : $(SRC)/IV_Demo-Matriz2D_2_Todo.cpp \
+                                   $(INCLUDE)/TipoBase.h \
+											  $(INCLUDE)/Matriz2D_2.h
+
+	g++ -c -o $(OBJ)/IV_Demo-Matriz2D_2_Todo.o \
+	          $(SRC)/IV_Demo-Matriz2D_2_Todo.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+	
+$(OBJ)/Matriz2D_2.o : $(SRC)/Matriz2D_2.cpp \
+                      $(INCLUDE)/Matriz2D_2.h \
+							 $(INCLUDE)/TipoBase.h \
+							 $(INCLUDE)/GeneradorAleatorioEnteros.h
+	
+	g++ -c -o $(OBJ)/Matriz2D_2.o $(SRC)/Matriz2D_2.cpp -I$(INCLUDE) -std=c++11
+
 
 
 inicio :
