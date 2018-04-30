@@ -126,6 +126,37 @@ $(OBJ)/RedCiudades.o : $(SRC)/RedCiudades.cpp $(INCLUDE)/RedCiudades.h
 
 ################################################################################
 
+$(BIN)/IV_Demo-VectorDinamico_Todo : \
+         $(OBJ)/IV_Demo-VectorDinamico_Todo.o \
+			$(LIB)/libVectorDinamico.a
+	g++ -o $(BIN)/IV_Demo-VectorDinamico_Todo \
+                $(OBJ)/IV_Demo-VectorDinamico.o \
+			       -L$(LIB) -lVectorDinamico
+
+$(OBJ)/IV_Demo-VectorDinamico_Todo.o : \
+         $(SRC)/IV_Demo-VectorDinamico_Todo.cpp \
+			$(INCLUDE)/TipoBase.h \
+			$(INCLUDE)/VectorDinamico.h
+	g++ -c -o $(OBJ)/IV_Demo-VectorDinamico_Todo.o \
+	          $(SRC)/IV_Demo-VectorDinamico_Todo.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+$(OBJ)/VectorDinamico.o : \
+         $(SRC)/VectorDinamico.cpp \
+			$(INCLUDE)/VectorDinamico.h \
+			$(INCLUDE)/TipoBase.h \
+			$(INCLUDE)/RedimensionVector.h
+	g++ -c -o $(OBJ)/VectorDinamico.o \
+             $(SRC)/VectorDinamico.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+
+$(LIB)/libVectorDinamico.a : \
+         $(OBJ)/VectorDinamico.o
+	ar -rvs $(LIB)/libVectorDinamico.a \
+	          $(OBJ)/VectorDinamico.o
+
+
 inicio :
 	@echo -e
 	@echo -e	"/************************************************************/"
