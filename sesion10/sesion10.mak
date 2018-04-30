@@ -18,6 +18,7 @@ all : inicio \
       $(BIN)/IV_Demo-Matriz2D_1_Todo \
 		$(BIN)/IV_Demo-Lista_Todo \
 		$(BIN)/IV_Demo-PoliLinea \
+		$(BIN)/IV_Demo-RedCiudades \
 		finalizado
 
 ################################################################################
@@ -101,6 +102,27 @@ $(LIB)/libPoliLinea.a : $(OBJ)/PoliLinea.o
 $(OBJ)/PoliLinea.o : $(SRC)/PoliLinea.cpp $(INCLUDE)/PoliLinea.h
 	g++ -c -o $(OBJ)/PoliLinea.o $(SRC)/PoliLinea.cpp -I$(INCLUDE) -std=c++11
 
+
+################################################################################
+
+$(BIN)/IV_Demo-RedCiudades : $(OBJ)/IV_Demo-RedCiudades.o \
+                             $(LIB)/libRedCiudades.a
+	g++ -o $(BIN)/IV_Demo-RedCiudades $(OBJ)/IV_Demo-RedCiudades.o \
+                                     -L$(LIB) -lRedCiudades
+
+$(OBJ)/IV_Demo-RedCiudades.o : $(SRC)/IV_Demo-RedCiudades.cpp \
+                               $(INCLUDE)/RedCiudades.h
+	g++ -c -o $(OBJ)/IV_Demo-RedCiudades.o $(SRC)/IV_Demo-RedCiudades.cpp \
+	                                       -I$(INCLUDE) -std=c++11
+
+
+$(LIB)/libRedCiudades.a : $(OBJ)/RedCiudades.o
+
+	ar -rvs $(LIB)/libRedCiudades.a $(OBJ)/RedCiudades.o
+
+
+$(OBJ)/RedCiudades.o : $(SRC)/RedCiudades.cpp $(INCLUDE)/RedCiudades.h
+	g++ -c -o $(OBJ)/RedCiudades.o $(SRC)/RedCiudades.cpp -I$(INCLUDE) -std=c++11
 
 ################################################################################
 

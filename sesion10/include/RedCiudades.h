@@ -14,14 +14,18 @@ class RedCiudades{
 
 	public:
 		RedCiudades();
+		RedCiudades(const int num);
 		RedCiudades(const RedCiudades & otra);
 		~RedCiudades();
 		
-		void EstaVacia() const;
+		bool EstaVacia() const;
 		int NumCiudades() const;
 		double Distancia(const int c1, const int c2) const;
 		char * NombreCiudad(const int ciudad) const;
 		int PoblacionCiudad(const int ciudad) const;
+		void SetNombreCiudad(const int ciudad, const char * nombre);
+		void SetPoblacionCiudad(const int ciudad, const int p);
+		void SetDistancia(const int c1, const int c2, const double d);
 
 		int CiudadMejorConectada() const;
 		int MejorEscalaEntre(const int c1, const int c2) const ;
@@ -30,8 +34,13 @@ class RedCiudades{
 
 	private:
 		void LiberarMemoria();
-		void ReservarMemoria();
-		void CopiarDatos();
+		void ReservarMemoria(const int n);
+		void CopiarDatos(const RedCiudades & otra);
 };
+
+
+void LeeRedCiudades(RedCiudades & red);
+void MejoresEscalas(const RedCiudades & red);
+
 
 #endif
