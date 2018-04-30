@@ -2,7 +2,6 @@
 #define VECTORDINAMICO
 
 #include "TipoBase.h"
-#include "RedimensionVector.h"
 
 class VectorDinamico{
 	private:
@@ -10,8 +9,6 @@ class VectorDinamico{
 
 		TipoBase * vector;
 		int ocupadas;
-		int reservadas;
-		TipoRedimension tipo_redimension;
 
 	public:
 
@@ -26,8 +23,6 @@ class VectorDinamico{
 		TipoBase Valor(const int ) const;
 		void NuevoElemento(const TipoBase);
 		
-		TipoRedimension RedimensionUsada() const;
-		void SetTipoRedimension(const TipoRedimension );
 		void SetValor(const int, const TipoBase);
 
 		VectorDinamico operator = (const VectorDinamico & otro);
@@ -43,13 +38,11 @@ class VectorDinamico{
 		bool operator <= (const VectorDinamico & otro);
 
 	private:
-		int CasillasReservadas() const;
-		void AjustarTamanio();
-
 		void ReservarMemoria(const int);
 		void LiberarMemoria();
 		void CopiarDatos(const VectorDinamico &);
-		void Redimensiona();
+		void Redimensiona(const int casillas = 0);
+		void Inicializar (const int valor);
 
 };
 

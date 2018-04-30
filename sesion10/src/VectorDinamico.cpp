@@ -3,13 +3,12 @@
 /**  Autor : Antonio David Villegas Yeguas                  **/
 /**  1GII - Universidad de Granada                          **/
 /**  Metodologia de la Programacion 2017/18                 **/
-/**  Sesion 9 - Ejercicio 1 - Clase vector                  **/
+/**  Sesion 10 - Ejercicio 1 - Clase vector                 **/
 /**                                                         **/
 /*************************************************************/
 
-#include "VectorDinamico_ConstructorCopia.h"
+#include "VectorDinamico.h"
 #include "TipoBase.h"
-#include "RedimensionVector.h"
 #include <cstring>
 
 /******************************************************************************/
@@ -22,10 +21,8 @@
 /*************************************************************/
 
 VectorDinamico::VectorDinamico(){
-	ReservarMemoria(TAM_INICIAL);
 	ocupadas = 0;
-	reservadas = TAM_INICIAL;
-	tipo_redimension = TipoRedimension::DeUnoEnUno;
+	vector = 0;
 }
 
 
@@ -40,9 +37,8 @@ VectorDinamico::VectorDinamico(){
 
 VectorDinamico::VectorDinamico(const int valor){
 	ReservarMemoria(valor);
-	ocupadas = 0;
-	reservadas = valor;
-	tipo_redimension = TipoRedimension::DeUnoEnUno;
+	ocupadas = valor;
+	Inicializar(0);
 
 }
 
@@ -58,11 +54,9 @@ VectorDinamico::VectorDinamico(const int valor){
 
 VectorDinamico::VectorDinamico(const VectorDinamico & otro_vector){
 	ocupadas = otro_vector.ocupadas;
-	reservadas = otro_vector.reservadas;
-	tipo_redimension = TipoRedimension::DeUnoEnUno;
 
 
-	ReservarMemoria(reservadas);
+	ReservarMemoria(ocupadas);
 
 	CopiarDatos(otro_vector);
 }
@@ -79,7 +73,6 @@ VectorDinamico::VectorDinamico(const VectorDinamico & otro_vector){
 VectorDinamico::~VectorDinamico(){
 	LiberarMemoria();
 	ocupadas = 0;
-	reservadas = 0;
 	vector = 0;
 }
 
@@ -145,43 +138,14 @@ TipoBase VectorDinamico::Valor(const int posicion) const{
 void VectorDinamico::NuevoElemento(const TipoBase valor){
 
 	//Si no hay espacio, pedimos mas casillas
-	if(ocupadas == reservadas)
-		Redimensiona();
+	Redimensiona();
 	
 	//Añadimos el valor, y aumentamos el numero de casillas ocupadas
 	vector[ocupadas] = valor;
 	ocupadas++;
 }
 
-/******************************************************************************/
 
-/*************************************************************/
-/**                                                         **/
-/**   RedimensionUsada: Devuelve el tipo de redimension     **/
-/**  usada                                                  **/
-/**                                                         **/
-/**   Devuelve: Tipo de redimension usada                   **/
-/**                                                         **/
-/*************************************************************/
-
-TipoRedimension VectorDinamico::RedimensionUsada() const{
-	return tipo_redimension;
-}
-
-/******************************************************************************/
-
-/*************************************************************/
-/**                                                         **/
-/**   SetTipoRedimension: Cambia el tipo de redimension     **/
-/**  usado                                                  **/
-/**                                                         **/
-/**   Recibe: Nuevo tipo de redimension                     **/
-/**                                                         **/
-/*************************************************************/
-
-void VectorDinamico::SetTipoRedimension(const TipoRedimension tipo){
-	tipo_redimension = tipo;
-}
 
 
 /******************************************************************************/
@@ -204,7 +168,7 @@ VectorDinamico VectorDinamico :: operator = (const VectorDinamico & otro){
 	if (this != &otro){
 		LiberarMemoria();
 
-		ReservarMemoria(otro.reservadas);
+		ReservarMemoria(otro.ocupadas);
 
 		CopiarDatos(otro);
 	}
@@ -216,7 +180,13 @@ VectorDinamico VectorDinamico :: operator = (const TipoBase valor){
 	Inicializar(valor);
 }
 
+
 TipoBase & VectorDinamico :: operator [] (const int indice){
+
+	if(ocupadas < indice + 1){
+		Redimensiona(indice + 1);
+	}
+
 	return (vector[indice]);
 }
 
@@ -239,7 +209,7 @@ bool VectorDinamico :: operator != (const VectorDinamico & otro){
 bool VectorDinamico :: operator > (const VectorDinamico & otro){
 	bool es_mayor = false;
 
-	if (this != &l && *this != l){
+	if ( *this != otro){
 
 		int i = 0;
 		int j = 0;
@@ -270,54 +240,6 @@ bool VectorDinamico :: operator <= (const VectorDinamico & otro){
 }
 
 
-
-
-
-
-/******************************************************************************/
-
-/*************************************************************/
-/**                                                         **/
-/**   CasillasReservadas: Devuelve el numero de casillas    **/
-/**  reservadas                                             **/
-/**                                                         **/
-/**   Devuelve: Entero con las casillas reservadas          **/
-/**                                                         **/
-/*************************************************************/
-
-int VectorDinamico::CasillasReservadas() const{
-	return reservadas;
-}
-
-/******************************************************************************/
-
-/*************************************************************/
-/**                                                         **/
-/**   AjustarTamanio: Ajusta el tamaño del vector para      **/
-/**  que tenga reservadas el mismo numero de casillas que   **/
-/**  ocupadas                                               **/
-/**                                                         **/
-/*************************************************************/
-
-void VectorDinamico::AjustarTamanio(){
-
-	//Creamos un nuevo vector con el numero de casillas ocupadas
-	Vector nuevo_vector = new TipoBase [ocupadas];
-
-	//Copiamos el vector original en el nuevo vector
-	memcpy(nuevo_vector, vector, ocupadas*sizeof(TipoBase));
-
-	//Liberamos el vector original
-	LiberarMemoria();
-
-	//El vector original pasa a ser el nuevo vector
-	vector = nuevo_vector;
-
-	//Reservadas pasa a ser ocupadas
-	reservadas = ocupadas;
-
-}
-
 /******************************************************************************/
 
 /*************************************************************/
@@ -326,28 +248,22 @@ void VectorDinamico::AjustarTamanio(){
 /**                                                         **/
 /*************************************************************/
 
-void VectorDinamico::Redimensiona(){
-	const int TAM_BLOQUE = 10;
+void VectorDinamico::Redimensiona(const int casillas){
 	int tam_redimensionado;
 
-	//Ajusta el tamanio del nuevo vector segun el tipo de redimension
-	if (tipo_redimension == TipoRedimension::DeUnoEnUno){
-		tam_redimensionado = reservadas + 1;
-		
-	}else if (tipo_redimension == TipoRedimension::EnBloques){
-		tam_redimensionado = reservadas + TAM_BLOQUE;
+	if (casillas == 0)
+		tam_redimensionado = ocupadas + 1;
+	else
+		tam_redimensionado = casillas;
 
-	}else if (tipo_redimension == TipoRedimension::Duplicando){
-		tam_redimensionado = 2 * reservadas;
-	}
 
 	//Declara un nuevo vector con el nuevo tamaño;
-	Vector nuevo_vector = new TipoBase [tam_redimensionado];
+	TipoBase * nuevo_vector = new TipoBase [tam_redimensionado];
 
 	//Copia el contenido del antiguo vector en el nuevo
 	memcpy(nuevo_vector, vector, ocupadas*sizeof(TipoBase));
 	//Actualiza la capacidad
-	reservadas = tam_redimensionado;
+	ocupadas = tam_redimensionado;
 
 	//Libera la memoria consumida por el vector anriguo
 	LiberarMemoria();
@@ -370,7 +286,7 @@ void VectorDinamico::Redimensiona(){
 
 void VectorDinamico::ReservarMemoria(const int num_a_reservar){
 	vector = new TipoBase [num_a_reservar];
-	reservadas = num_a_reservar;
+	ocupadas = num_a_reservar;
 }
 
 
@@ -399,12 +315,14 @@ void VectorDinamico::CopiarDatos(const VectorDinamico & otro_vector){
 /**                                                         **/
 /*************************************************************/
 
-void VectorDinamico::LiberarMemoria(){
-	delete [] vector;
+void VectorDinamico :: LiberarMemoria(){
+	if (vector != 0)
+		delete [] vector;
+
 }
 
 
-void Inicializar (const TipoBase valor){
-	for (int i = 0; i < reservadas; i++)
+void VectorDinamico :: Inicializar (const TipoBase valor){
+	for (int i = 0; i < ocupadas; i++)
 		vector[i] = valor;
 }

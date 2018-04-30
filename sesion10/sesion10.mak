@@ -19,6 +19,7 @@ all : inicio \
 		$(BIN)/IV_Demo-Lista_Todo \
 		$(BIN)/IV_Demo-PoliLinea \
 		$(BIN)/IV_Demo-RedCiudades \
+		$(BIN)/IV_Demo-VectorDinamico_Todo \
 		finalizado
 
 ################################################################################
@@ -130,7 +131,7 @@ $(BIN)/IV_Demo-VectorDinamico_Todo : \
          $(OBJ)/IV_Demo-VectorDinamico_Todo.o \
 			$(LIB)/libVectorDinamico.a
 	g++ -o $(BIN)/IV_Demo-VectorDinamico_Todo \
-                $(OBJ)/IV_Demo-VectorDinamico.o \
+                $(OBJ)/IV_Demo-VectorDinamico_Todo.o \
 			       -L$(LIB) -lVectorDinamico
 
 $(OBJ)/IV_Demo-VectorDinamico_Todo.o : \
@@ -144,8 +145,7 @@ $(OBJ)/IV_Demo-VectorDinamico_Todo.o : \
 $(OBJ)/VectorDinamico.o : \
          $(SRC)/VectorDinamico.cpp \
 			$(INCLUDE)/VectorDinamico.h \
-			$(INCLUDE)/TipoBase.h \
-			$(INCLUDE)/RedimensionVector.h
+			$(INCLUDE)/TipoBase.h 
 	g++ -c -o $(OBJ)/VectorDinamico.o \
              $(SRC)/VectorDinamico.cpp \
 				 -I$(INCLUDE) -std=c++11
