@@ -340,18 +340,43 @@ void Matriz2D::RellenarAleatorios(const int min, const int max){
 /******************************************************************************/
 /******************************************************************************/
 
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator = : Operador de asignacion                   **/
+/**                                                         **/
+/**   Recibe: Otra matriz, que le sera asignada             **/
+/**                                                         **/
+/*************************************************************/
 Matriz2D & Matriz2D :: operator = (const Matriz2D & otra){
 
+	//Evitamos autoasignacion
 	if (this != &otra){
+		//Liberamos memoria
 		LiberarMemoria();
 
+		//Reservamos memoria para la nueva matriz
 		ReservarMemoria(otra.filas, otra.columnas);
 
+		//Copiamos los datos
 		CopiarDatos(otra);
 	}
 
 	return (*this);
 }
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator = : Operador de asignacion, rellena la       **/
+/**               matriz con el valor dado                  **/
+/**                                                         **/
+/**   Recibe: Dato de tipo TipoBase                         **/
+/**                                                         **/
+/*************************************************************/
 
 Matriz2D & Matriz2D :: operator = (const TipoBase valor){
 
@@ -360,17 +385,53 @@ Matriz2D & Matriz2D :: operator = (const TipoBase valor){
 	return (*this);
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator () : Operador ()                             **/
+/**                                                         **/
+/**   Recibe: Entero -> fila                                **/
+/**           Entero -> columna                             **/
+/**                                                         **/
+/**   Devuelve: Una referencia a la casilla fila, columna   **/
+/**            de la matriz                                 **/
+/**                                                         **/
+/*************************************************************/
+
 TipoBase & Matriz2D :: operator () (const int fila, const int columna) const{
 
 	return (datos[fila][columna]);
 
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator + : Operador unario +                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando el operador unario +      **/
+/**                                                         **/
+/*************************************************************/
+
 Matriz2D Matriz2D :: operator + () const{
 
 	return (*this);
 
 }
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator - : Operador unario -                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando el operador unario -,     **/
+/**            es decir, cambia el signo de todos de los    **/
+/**            elementos de la matriz                       **/
+/**                                                         **/
+/*************************************************************/
 
 Matriz2D Matriz2D :: operator - (){
 
@@ -385,10 +446,23 @@ Matriz2D Matriz2D :: operator - (){
 	return (otra);
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator + : Operador binario +                       **/
+/**                                                         **/
+/**   Recibe: Dos matrices a sumar                          **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la suma de dos matrices   **/
+/**                                                         **/
+/*************************************************************/
+
 Matriz2D operator + (const Matriz2D & m_izda,  const Matriz2D & m_dcha){
 
 	Matriz2D otra;
 
+	//Si las filas concuerdan, sumamos las matrices
 	if (m_izda.filas == m_dcha.filas && m_izda.columnas == m_dcha.columnas){
 
 		otra.ReservarMemoria (m_izda.filas, m_izda.columnas);
@@ -400,39 +474,128 @@ Matriz2D operator + (const Matriz2D & m_izda,  const Matriz2D & m_dcha){
 		}
 
 	}
+	//Si no concuerdan, devolvemos la matriz vacia;
 
 	return (otra);
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator + : Operador binario +                       **/
+/**                                                         **/
+/**   Recibe: Matriz                                        **/
+/**           Valor de tipo TipoBase                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la suma de dos matrices   **/
+/**                                                         **/
+/*************************************************************/
+
 Matriz2D operator + (const Matriz2D & m_izda, const TipoBase valor){
 
+	//Creamos una matriz, rellena con el valor dado
 	Matriz2D m_dcha( m_izda.filas, m_izda.columnas, valor);
 
+	//Devolvemos la suma de las dos matrices
 	return ( m_izda + m_dcha );
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator + : Operador binario +                       **/
+/**                                                         **/
+/**   Recibe: Valor de tipo TipoBase                        **/
+/**           Matriz                                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la suma de dos matrices   **/
+/**                                                         **/
+/*************************************************************/
+
 Matriz2D operator + (const TipoBase valor, const Matriz2D & m_dcha){
-	
+
+	//  La suma en matrices es conmutativa,
+	//luego sumamos la matriz y luego el valor
 	return ( m_dcha + valor );
 }
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator - : Operador binario -                       **/
+/**                                                         **/
+/**   Recibe: Matriz                                        **/
+/**           Matriz                                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la resta de dos matrices  **/
+/**                                                         **/
+/*************************************************************/
 
 Matriz2D operator - (const Matriz2D & m_izd, const Matriz2D & m_dcha){
 								
 	Matriz2D otra = m_dcha;
+	//La resa es la suma del inverso
 	return (m_izd + (-otra) );
 
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator - : Operador binario -                       **/
+/**                                                         **/
+/**   Recibe: Matriz                                        **/
+/**           Valor de tipo TipoBase                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la resta de dos matrices  **/
+/**                                                         **/
+/*************************************************************/
+
 Matriz2D operator - (const Matriz2D & m_izda, const TipoBase valor){
 
+	//Sumamos la matriz, y el inverso de valor, nos da la resta
+	//Funciona ya que tenemos implementado el operador binario +
 	return (m_izda + (-valor) );
 }
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator - : Operador binario -                       **/
+/**                                                         **/
+/**   Recibe: Valor de tipo TipoBase                        **/
+/**           Matriz                                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la resta de dos matrices  **/
+/**                                                         **/
+/*************************************************************/
 
 Matriz2D operator - (const TipoBase valor, const Matriz2D & m_dcha){
 
 	Matriz2D otra = m_dcha;
+
+	//Sumamos la matriz, y el inverso de valor, nos da la resta
+	//Funciona ya que tenemos implementado el operador binario +
 	return ( valor + (-otra) );
 }
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator += :                                         **/
+/**                                                         **/
+/**   Recibe: Valor de tipo TipoBase                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la suma de la matriz y    **/
+/**            el valor                                     **/
+/**                                                         **/
+/*************************************************************/
 
 Matriz2D & Matriz2D :: operator += (const TipoBase valor){
 
@@ -440,16 +603,43 @@ Matriz2D & Matriz2D :: operator += (const TipoBase valor){
 	return (*this);
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator -= :                                         **/
+/**                                                         **/
+/**   Recibe: Valor de tipo TipoBase                        **/
+/**                                                         **/
+/**   Devuelve: Matriz, aplicando la resta de la matriz y   **/
+/**            el valor                                     **/
+/**                                                         **/
+/*************************************************************/
+
 Matriz2D & Matriz2D :: operator -= (const TipoBase valor){
 
 	(*this) = (*this) - valor;
 	return (*this);
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator == : Compara si dos matrices son iguales     **/
+/**                                                         **/
+/**   Recibe: Matriz a comparar                             **/
+/**                                                         **/
+/**   Devuelve: Booleano con el resultado                   **/
+/**                                                         **/
+/*************************************************************/
+
 bool Matriz2D :: operator == (const Matriz2D & otra) const{
+	//Comprobamos que las filas y columnas concuerden
 	bool es_igual = (filas == otra.filas) && (columnas == otra.columnas);
 
 	if (es_igual){
+		//Comparamos elemento a elemento en las casillas
 		for (int i = 0; i < filas && es_igual; i++){
 			for (int j = 0; j < filas && es_igual ; j++){
 				es_igual = datos[i][j] == otra.datos[i][j];
@@ -461,7 +651,21 @@ bool Matriz2D :: operator == (const Matriz2D & otra) const{
 
 }
 
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   operator != : Compara si dos matrices son distintas   **/
+/**                                                         **/
+/**   Recibe: Matriz a comparar                             **/
+/**                                                         **/
+/**   Devuelve: Booleano con el resultado                   **/
+/**                                                         **/
+/*************************************************************/
+
 bool Matriz2D :: operator != (const Matriz2D & otra) const{
+	//La desigualdad es la negacion de la igualdad
 	return ( !(*this == otra) );
 }
 
