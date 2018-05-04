@@ -25,8 +25,8 @@ class VectorDinamico{
 		
 		void SetValor(const int, const TipoBase);
 
-		VectorDinamico operator = (const VectorDinamico & otro);
-		VectorDinamico operator = (const TipoBase valor);
+		VectorDinamico & operator = (const VectorDinamico & otro);
+		VectorDinamico & operator = (const TipoBase valor);
 		TipoBase & operator [] (const int indice);
 
 		bool operator == (const VectorDinamico & otro);

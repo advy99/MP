@@ -163,26 +163,55 @@ void VectorDinamico::SetValor(const int posicion, const TipoBase valor){
 	vector[posicion] = valor;
 }
 
+/******************************************************************************/
 
-VectorDinamico VectorDinamico :: operator = (const VectorDinamico & otro){
+/*************************************************************/
+/**                                                         **/
+/**   Operador de asignacion                                **/
+/**                                                         **/
+/*************************************************************/
+
+VectorDinamico & VectorDinamico :: operator = (const VectorDinamico & otro){
+	//Evitamos autoasignacion
 	if (this != &otro){
+		//Liberamos memoria
 		LiberarMemoria();
-
+		
+		//Pedimos memoria para la nueva asignacion
 		ReservarMemoria(otro.ocupadas);
 
+		//Copiamos los datos
 		CopiarDatos(otro);
 	}
 
 	return (*this);
 }
 
-VectorDinamico VectorDinamico :: operator = (const TipoBase valor){
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   Operador de asignacion, establecemos los valores al   **/
+/**  valor dado                                             **/
+/**                                                         **/
+/*************************************************************/
+
+VectorDinamico & VectorDinamico :: operator = (const TipoBase valor){
 	Inicializar(valor);
 }
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   Operador [], accedemos a una posicion dada            **/
+/**                                                         **/
+/*************************************************************/
 
 
 TipoBase & VectorDinamico :: operator [] (const int indice){
 
+	//Si esa posicion no es usada, pedimos memoria para ella
 	if(ocupadas < indice + 1){
 		Redimensiona(indice + 1);
 	}
@@ -190,9 +219,19 @@ TipoBase & VectorDinamico :: operator [] (const int indice){
 	return (vector[indice]);
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   Operador ==: Comparamos si dos vectores son iguales   **/
+/**                                                         **/
+/*************************************************************/
+
 bool VectorDinamico :: operator == (const VectorDinamico & otro){
+	//Comprobamos su tamaño
 	bool es_igual = ocupadas == otro.ocupadas;
 
+	//Si tienen el mismo tamaño, comparamos elemento a elemento
 	if (es_igual){
 		for (int i = 0; i < ocupadas && es_igual; i++){
 			es_igual = vector[i] == otro.vector[i];
@@ -202,9 +241,25 @@ bool VectorDinamico :: operator == (const VectorDinamico & otro){
 	return es_igual;
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**  Operador !=: Comprobamos si dos vectores son distintos **/
+/**                                                         **/
+/*************************************************************/
+
 bool VectorDinamico :: operator != (const VectorDinamico & otro){
 	return ( !(*this == otro) );
 }
+
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**  Operador >: Comprobamos si un vector es mayor a otro   **/
+/**                                                         **/
+/*************************************************************/
 
 bool VectorDinamico :: operator > (const VectorDinamico & otro){
 	bool es_mayor = false;
@@ -213,6 +268,8 @@ bool VectorDinamico :: operator > (const VectorDinamico & otro){
 
 		int i = 0;
 		int j = 0;
+
+		//Comprobamos elemento a elemento, hasta que uno es mayor
 
 		while (i < ocupadas && j < otro.ocupadas && !es_mayor ){
 
@@ -227,15 +284,45 @@ bool VectorDinamico :: operator > (const VectorDinamico & otro){
 	return es_mayor;
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**  Operador >=: Comprobamos si un vectore es mayor o      **/
+/**              igual a otro                               **/
+/**                                                         **/
+/*************************************************************/
+
 bool VectorDinamico :: operator >= (const VectorDinamico & otro){
+	//Es mayor o igual si es mayor o si es igual
+
 	return ( (*this > otro) || (*this == otro) );
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**  Operador <: Comprobamos si un vector es menor a otro   **/
+/**                                                         **/
+/*************************************************************/
+
 bool VectorDinamico :: operator < (const VectorDinamico & otro){
+	//Es menor si no es mayor y si no es igual
 	return ( !(*this > otro) && !(*this == otro) );
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**  Operador <=: Comprobamos si un vectore es menor o      **/
+/**              igual a otro                               **/
+/**                                                         **/
+/*************************************************************/
+
 bool VectorDinamico :: operator <= (const VectorDinamico & otro){
+	//Es menor o igual si no es mayor
 	return ( !(*this > otro) );
 }
 
