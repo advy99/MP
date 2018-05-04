@@ -19,6 +19,7 @@ all : inicio \
 		$(BIN)/CopiaExceptoVocales \
 		$(BIN)/CuentaCaracteres \
 		$(BIN)/CuentaLineasNoVacias \
+		$(BIN)/CuentaLineasNoVacias-peek \
 		finalizado
 
 ################################################################################
@@ -46,6 +47,14 @@ $(BIN)/CuentaLineasNoVacias : $(SRC)/CuentaLineasNoVacias.cpp
 
 
 ################################################################################
+
+$(BIN)/CuentaLineasNoVacias-peek : $(SRC)/CuentaLineasNoVacias-peek.cpp
+	g++ -o $(BIN)/CuentaLineasNoVacias-peek \
+	       $(SRC)/CuentaLineasNoVacias-peek.cpp -std=c++11
+
+
+################################################################################
+
 
 
 inicio :
