@@ -1,3 +1,13 @@
+/*************************************************************/
+/**                                                         **/
+/**  Autor : Antonio David Villegas Yeguas                  **/
+/**  1GII - Universidad de Granada                          **/
+/**  Metodologia de la Programacion 2017/18                 **/
+/**  Sesion 11 - Ejercicio 2 - Copiar entrada en salida     **/
+/**                           sin vocales                   **/
+/**                                                         **/
+/*************************************************************/
+
 #include <iostream>
 #include <cctype>
 
