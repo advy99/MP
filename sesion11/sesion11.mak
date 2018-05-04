@@ -16,13 +16,23 @@ LIB = $(HOME)/lib
 
 all : inicio \
 		$(BIN)/CopiaTodo \
+		$(BIN)/CopiaExceptoVocales \
 		finalizado
+
+################################################################################
 
 
 $(BIN)/CopiaTodo : $(SRC)/CopiaTodo.cpp
 	g++ -o $(BIN)/CopiaTodo $(SRC)/CopiaTodo.cpp -std=c++11
 
+################################################################################
 
+$(BIN)/CopiaExceptoVocales : $(SRC)/CopiaExceptoVocales.cpp
+	g++ -o $(BIN)/CopiaExceptoVocales $(SRC)/CopiaExceptoVocales.cpp -std=c++11
+
+
+
+################################################################################
 
 inicio :
 	@echo 
