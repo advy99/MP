@@ -22,6 +22,7 @@ all : inicio \
 		$(BIN)/CuentaLineasNoVacias-peek \
 		$(BIN)/MuestraLineasNoVacias \
 		$(BIN)/ComprimeLineas \
+		$(BIN)/CopiaLineasSinAlmohadilla \
 		finalizado
 
 ################################################################################
@@ -67,6 +68,13 @@ $(BIN)/MuestraLineasNoVacias : $(SRC)/MuestraLineasNoVacias.cpp
 $(BIN)/ComprimeLineas : $(SRC)/ComprimeLineas.cpp
 	g++ -o $(BIN)/ComprimeLineas \
 	       $(SRC)/ComprimeLineas.cpp -std=c++11
+
+
+################################################################################
+
+$(BIN)/CopiaLineasSinAlmohadilla : $(SRC)/CopiaLineasSinAlmohadilla.cpp
+	g++ -o $(BIN)/CopiaLineasSinAlmohadilla \
+	       $(SRC)/CopiaLineasSinAlmohadilla.cpp -std=c++11
 
 
 ################################################################################
