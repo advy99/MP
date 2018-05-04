@@ -10,7 +10,7 @@ int main(){
 	//Pedimos los caracteres
 	cout << "Introduce una secuencia de caracteres: ";
 	//Mientras no se alcance el fin de fichero, seguimos leyendo
-	while( cin.get(c) ){
+	while( cin >> c ){
 		//Cada caracter leido, sumamos uno al contador;
 		contador++;
 	}
