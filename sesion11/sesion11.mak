@@ -17,6 +17,7 @@ LIB = $(HOME)/lib
 all : inicio \
 		$(BIN)/CopiaTodo \
 		$(BIN)/CopiaExceptoVocales \
+		$(BIN)/CuentaCaracteres \
 		finalizado
 
 ################################################################################
@@ -30,6 +31,10 @@ $(BIN)/CopiaTodo : $(SRC)/CopiaTodo.cpp
 $(BIN)/CopiaExceptoVocales : $(SRC)/CopiaExceptoVocales.cpp
 	g++ -o $(BIN)/CopiaExceptoVocales $(SRC)/CopiaExceptoVocales.cpp -std=c++11
 
+################################################################################
+
+$(BIN)/CuentaCaracteres : $(SRC)/CuentaCaracteres.cpp
+	g++ -o $(BIN)/CuentaCaracteres $(SRC)/CuentaCaracteres.cpp -std=c++11
 
 
 ################################################################################
