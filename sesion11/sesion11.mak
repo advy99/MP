@@ -27,6 +27,7 @@ all : inicio \
 		$(BIN)/CopiaEnterosSeparados \
 		$(BIN)/SumaEnteros  \
 		$(BIN)/CuentaCaracteresConcretos \
+		$(BIN)/CuentaPalabrasLongitudConcreta \
 		finalizado
 
 ################################################################################
@@ -109,6 +110,15 @@ $(BIN)/SumaEnteros : $(SRC)/SumaEnteros.cpp
 $(BIN)/CuentaCaracteresConcretos : $(SRC)/CuentaCaracteresConcretos.cpp
 	g++ -o $(BIN)/CuentaCaracteresConcretos \
 	       $(SRC)/CuentaCaracteresConcretos.cpp -std=c++11
+
+
+################################################################################
+
+
+$(BIN)/CuentaPalabrasLongitudConcreta : \
+                        $(SRC)/CuentaPalabrasLongitudConcreta.cpp
+	g++ -o $(BIN)/CuentaPalabrasLongitudConcreta \
+	       $(SRC)/CuentaPalabrasLongitudConcreta.cpp -std=c++11
 
 
 ################################################################################
