@@ -12,9 +12,12 @@ int main(){
 	cout << "Introduce una secuencia de caracteres: ";
 	//Mientras no se alcance el fin de fichero, seguimos leyendo
 	while( cin.get(c) ){
-		//Cada caracter leido, lo mandamos a la salida
+		//Cada caracter leido, guardamos su mayuscula
 		en_mayus = toupper(c);
 
+
+		//Comprobamos que no sea vocal, al convertirlo a mayuscula,
+		//solo tenemos que comprobar con las mayusculas
 		if(en_mayus != 'A' && en_mayus != 'E' && en_mayus != 'I' &&
 		   en_mayus != 'O' && en_mayus != 'U')
 			cout.put(c);
