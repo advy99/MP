@@ -23,6 +23,7 @@ all : inicio \
 		$(BIN)/MuestraLineasNoVacias \
 		$(BIN)/ComprimeLineas \
 		$(BIN)/CopiaLineasSinAlmohadilla \
+		$(BIN)/CopiaEnteros \
 		finalizado
 
 ################################################################################
@@ -79,6 +80,12 @@ $(BIN)/CopiaLineasSinAlmohadilla : $(SRC)/CopiaLineasSinAlmohadilla.cpp
 
 ################################################################################
 
+$(BIN)/CopiaEnteros : $(SRC)/CopiaEnteros.cpp
+	g++ -o $(BIN)/CopiaEnteros \
+	       $(SRC)/CopiaEnteros.cpp -std=c++11
+
+
+################################################################################
 
 
 
