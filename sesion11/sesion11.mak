@@ -26,6 +26,7 @@ all : inicio \
 		$(BIN)/CopiaEnteros \
 		$(BIN)/CopiaEnterosSeparados \
 		$(BIN)/SumaEnteros  \
+		$(BIN)/CuentaCaracteresConcretos \
 		finalizado
 
 ################################################################################
@@ -100,6 +101,14 @@ $(BIN)/CopiaEnterosSeparados : $(SRC)/CopiaEnterosSeparados.cpp
 $(BIN)/SumaEnteros : $(SRC)/SumaEnteros.cpp
 	g++ -o $(BIN)/SumaEnteros \
 	       $(SRC)/SumaEnteros.cpp -std=c++11
+
+
+################################################################################
+
+
+$(BIN)/CuentaCaracteresConcretos : $(SRC)/CuentaCaracteresConcretos.cpp
+	g++ -o $(BIN)/CuentaCaracteresConcretos \
+	       $(SRC)/CuentaCaracteresConcretos.cpp -std=c++11
 
 
 ################################################################################
