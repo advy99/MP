@@ -20,6 +20,7 @@ all : inicio \
 		$(BIN)/CuentaCaracteres \
 		$(BIN)/CuentaLineasNoVacias \
 		$(BIN)/CuentaLineasNoVacias-peek \
+		$(BIN)/MuestraLineasNoVacias \
 		finalizado
 
 ################################################################################
@@ -51,6 +52,13 @@ $(BIN)/CuentaLineasNoVacias : $(SRC)/CuentaLineasNoVacias.cpp
 $(BIN)/CuentaLineasNoVacias-peek : $(SRC)/CuentaLineasNoVacias-peek.cpp
 	g++ -o $(BIN)/CuentaLineasNoVacias-peek \
 	       $(SRC)/CuentaLineasNoVacias-peek.cpp -std=c++11
+
+
+################################################################################
+
+$(BIN)/MuestraLineasNoVacias : $(SRC)/MuestraLineasNoVacias.cpp
+	g++ -o $(BIN)/MuestraLineasNoVacias \
+	       $(SRC)/MuestraLineasNoVacias.cpp -std=c++11
 
 
 ################################################################################
