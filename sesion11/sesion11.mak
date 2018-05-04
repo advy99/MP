@@ -21,6 +21,7 @@ all : inicio \
 		$(BIN)/CuentaLineasNoVacias \
 		$(BIN)/CuentaLineasNoVacias-peek \
 		$(BIN)/MuestraLineasNoVacias \
+		$(BIN)/ComprimeLineas \
 		finalizado
 
 ################################################################################
@@ -62,6 +63,14 @@ $(BIN)/MuestraLineasNoVacias : $(SRC)/MuestraLineasNoVacias.cpp
 
 
 ################################################################################
+
+$(BIN)/ComprimeLineas : $(SRC)/ComprimeLineas.cpp
+	g++ -o $(BIN)/ComprimeLineas \
+	       $(SRC)/ComprimeLineas.cpp -std=c++11
+
+
+################################################################################
+
 
 
 
