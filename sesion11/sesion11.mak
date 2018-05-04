@@ -18,6 +18,7 @@ all : inicio \
 		$(BIN)/CopiaTodo \
 		$(BIN)/CopiaExceptoVocales \
 		$(BIN)/CuentaCaracteres \
+		$(BIN)/CuentaLineasNoVacias \
 		finalizado
 
 ################################################################################
@@ -38,6 +39,14 @@ $(BIN)/CuentaCaracteres : $(SRC)/CuentaCaracteres.cpp
 
 
 ################################################################################
+
+
+$(BIN)/CuentaLineasNoVacias : $(SRC)/CuentaLineasNoVacias.cpp
+	g++ -o $(BIN)/CuentaLineasNoVacias $(SRC)/CuentaLineasNoVacias.cpp -std=c++11
+
+
+################################################################################
+
 
 inicio :
 	@echo 
