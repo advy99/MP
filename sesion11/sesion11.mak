@@ -25,6 +25,7 @@ all : inicio \
 		$(BIN)/CopiaLineasSinAlmohadilla \
 		$(BIN)/CopiaEnteros \
 		$(BIN)/CopiaEnterosSeparados \
+		$(BIN)/SumaEnteros  \
 		finalizado
 
 ################################################################################
@@ -91,6 +92,14 @@ $(BIN)/CopiaEnteros : $(SRC)/CopiaEnteros.cpp
 $(BIN)/CopiaEnterosSeparados : $(SRC)/CopiaEnterosSeparados.cpp
 	g++ -o $(BIN)/CopiaEnterosSeparados \
 	       $(SRC)/CopiaEnterosSeparados.cpp -std=c++11
+
+
+################################################################################
+
+
+$(BIN)/SumaEnteros : $(SRC)/SumaEnteros.cpp
+	g++ -o $(BIN)/SumaEnteros \
+	       $(SRC)/SumaEnteros.cpp -std=c++11
 
 
 ################################################################################
