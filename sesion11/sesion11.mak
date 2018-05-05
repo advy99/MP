@@ -28,6 +28,7 @@ all : inicio \
 		$(BIN)/SumaEnteros  \
 		$(BIN)/CuentaCaracteresConcretos \
 		$(BIN)/CuentaPalabrasLongitudConcreta \
+		$(BIN)/CopiaEnteros-OrdenInverso \
 		finalizado
 
 ################################################################################
@@ -123,6 +124,29 @@ $(BIN)/CuentaPalabrasLongitudConcreta : \
 
 ################################################################################
 
+
+$(BIN)/CopiaEnteros-OrdenInverso : $(OBJ)/CopiaEnteros-OrdenInverso.o \
+                                   $(LIB)/libPila.a
+	g++ -o $(BIN)/CopiaEnteros-OrdenInverso \
+	               $(OBJ)/CopiaEnteros-OrdenInverso.o -L$(LIB) -lPila
+
+$(OBJ)/CopiaEnteros-OrdenInverso.o : $(SRC)/CopiaEnteros-OrdenInverso.cpp \
+                                     $(INCLUDE)/Pila.h
+
+	g++ -c -o $(OBJ)/CopiaEnteros-OrdenInverso.o \
+	                                 $(SRC)/CopiaEnteros-OrdenInverso.cpp \
+                                    -I$(INCLUDE) -std=c++11
+
+
+$(LIB)/libPila.a : $(OBJ)/Pila.o
+	ar -rvs $(LIB)/libPila.a $(OBJ)/Pila.o
+
+$(OBJ)/Pila.o : $(SRC)/Pila.cpp $(INCLUDE)/TipoBase.h $(INCLUDE)/Pila.h
+	g++ -c -o $(OBJ)/Pila.o $(SRC)/Pila.cpp -I$(INCLUDE) -std=c++11
+
+
+
+################################################################################
 
 
 inicio :
