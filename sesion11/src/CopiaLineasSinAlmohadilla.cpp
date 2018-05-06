@@ -24,15 +24,18 @@ int main(){
 	cin.get(c);
 	primer_linea = c;
 
+	mostrar = primer_linea != MARCA;
+
 	do{
 		//Si no esta marcada la linea, se muestra
-		if(primer_linea != MARCA)
+		if(mostrar)
 			cout.put(c);
 
 		//Si hay un salto de linea, se actualiza el primer elemento de esta
-		if(c == '\n')
-			primer_linea = cin.peek();			
-		
+		if(c == '\n'){
+			primer_linea = cin.peek();		
+			mostrar = primer_linea != MARCA;	
+		}
 		
 	}while (cin.get(c) );
 
