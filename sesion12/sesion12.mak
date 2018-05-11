@@ -16,6 +16,7 @@ LIB = $(HOME)/lib
 
 all : inicio \
 		$(BIN)/NumeraLineas \
+		$(BIN)/MezclaFichero \
 		finalizado
 
 ################################################################################
@@ -34,6 +35,18 @@ $(OBJ)/Util.o : $(SRC)/Util.cpp $(INCLUDE)/Util.h
 
 
 ################################################################################
+
+$(BIN)/MezclaFichero : $(OBJ)/MezclaFichero.o $(OBJ)/Util.o
+	g++ -o $(BIN)/MezclaFichero $(OBJ)/MezclaFichero.o $(OBJ)/Util.o
+
+$(OBJ)/MezclaFichero.o : $(SRC)/MezclaFichero.cpp $(INCLUDE)/Util.h
+	g++ -c -o $(OBJ)/MezclaFichero.o $(SRC)/MezclaFichero.cpp \
+	        -I$(INCLUDE) -std=c++11
+
+
+
+################################################################################
+
 
 
 inicio :

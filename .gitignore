@@ -5,3 +5,5 @@ obj/
 *.tar
 */lib/
 lib/
+*/tmp/
+tmp/

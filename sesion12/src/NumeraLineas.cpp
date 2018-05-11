@@ -55,6 +55,7 @@ int main( int argc, char * argv[] ){
 	//Comprobamos que se ha podido crear argv[2]
 	if (!fo){
 		cerr << "ERROR: No se ha podido crear " << argv[2] << endl;
+		fi.close();
 		exit(1);
 	}
 
