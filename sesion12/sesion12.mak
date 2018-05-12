@@ -18,6 +18,7 @@ all : inicio \
 		$(BIN)/NumeraLineas \
 		$(BIN)/MezclaFichero \
 		$(BIN)/VI_Demo-Lista-ES \
+		$(BIN)/VI_Demo-Matriz2D-ES \
 		finalizado
 
 ################################################################################
@@ -63,7 +64,31 @@ $(OBJ)/Lista.o : $(SRC)/Lista.cpp $(INCLUDE)/Lista.h $(INCLUDE)/Util.h \
 
 ################################################################################
 
+$(BIN)/VI_Demo-Matriz2D-ES : $(OBJ)/VI_Demo-Matriz2D-ES.o $(OBJ)/Matriz2D_1.o \
+                             $(OBJ)/Util.o $(OBJ)/GeneradorAleatorioEnteros.o
+	g++ -o $(BIN)/VI_Demo-Matriz2D-ES $(OBJ)/VI_Demo-Matriz2D-ES.o \
+	       $(OBJ)/Matriz2D_1.o $(OBJ)/Util.o $(OBJ)/GeneradorAleatorioEnteros.o
 
+
+$(OBJ)/VI_Demo-Matriz2D-ES.o : $(SRC)/VI_Demo-Matriz2D-ES.cpp \
+                               $(INCLUDE)/Matriz2D_1.h
+	g++ -c -o $(OBJ)/VI_Demo-Matriz2D-ES.o $(SRC)/VI_Demo-Matriz2D-ES.cpp \
+	          -I$(INCLUDE) -std=c++11
+	
+$(OBJ)/Matriz2D_1.o : $(SRC)/Matriz2D_1.cpp $(INCLUDE)/Util.h \
+                      $(INCLUDE)/Matriz2D_1.h \
+                      $(INCLUDE)/GeneradorAleatorioEnteros.h
+	g++ -c -o $(OBJ)/Matriz2D_1.o $(SRC)/Matriz2D_1.cpp -I$(INCLUDE) -std=c++11
+
+$(OBJ)/GeneradorAleatorioEnteros.o : $(SRC)/GeneradorAleatorioEnteros.cpp \
+                                     $(INCLUDE)/GeneradorAleatorioEnteros.h
+	g++ -c -o $(OBJ)/GeneradorAleatorioEnteros.o \
+	          $(SRC)/GeneradorAleatorioEnteros.cpp -I$(INCLUDE) -std=c++11
+
+
+
+
+################################################################################
 
 inicio :
 	@echo 
