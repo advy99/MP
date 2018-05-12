@@ -241,6 +241,22 @@ void  Lista :: Borrar ( const int pos_borrar){
 	tamanio--; 
 }
 
+/******************************************************************************/
+
+void EscribirLista (const char * nombre) const{
+	ofstream fo;
+
+	fo.open(nombre);
+
+	if( !fo.fail() ){
+		for (int i = 1; i <= tamanio; i++){
+			fo << *this[i] << endl;
+		}
+
+		fo.close();
+	}
+
+}
 
 /******************************************************************************/
 
