@@ -74,7 +74,7 @@ int main( int argc, char * argv[] ){
 		getline(fi, linea);
 
 	}
-
+	
 	//Una vez acabamos de leer y escribir, cerramos los ficheros
 	fi.close();
 	fo.close();
