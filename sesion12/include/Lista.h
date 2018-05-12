@@ -54,6 +54,8 @@ class Lista {
 		void Borrar (const int pos_borrar);
 
 		void EscribirLista (const char * nombre) const;
+		void LeerLista (const char * nombre);
+
 
 
 		//Operadores

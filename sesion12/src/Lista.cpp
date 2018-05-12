@@ -260,6 +260,15 @@ void EscribirLista (const char * nombre) const{
 
 /******************************************************************************/
 
+void LeerLista (const char * nombre){
+	Lista l(nombre);
+
+	*this = l;
+}
+
+
+/******************************************************************************/
+
 /*************************************************************/
 /**                                                         **/
 /**   operator = : Operador de asignacion, asigna una lista **/
