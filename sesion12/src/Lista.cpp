@@ -21,6 +21,11 @@ using namespace std;
 Lista :: Lista (void)  : primero(0), tamanio(0)
 { }
 
+Lista :: Lista (const int num_nodos)
+               :primero(0) , tamanio(num_nodos)
+{
+	ReservarMemoria(tamanio);
+}
 
 Lista :: Lista (const char * fichero){
 	tamanio = 0;
@@ -243,14 +248,14 @@ void  Lista :: Borrar ( const int pos_borrar){
 
 /******************************************************************************/
 
-void EscribirLista (const char * nombre) const{
+void Lista :: EscribirLista (const char * nombre) const{
 	ofstream fo;
 
 	fo.open(nombre);
 
 	if( !fo.fail() ){
 		for (int i = 1; i <= tamanio; i++){
-			fo << *this[i] << endl;
+			fo << (*this)[i] << endl;
 		}
 
 		fo.close();
@@ -260,7 +265,7 @@ void EscribirLista (const char * nombre) const{
 
 /******************************************************************************/
 
-void LeerLista (const char * nombre){
+void Lista :: LeerLista (const char * nombre){
 	Lista l(nombre);
 
 	*this = l;
@@ -332,6 +337,18 @@ TipoBase & Lista :: operator [] (const int pos){
 
 	return (aux->info);
 }
+
+
+TipoBase Lista :: operator [] (const int pos) const{
+	TipoNodo * aux = primero;
+
+	for (int i = 1; i < pos; i++){
+		aux = aux->sig;
+	}
+
+	return (aux->info);
+}
+
 
 /******************************************************************************/
 
@@ -826,7 +843,7 @@ void PintaLista (const Lista & l, const char * msg)
 	int tamanio = l.Tamanio();
 
 	for(int pos=1; pos<=tamanio; pos++) 
-		cout << l.LeerValor (pos) << ((pos != tamanio)?" - ":"");
+		cout << l[pos] << ((pos != tamanio)?" - ":"");
 	cout << endl; 
 
 	cout << "--------------------------------------------------" << endl;  

@@ -1,14 +1,12 @@
-/***************************************************************************/
-// METODOLOGIA DE LA PROGRAMACION
-// GRADO EN INGENIERIA INFORMATICA
-//
-// CURSO 2017-2018
-// (C) FRANCISCO JOSE CORTIJO BON
-// DEPARTAMENTO DE CIENCIAS DE LA COMPUTACION E INTELIGENCIA ARTIFICIAL
-//
-// RELACION DE PROBLEMAS 6
-// EJERCICIO 6
-//
+/*************************************************************/
+/**                                                         **/
+/**  Autor : Antonio David Villegas Yeguas                  **/
+/**  1GII - Universidad de Granada                          **/
+/**  Metodologia de la Programacion 2017/18                 **/
+/**  Sesion 12 - Ejercicio 6 - Clase Lista                  **/
+/**                                                         **/
+/*************************************************************/
+
 // Demostración de la funcionalidad de la clase Lista.
 // La clase Lista ha sido ampliada con los métodos:
 // 
@@ -41,15 +39,15 @@ int main (void)
 	lista = 0;
 	PintaLista (lista, "Despues de lista = 0");
 
-	lista.Inserta(7,2);
+	lista.Insertar(7,2);
 	PintaLista (lista, "Despues de lista.Inserta(7,2)");
 	cout << "Tamanio = " << lista.Tamanio() << endl;	
 
-	lista.Inserta(9,lista.Tamanio()+1);
+	lista.Insertar(9,lista.Tamanio()+1);
 	PintaLista (lista, "Despues de lista.Inserta(9, lista.Tamanio()+1)");
 	cout << "Tamanio = " << lista.Tamanio() << endl;
 	
-	lista.Inserta(6,3);
+	lista.Insertar(6,3);
 	PintaLista (lista, "Despues de lista.Inserta(6,3)");
 	cout << "Tamanio = " << lista.Tamanio() << endl;
 	
@@ -58,7 +56,7 @@ int main (void)
 
 	for (int pos=1; pos<=lista.Tamanio(); pos++)
 		cout << "Elemento " << setw(2) << pos 
-		     << " = " << setw (3) << lista(pos)<< endl;
+		     << " = " << setw (3) << lista[pos]<< endl;
 	cout << endl;
 
 	// Guardar lista en un fichero

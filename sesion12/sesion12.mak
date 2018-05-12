@@ -17,6 +17,7 @@ LIB = $(HOME)/lib
 all : inicio \
 		$(BIN)/NumeraLineas \
 		$(BIN)/MezclaFichero \
+		$(BIN)/VI_Demo-Lista-ES \
 		finalizado
 
 ################################################################################
@@ -43,6 +44,21 @@ $(OBJ)/MezclaFichero.o : $(SRC)/MezclaFichero.cpp $(INCLUDE)/Util.h
 	g++ -c -o $(OBJ)/MezclaFichero.o $(SRC)/MezclaFichero.cpp \
 	        -I$(INCLUDE) -std=c++11
 
+
+
+################################################################################
+
+$(BIN)/VI_Demo-Lista-ES : $(OBJ)/VI_Demo-Lista-ES.o $(OBJ)/Lista.o $(OBJ)/Util.o
+	g++ -o $(BIN)/VI_Demo-Lista-ES $(OBJ)/VI_Demo-Lista-ES.o $(OBJ)/Lista.o \
+	       $(OBJ)/Util.o
+
+$(OBJ)/VI_Demo-Lista-ES.o : $(SRC)/VI_Demo-Lista-ES.cpp $(INCLUDE)/Lista.h
+	g++ -c -o $(OBJ)/VI_Demo-Lista-ES.o $(SRC)/VI_Demo-Lista-ES.cpp \
+	       -I$(INCLUDE) -std=c++11
+
+$(OBJ)/Lista.o : $(SRC)/Lista.cpp $(INCLUDE)/Lista.h $(INCLUDE)/Util.h \
+                 $(INCLUDE)/TipoBase.h
+	g++ -c -o $(OBJ)/Lista.o $(SRC)/Lista.cpp -I$(INCLUDE) -std=c++11
 
 
 ################################################################################

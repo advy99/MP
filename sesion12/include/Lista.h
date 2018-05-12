@@ -30,6 +30,7 @@ class Lista {
 	public:
 
 		Lista ();
+		Lista (const int );
 		Lista (const char * nombre);
 		Lista (int tam, TipoBase valor);
 
@@ -63,6 +64,7 @@ class Lista {
 		Lista & operator = (const Lista & otra);
 		Lista & operator = (const TipoBase valor);
 		TipoBase & operator [] (const int pos);
+		TipoBase operator [] (const int pos) const;
 
 		Lista & operator += (const TipoBase valor);
 		Lista & operator -= (const TipoBase valor);
