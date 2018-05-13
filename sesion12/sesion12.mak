@@ -20,6 +20,7 @@ all : inicio \
 		$(BIN)/VI_Demo-Lista-ES \
 		$(BIN)/VI_Demo-Matriz2D-ES \
 		$(BIN)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream \
+		$(BIN)/VI_Demo-ColeccionPuntos \
 		finalizado
 
 ################################################################################
@@ -118,6 +119,44 @@ $(OBJ)/Matriz2D_1_FicherosSinCabecera_sstream.o : \
 
 ################################################################################
 
+$(BIN)/VI_Demo-ColeccionPuntos : $(OBJ)/VI_Demo-ColeccionPuntos.o \
+                                 $(OBJ)/Util.o \
+											$(OBJ)/ColeccionPuntos2D.o \
+											$(OBJ)/Circunferencia.o \
+											$(OBJ)/Punto2D.o
+
+	g++ -o $(BIN)/VI_Demo-ColeccionPuntos $(OBJ)/VI_Demo-ColeccionPuntos.o \
+                                 $(OBJ)/Util.o \
+											$(OBJ)/ColeccionPuntos2D.o \
+											$(OBJ)/Circunferencia.o \
+											$(OBJ)/Punto2D.o
+
+$(OBJ)/VI_Demo-ColeccionPuntos.o : $(SRC)/VI_Demo-ColeccionPuntos.cpp \
+                                   $(INCLUDE)/Util.h \
+											  $(INCLUDE)/Punto2D.h \
+											  $(INCLUDE)/ColeccionPuntos2D.h \
+											  $(INCLUDE)/Circunferencia.h
+	g++ -c -o $(OBJ)/VI_Demo-ColeccionPuntos.o \
+	                           $(SRC)/VI_Demo-ColeccionPuntos.cpp \
+										-I$(INCLUDE) -std=c++11
+
+$(OBJ)/Circunferencia.o : $(SRC)/Circunferencia.cpp $(INCLUDE)/Circunferencia.h
+	g++ -c -o $(OBJ)/Circunferencia.o $(SRC)/Circunferencia.cpp \
+	       -I$(INCLUDE) -std=c++11
+
+
+$(OBJ)/Punto2D.o : $(SRC)/Punto2D.cpp $(INCLUDE)/Punto2D.h
+	g++ -c -o $(OBJ)/Punto2D.o $(SRC)/Punto2D.cpp -I$(INCLUDE) -std=c++11
+
+
+$(OBJ)/ColeccionPuntos2D.o : $(SRC)/ColeccionPuntos2D.cpp \
+                             $(INCLUDE)/Util.h \
+									  $(INCLUDE)/ColeccionPuntos2D.h \
+									  $(INCLUDE)/Punto2D.h
+	g++ -c -o $(OBJ)/ColeccionPuntos2D.o $(SRC)/ColeccionPuntos2D.cpp \
+                             -I$(INCLUDE) -std=c++11
+
+################################################################################
 inicio :
 	@echo 
 	@echo 	"/************************************************************/"

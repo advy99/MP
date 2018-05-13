@@ -17,6 +17,7 @@
 #include <string>
 
 #include "Util.h"
+#include <cmath>
 
 using namespace std;
 
@@ -98,3 +99,10 @@ int LeeNumeroEntero (const char * msg)
 
 /***************************************************************************/
 /***************************************************************************/
+
+const double PRECISION_SON_IGUALES = 1e-6;
+
+bool SonIguales(double uno, double otro) 
+{
+	return (fabs(uno-otro) <= PRECISION_SON_IGUALES);
+}

@@ -31,6 +31,7 @@ bool ExisteFichero (const string & nombre);
 double LeeNumeroReal (const char * msg);
 int LeeNumeroEntero (const char * msg);
 
+bool SonIguales(double uno, double otro);
 /***************************************************************************/
 
 #endif
