@@ -27,23 +27,35 @@ Lista :: Lista (const int num_nodos)
 	ReservarMemoria(tamanio);
 }
 
+/***********************************************************/
+/**                                                       **/
+/**   Contructor con un parametro, nombre de un fichero   **/
+/**                                                       **/
+/**   Crea una lista con todos los elementos del fichero  **/
+/**                                                       **/
+/***********************************************************/
+
 Lista :: Lista (const char * fichero){
+	//Comenzamos con la lista vacia
 	tamanio = 0;
 	primero = 0;
 
 	
-
+	//Si existe el fichero a leer
 	if (ExisteFichero(fichero)){
 		ifstream fi;
 
 		TipoBase valor;
 
+		//Abrimos el fichero
 		fi.open(fichero);
 
+		//Leemos valor a valor, y lo añadimos a la lista
 		while (fi >> valor){
 			*this += valor;
 		}
 
+		//Cerramos el fichero
 		fi.close();
 
 	}
@@ -248,16 +260,30 @@ void  Lista :: Borrar ( const int pos_borrar){
 
 /******************************************************************************/
 
+/*************************************************************/
+/**                                                         **/
+/**   EscribirLista: Escribe los datos de la lista en un    **/
+/**                 fichero                                 **/
+/**                                                         **/
+/**   Recibe: Cadena clasica con la ruta al fichero         **/
+/**                                                         **/
+/*************************************************************/
+
 void Lista :: EscribirLista (const char * nombre) const{
 	ofstream fo;
 
+	//Abrimos el fichero
 	fo.open(nombre);
 
+	//Comprobamos que no hay ningun error
 	if( !fo.fail() ){
+		//Mandamos elemento a elemento, cada uno de los valores, al flujo de 
+		//salida
 		for (int i = 1; i <= tamanio; i++){
 			fo << (*this)[i] << endl;
 		}
 
+		//Cerramos el fichero
 		fo.close();
 	}
 
@@ -265,9 +291,20 @@ void Lista :: EscribirLista (const char * nombre) const{
 
 /******************************************************************************/
 
+/*************************************************************/
+/**                                                         **/
+/**   LeerLista: Lee los valores de una lista desde un      **/
+/**             fichero                                     **/
+/**                                                         **/
+/**   Recibe: Cadena clasica con la ruta al fichero         **/
+/**                                                         **/
+/*************************************************************/
+
 void Lista :: LeerLista (const char * nombre){
+	//Crea una nueva lista con los datos del fichero
 	Lista l(nombre);
 
+	//Le asigna esa nueva lista a la actual
 	*this = l;
 }
 

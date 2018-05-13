@@ -108,24 +108,38 @@ Matriz2D::Matriz2D(const Matriz2D & otra){
 	CopiarDatos(otra);
 }
 
+/*************************************************************/
+/**                                                         **/
+/**   Constructor con un parametro, nombre de fichero del   **/
+/**  que tomar los datos                                    **/
+/**                                                         **/
+/*************************************************************/
+
 
 Matriz2D :: Matriz2D (const char * nombre){
-	
+
+
+	//Comenzamos con la matriz vacia
 	filas = 0;
 	columnas = 0;
 	datos = 0;
 
+	//Si tenemos de donde coger los datos
 	if (ExisteFichero(nombre)){
 		ifstream fi;
 
+		//Abrimos el fichero
 		fi.open(nombre);
 
+		//Leemos las filas y las columnas, son los dos primeros datos
 		fi >> filas;
 		fi >> columnas;
 
+		//Reservamos memoria para ese tamaño, e inicializamos a NULO
 		ReservarMemoria(filas, columnas);
 		Inicializar(NULO);
 
+		//Rellenamos la matriz de datos obtenidos del flujo del fichero
 		for (int i = 0; i < filas; i++){
 			for (int j = 0; j < columnas; j++){
 				fi >> (*this)(i,j);
@@ -283,16 +297,29 @@ void Matriz2D::RellenarAleatorios(const int min, const int max){
 
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   EscribirMatriz2D: Escribe la matriz en un fichero     **/
+/**                                                         **/
+/**   Recibe: Fichero donde va a escribir la matriz         **/
+/**                                                         **/
+/*************************************************************/
+
 
 
 void Matriz2D :: EscribirMatriz2D (const char * nombre) const{
 	ofstream fo;
 
+	//Abrimos el fichero, y comprobamos que no hay errores
 	fo.open(nombre);
 
 	if (!fo.fail()){
+		//Al principio mandamos a la salida las filas y las columnas
 		fo << filas << " " << columnas << endl;
 
+		//Mandamos a la salida elemento a elemento la matriz
 		for (int i = 0; i < filas; i++){
 			for (int j = 0; j < columnas; j++){
 				fo << (*this)(i,j) << " ";
@@ -300,16 +327,30 @@ void Matriz2D :: EscribirMatriz2D (const char * nombre) const{
 			fo << endl;
 		}
 
+		//Cerramos el flujo al fichero
 		fo.close();
 	}
 
 }
 
+/******************************************************************************/
+
+/*************************************************************/
+/**                                                         **/
+/**   LeerMatriz: Lee una matriz desde un fichero           **/
+/**                                                         **/
+/**   Recibe: Fichero desde el que leer                     **/
+/**                                                         **/
+/*************************************************************/
+
+
 
 void Matriz2D :: LeerMatriz2D (const char * nombre){
 
+	//Creamos una matriz a partir del fichero;
 	Matriz2D m(nombre);
 
+	//Asignamos esa nueva matriz a la actual
 	(*this) = m;
 }
 

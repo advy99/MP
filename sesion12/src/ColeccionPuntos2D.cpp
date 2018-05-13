@@ -23,17 +23,22 @@ ColeccionPuntos2D :: ColeccionPuntos2D (const char * nombre){
 	const string INICIO = "PUNTOS";
 	ifstream fi;
 
+	//Si existe el fichero, lo abrimos
 	if (ExisteFichero(nombre)){
 		fi.open(nombre);
 
 		string linea;
 
+		//Leemos la primera linea
 		getline(fi, linea);
 
+		//Comprobamos que es correcta
 		if (linea == INICIO){
+			//Leemos la segunda linea
 			getline(fi, linea);
 
 
+			//Saltamos las lineas de comentarios
 			while (!fi.eof() && linea[0] == '#')
 				getline(fi, linea);
 
@@ -43,8 +48,11 @@ ColeccionPuntos2D :: ColeccionPuntos2D (const char * nombre){
 				iss.str(linea);
 				double x, y;
 
+				//Si es capaz de encontrar un valor, el otro tiene que estar
+				//en la linea
 				if (iss >> x){
 					iss >> y;
+					//Creamos un punto a partir de esos valores, y lo añadimos
 					Punto2D nuevo_punto(x,y);
 					Aniade(nuevo_punto);
 				}
@@ -55,7 +63,7 @@ ColeccionPuntos2D :: ColeccionPuntos2D (const char * nombre){
 
 
 		}
-
+		//Cerramos el fichero
 		fi.close();
 	}
 	
