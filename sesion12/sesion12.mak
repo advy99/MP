@@ -21,6 +21,7 @@ all : inicio \
 		$(BIN)/VI_Demo-Matriz2D-ES \
 		$(BIN)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream \
 		$(BIN)/VI_Demo-ColeccionPuntos \
+		$(BIN)/InfoPGM \
 		finalizado
 
 ################################################################################
@@ -155,6 +156,16 @@ $(OBJ)/ColeccionPuntos2D.o : $(SRC)/ColeccionPuntos2D.cpp \
 									  $(INCLUDE)/Punto2D.h
 	g++ -c -o $(OBJ)/ColeccionPuntos2D.o $(SRC)/ColeccionPuntos2D.cpp \
                              -I$(INCLUDE) -std=c++11
+
+################################################################################
+
+$(BIN)/InfoPGM : $(OBJ)/InfoPGM.o $(OBJ)/Util.o
+	g++ -o $(BIN)/InfoPGM $(OBJ)/InfoPGM.o $(OBJ)/Util.o
+
+
+$(OBJ)/InfoPGM.o : $(SRC)/InfoPGM.cpp $(INCLUDE)/Util.h
+	g++ -c -o $(OBJ)/InfoPGM.o $(SRC)/InfoPGM.cpp -I$(INCLUDE) -std=c++11
+
 
 ################################################################################
 inicio :
