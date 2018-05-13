@@ -339,7 +339,7 @@ void Matriz2D :: EscribirMatriz2D (const char * nombre) const{
 
 		for (int i = 0; i < filas; i++){
 			for (int j = 0; j < columnas; j++){
-				fo << "\t" << (*this)(i,j) << "\t";
+				fo << (*this)(i,j) << " ";
 			}
 			fo << endl;
 		}
