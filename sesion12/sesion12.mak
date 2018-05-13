@@ -19,6 +19,7 @@ all : inicio \
 		$(BIN)/MezclaFichero \
 		$(BIN)/VI_Demo-Lista-ES \
 		$(BIN)/VI_Demo-Matriz2D-ES \
+		$(BIN)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream \
 		finalizado
 
 ################################################################################
@@ -87,6 +88,33 @@ $(OBJ)/GeneradorAleatorioEnteros.o : $(SRC)/GeneradorAleatorioEnteros.cpp \
 
 
 
+################################################################################
+
+$(BIN)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream : \
+      $(OBJ)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream.o \
+		$(OBJ)/Matriz2D_1_FicherosSinCabecera_sstream.o \
+		$(OBJ)/Util.o $(OBJ)/GeneradorAleatorioEnteros.o
+	g++ -o $(BIN)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream \
+          $(OBJ)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream.o \
+    	    $(OBJ)/Matriz2D_1_FicherosSinCabecera_sstream.o \
+		    $(OBJ)/Util.o $(OBJ)/GeneradorAleatorioEnteros.o
+
+$(OBJ)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream.o : \
+      $(SRC)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream.cpp \
+		$(INCLUDE)/Matriz2D_1_FicherosSinCabecera_sstream.h
+	g++ -c -o $(OBJ)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream.o \
+             $(SRC)/VI_Demo-Matriz2D-ES_FicherosSinCabecera_sstream.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+$(OBJ)/Matriz2D_1_FicherosSinCabecera_sstream.o : \
+      $(SRC)/Matriz2D_1_FicherosSinCabecera_sstream.cpp \
+		$(INCLUDE)/Matriz2D_1_FicherosSinCabecera_sstream.h \
+		$(INCLUDE)/TipoBase.h $(INCLUDE)/GeneradorAleatorioEnteros.h \
+		$(INCLUDE)/Util.h
+
+	g++ -c -o $(OBJ)/Matriz2D_1_FicherosSinCabecera_sstream.o \
+             $(SRC)/Matriz2D_1_FicherosSinCabecera_sstream.cpp \
+		       -I$(INCLUDE) -std=c++11
 
 ################################################################################
 
