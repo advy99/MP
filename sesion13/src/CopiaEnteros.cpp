@@ -46,6 +46,7 @@ int main(int argc, char * argv[]){
 
 	int valor;
 
+	//Leemos valor y mandamos a salida
 	while (fi >> valor){
 		fo << valor << " ";
 	}

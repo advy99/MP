@@ -30,6 +30,7 @@ int main(int argc, char * argv[]){
 		exit (1);
 	}
 
+	//El tamaño del buffer sera el tamaño de cada parte
 	int tam_bytes = atoi(argv[2]);
 
 	char buffer [tam_bytes];
@@ -45,35 +46,39 @@ int main(int argc, char * argv[]){
 
 	fi.open(argv[1], ios::binary);
 
+	//Comenzamos a leer en el buffer
 	while(fi.read(buffer, tam_bytes)){
 		
+		//Creamos el nombre de cada parte
 		nombre_parte << argv[1] << '_' << setfill('0') << setw(3) << contador;
 
 		nombre = nombre_parte.str();
 
+		//"Abrimos" (creamos), cada parte
 		fo.open(nombre, ios::binary);
 
-
+		//Copiamos el contenido del buffer en esa parte, y cerramos el fichero
 		fo.write(buffer, tam_bytes);
 
 		fo.close();
 
-		cout << contador << endl;
-
+		//Sumamos 1 al contador, y reseteamos el nombre
 		contador++;
-
-
 		nombre_parte.str("");
 		nombre_parte.clear();
 
 	}
 
+	//Creamos la ultima parte, de tamaño 0 < parte < tam_buffer
 	nombre_parte << argv[1] << '_' << setfill('0') << setw(3) << contador;
 
 	nombre = nombre_parte.str();
 
+	//Escribimos la ultima parte
 	fo.open(nombre, ios::binary);
 
+	//El tamaño de esta parte nos lo da gcount, ya que no ha sido capaz de 
+	//leer el buffer completo
 	fo.write(buffer, fi.gcount());
 
 	fo.close();
@@ -83,12 +88,14 @@ int main(int argc, char * argv[]){
 	nombre_parte.str("");
 	nombre_parte.clear();
 
+	//Creamos el archivo de control
 	nombre_parte << '.' << argv[1] << ".ctrl";
 
 	nombre = nombre_parte.str();
 
 	fo.open(nombre);
 
+	//Mandamos el nombre del archivo y el numero de partes al archivo de control
 	fo << argv[1] << endl << contador << endl;
 
 	fo.close();

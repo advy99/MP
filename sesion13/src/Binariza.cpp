@@ -49,6 +49,7 @@ int main(int argc, char * argv[]){
 		exit(1);
 	}
 
+	//Lectura de cabecera, se duplica en el archivo final
 	getline(fi, tipo_archivo);
 
 	while(!fi.eof() && (tipo_archivo[0] == '#' || tipo_archivo.empty())){
@@ -70,29 +71,47 @@ int main(int argc, char * argv[]){
 	fi >> valor_gris;
 	fo << valor_gris << endl;
 
+	//Guardamos la posicion donde acaba la cabecera
 	int pos_inicio = fi.tellg();
 
+	//Cerramos los archivos
 	fi.close();
 	fo.close();
 
+	//Abrimos los archivos, en modo binario
+
 	fi.open(argv[1],  ios::binary);
+
+	//El de salida, lo abrimos para añadir, colocandose al final del documento
+	//es decir, el final de la cabecera
 	fo.open(argv[3],  ios::app|ios::binary);
 
+	//Avanzamos hasta pos_inicio en el original, que es donde acaba la cabecera
 	fi.seekg(pos_inicio);
 
+	//Calculamos el tamaño del buffer, es decir, cuantos bytes ocupa un pixel
+	//(en principio, usando imagenes PGM de 255 niveles, se usara 1)
 	int tam_buffer = log2(valor_gris + 1) / 8;
 
 	char buffer[tam_buffer];
 
 	int valor_pixel;
 
+	//Comenzamos a leer
 	while (fi.read(reinterpret_cast<char*>(buffer), tam_buffer)){
+		//Calculamos el valor del pixel actual
+		//NOTA
+		//  Usando imagenes PGM de 255 niveles de gris, podriamos usar un unico
+		//char, y este contendria toda la informacion, se realiza de esta forma
+		//por si varia el nivel de gris de la imagen
 		valor_pixel = 0;
 		for(int i = 0; i < tam_buffer; i++){
 			valor_pixel += buffer[i];
 		}
 
-		if (valor_pixel < umbral){
+		// Si esta por debajo del umbral se establece a 0 (negro), si esta
+		//por encima a blanco
+		if (valor_pixel <= umbral){
 			for(int i = 0; i < tam_buffer; i++){
 				buffer[i] = 0;
 

@@ -52,6 +52,8 @@ int main(int argc, char * argv[]){
 	int valor;
 	string s;
 
+	//Leemos un valor, lo asignamos al string y copiamos esa string en el buffer
+	//mandamos el buffer a la salida
 	while (fi >> valor){
 		s = valor;
 		strcpy(buffer, s.c_str());
