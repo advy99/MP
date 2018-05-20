@@ -3,7 +3,7 @@
 /**  Autor : Antonio David Villegas Yeguas                  **/
 /**  1GII - Universidad de Granada                          **/
 /**  Metodologia de la Programacion 2017/18                 **/
-/**  Sesion 13 - Ejercicio 11 - Binariza imagen             **/
+/**  Sesion 13 - Ejercicio 12 - Aumenta contraste           **/
 /**                                                         **/
 /*************************************************************/
 
@@ -21,20 +21,18 @@ int main(int argc, char * argv[]){
 
 	const string PGM = "P5";
 	
-	if (argc != 4){
+	if (argc != 3){
 		cerr << "ERROR: Numero erroneo de argumentos" << endl
-			  << "Uso : " << argv[1] << " <imagen.pgm> <umbral> <imagen_final.pgm>"
+			  << "Uso : " << argv[1] << " <imagen.pgm> <imagen_final.pgm>"
 			  << endl;
 		exit(1);
 	}
-
-	int umbral = atoi(argv[2]);
 
 	ifstream fi;
 	ofstream fo;
 
 	fi.open(argv[1]);
-	fo.open(argv[3]);
+	fo.open(argv[2]);
 
 	string tipo_archivo;
 
@@ -75,8 +73,9 @@ int main(int argc, char * argv[]){
 	fi.close();
 	fo.close();
 
+
 	fi.open(argv[1],  ios::binary);
-	fo.open(argv[3],  ios::app|ios::binary);
+	fo.open(argv[2],  ios::app|ios::binary);
 
 	fi.seekg(pos_inicio);
 
@@ -87,22 +86,9 @@ int main(int argc, char * argv[]){
 	int valor_pixel;
 
 	while (fi.read(reinterpret_cast<char*>(buffer), tam_buffer)){
-		valor_pixel = 0;
+
 		for(int i = 0; i < tam_buffer; i++){
-			valor_pixel += buffer[i];
-		}
-
-		if (valor_pixel < umbral){
-			for(int i = 0; i < tam_buffer; i++){
-				buffer[i] = 0;
-
-			}
-		}
-		else{
-			for(int i = 0; i < tam_buffer; i++){
-				buffer[i] = 255;
-
-			}
+			buffer[i] = valor_gris / buffer[i];			
 		}
 
 		fo.write(reinterpret_cast<char*>(buffer), tam_buffer);
@@ -111,5 +97,8 @@ int main(int argc, char * argv[]){
 	fi.close();
 	fo.close();
 
+
+
 	return 0;
+
 }

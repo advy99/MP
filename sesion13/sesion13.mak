@@ -20,6 +20,7 @@ all : inicio \
 		$(BIN)/ParteFicheroPorNumBytes \
 		$(BIN)/Reconstruye \
 		$(BIN)/Binariza \
+		$(BIN)/AumentaContraste \
 		finalizado
 
 
@@ -89,6 +90,20 @@ $(OBJ)/Binariza.o : $(SRC)/Binariza.cpp \
 				 -I$(INCLUDE) -std=c++11
 
 ################################################################################
+
+$(BIN)/AumentaContraste : $(OBJ)/AumentaContraste.o $(OBJ)/Util.o
+	g++ -o $(BIN)/AumentaContraste $(OBJ)/AumentaContraste.o \
+	       $(OBJ)/Util.o
+
+
+$(OBJ)/AumentaContraste.o : $(SRC)/AumentaContraste.cpp \
+                    $(INCLUDE)/Util.h
+	g++ -c -o $(OBJ)/AumentaContraste.o \
+	          $(SRC)/AumentaContraste.cpp \
+				 -I$(INCLUDE) -std=c++11
+
+################################################################################
+
 
 inicio :
 	@echo 
