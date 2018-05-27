@@ -25,7 +25,9 @@ using namespace std;
 int main(int argc, char * argv[]){
 	if (argc != 3){
 		cerr << "ERROR: Numero de argumentos." << endl
-		     << "Uso: " << argv[0] << " <archivo_bytes> <img_final.pgm> "
+		     << "Uso: " << argv[0] << " <archivo_bytes> <img_final.pgm> " << endl
+			  << "IMPORTANTE: El primer archivo no contiene informacion de "
+			  << "cabecera sobre el PGM. (Ver: bin/Eliminar_Cabecera_PGM ) "
 			  << endl;
 
 		exit(1);
