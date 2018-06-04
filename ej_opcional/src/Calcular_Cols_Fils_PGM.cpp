@@ -159,6 +159,8 @@ int main(int argc, char * argv[]){
 	fo.close();
 
 
+	delete [] imagen;
+
 	return 0;
 	
 
