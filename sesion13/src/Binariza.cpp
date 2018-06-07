@@ -23,7 +23,7 @@ int main(int argc, char * argv[]){
 	
 	if (argc != 4){
 		cerr << "ERROR: Numero erroneo de argumentos" << endl
-			  << "Uso : " << argv[1] << " <imagen.pgm> <umbral> <imagen_final.pgm>"
+			  << "Uso : <imagen.pgm> <umbral> <imagen_final.pgm>"
 			  << endl;
 		exit(1);
 	}
@@ -34,100 +34,68 @@ int main(int argc, char * argv[]){
 	ofstream fo;
 
 	fi.open(argv[1]);
-	fo.open(argv[3]);
 
-	string tipo_archivo;
+	string cad, cabecera;
 
-	fi >> tipo_archivo;
-	fo << tipo_archivo;
+	fi >> cad;
+	cabecera = cad;
 
-	if (tipo_archivo != PGM){
+	if (cad != PGM){
 
 		fi.close();
 
 		cerr << "ERROR: No ha introducido un archivo PGM" << endl;
-		exit(1);
+		exit(2);
 	}
 
 	//Lectura de cabecera, se duplica en el archivo final
-	getline(fi, tipo_archivo);
+	getline(fi, cad);
+	
 
-	while(!fi.eof() && (tipo_archivo[0] == '#' || tipo_archivo.empty())){
-		fo << tipo_archivo << endl;
-		getline(fi, tipo_archivo);
+	while(!fi.eof() && (cad[0] == '#' || cad.empty())){
+		getline(fi, cad);
 	}	
 
-	int alto, ancho, valor_gris;
+	int columnas, filas, valor_gris;
 
 	istringstream iss;
 
-	iss.str(tipo_archivo);
+	iss.str(cad);
 
-	iss >> alto;
-	iss >> ancho;
-	fo << alto << " " << ancho << endl;
-
+	iss >> columnas;
+	iss >> filas;
 
 	fi >> valor_gris;
-	fo << valor_gris << endl;
 
-	//Guardamos la posicion donde acaba la cabecera
-	int pos_inicio = fi.tellg();
+	const int TAM_BUFFER = filas * columnas;
 
-	//Cerramos los archivos
+	unsigned char buffer [TAM_BUFFER];
+
+	fi.read( (char *) buffer, TAM_BUFFER );
 	fi.close();
-	fo.close();
 
-	//Abrimos los archivos, en modo binario
-
-	fi.open(argv[1],  ios::binary);
-
-	//El de salida, lo abrimos para añadir, colocandose al final del documento
-	//es decir, el final de la cabecera
-	fo.open(argv[3],  ios::app|ios::binary);
-
-	//Avanzamos hasta pos_inicio en el original, que es donde acaba la cabecera
-	fi.seekg(pos_inicio);
-
-	//Calculamos el tamaño del buffer, es decir, cuantos bytes ocupa un pixel
-	//(en principio, usando imagenes PGM de 255 niveles, se usara 1)
-	int tam_buffer = log2(valor_gris + 1) / 8;
-
-	char buffer[tam_buffer];
-
-	int valor_pixel;
-
-	//Comenzamos a leer
-	while (fi.read(reinterpret_cast<char*>(buffer), tam_buffer)){
-		//Calculamos el valor del pixel actual
-		//NOTA
-		//  Usando imagenes PGM de 255 niveles de gris, podriamos usar un unico
-		//char, y este contendria toda la informacion, se realiza de esta forma
-		//por si varia el nivel de gris de la imagen
-		valor_pixel = 0;
-		for(int i = 0; i < tam_buffer; i++){
-			valor_pixel += buffer[i];
-		}
-
-		// Si esta por debajo del umbral se establece a 0 (negro), si esta
-		//por encima a blanco
-		if (valor_pixel <= umbral){
-			for(int i = 0; i < tam_buffer; i++){
-				buffer[i] = 0;
-
-			}
-		}
-		else{
-			for(int i = 0; i < tam_buffer; i++){
-				buffer[i] = 255;
-
-			}
-		}
-
-		fo.write(reinterpret_cast<char*>(buffer), tam_buffer);
+	for (int i = 0; i < TAM_BUFFER; i++){
+		if ( (int) buffer[i] > umbral )
+			buffer[i] = (unsigned char) 255;
+		else
+			buffer[i] = (unsigned char) 0;
 	}
 
-	fi.close();
+
+	fo.open(argv[3]);
+
+	if (fo.fail()){
+		cerr << "ERROR: No se ha podido crear " << argv[3] << endl;
+		exit(4);
+	}
+
+	fo << cabecera << endl;
+	fo << "# imagen binarizada" << endl;
+	fo << columnas << " " << filas << endl;
+	fo << valor_gris << endl;
+	
+	fo.write( (char *) buffer, TAM_BUFFER );
+
 	fo.close();
 
 	return 0;

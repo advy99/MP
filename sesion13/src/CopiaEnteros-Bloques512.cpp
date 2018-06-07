@@ -39,9 +39,14 @@ int main(int argc, char * argv[]){
 			exit(1);
 	}
 
-	const int TAM_BUFFER = 512;
+	const int TAM_ENTERO = sizeof(int);
+	const int TAM_BLOQUE = 512;
 
-	char buffer [TAM_BUFFER];
+	const int TAM_BUFFER = TAM_BLOQUE / TAM_ENTERO;
+
+	int buffer [TAM_BUFFER];
+	int leidos = 0;;
+
 
 	ifstream fi;
 	ofstream fo;
@@ -49,16 +54,20 @@ int main(int argc, char * argv[]){
 	fi.open (argv[1]);
 	fo.open (argv[2], ios::binary);
 
-	int valor;
-	string s;
+	while ( !fi.eof() ){
+		fi >> buffer[leidos];
 
-	//Leemos un valor, lo asignamos al string y copiamos esa string en el buffer
-	//mandamos el buffer a la salida
-	while (fi >> valor){
-		s = valor;
-		strcpy(buffer, s.c_str());
-		fo.write (buffer, TAM_BUFFER);
+		leidos++;
+
+		if(leidos == TAM_BUFFER){
+			fo.write ( (char *) buffer, TAM_BLOQUE );
+
+			leidos = 0;
+		}
 	}
+
+	fo.write ( (char *) buffer, leidos * TAM_ENTERO );
+	
 	
 	fi.close();
 	fo.close();

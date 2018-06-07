@@ -48,7 +48,7 @@ int main(int argc, char * argv[]){
 
 	//Leemos valor y mandamos a salida
 	while (fi >> valor){
-		fo << valor << " ";
+		fo.write( (char *) &valor, sizeof(int) );
 	}
 
 	fi.close();
