@@ -28,77 +28,77 @@ int main(int argc, char * argv[]){
 		exit(1);
 	}
 
+
 	ifstream fi;
 	ofstream fo;
 
 	fi.open(argv[1]);
-	fo.open(argv[2]);
 
-	string tipo_archivo;
+	string cad, cabecera;
 
-	fi >> tipo_archivo;
-	fo << tipo_archivo;
+	fi >> cad;
+	cabecera = cad;
 
-	if (tipo_archivo != PGM){
+	if (cad != PGM){
 
 		fi.close();
 
 		cerr << "ERROR: No ha introducido un archivo PGM" << endl;
-		exit(1);
+		exit(2);
 	}
 
-	getline(fi, tipo_archivo);
+	//Lectura de cabecera, se duplica en el archivo final
+	getline(fi, cad);
+	
 
-	while(!fi.eof() && (tipo_archivo[0] == '#' || tipo_archivo.empty())){
-		fo << tipo_archivo << endl;
-		getline(fi, tipo_archivo);
+	while(!fi.eof() && (cad[0] == '#' || cad.empty())){
+		getline(fi, cad);
 	}	
 
-	int alto, ancho, valor_gris;
+	int columnas, filas, valor_gris;
 
 	istringstream iss;
 
-	iss.str(tipo_archivo);
+	iss.str(cad);
 
-	iss >> alto;
-	iss >> ancho;
-	fo << alto << " " << ancho << endl;
-
+	iss >> columnas;
+	iss >> filas;
 
 	fi >> valor_gris;
-	fo << valor_gris << endl;
 
-	int pos_inicio = fi.tellg();
+	const int TAM_BUFFER = filas * columnas;
 
+	unsigned char buffer [TAM_BUFFER];
+
+	fi.read( (char *) buffer, TAM_BUFFER );
 	fi.close();
-	fo.close();
 
-
-	fi.open(argv[1],  ios::binary);
-	fo.open(argv[2],  ios::app|ios::binary);
-
-	fi.seekg(pos_inicio);
-
-	int tam_buffer = log2(valor_gris + 1) / 8;
-
-	char buffer[tam_buffer];
-
-	int valor_pixel;
-
-	while (fi.read(reinterpret_cast<char*>(buffer), tam_buffer)){
-
-		for(int i = 0; i < tam_buffer; i++){
-			buffer[i] = valor_gris / buffer[i];			
-		}
-
-		fo.write(reinterpret_cast<char*>(buffer), tam_buffer);
+	for (int i = 0; i < TAM_BUFFER; i++){
+		if ( (int) buffer[i] > umbral )
+			buffer[i] = (unsigned char) 255;
+		else
+			buffer[i] = (unsigned char) 0;
 	}
 
-	fi.close();
+
+	fo.open(argv[3]);
+
+	if (fo.fail()){
+		cerr << "ERROR: No se ha podido crear " << argv[2] << endl;
+		exit(4);
+	}
+
+	fo << cabecera << endl;
+	fo << "# imagen con contraste ampliado" << endl;
+	fo << columnas << " " << filas << endl;
+	fo << valor_gris << endl;
+	
+	fo.write( (char *) buffer, TAM_BUFFER );
+
 	fo.close();
 
-
-
 	return 0;
+
+
 
 }
