@@ -35,6 +35,7 @@ $(OBJ)/RedCiudades.o : $(SRC)/RedCiudades.cpp $(INCLUDE)/RedCiudades.h
 ################################################################################
 
 inicio :
+	-mkdir include src bin obj lib
 	@echo -e
 	@echo -e	"/************************************************************/"
 	@echo -e	"/**                                                        **/"
