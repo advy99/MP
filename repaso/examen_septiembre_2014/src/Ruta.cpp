@@ -66,7 +66,9 @@ bool Ruta :: LeerRuta(const char * fichero){
 		else{
 			exito = false;
 		}
-	
+
+		fi.close();
+
 	}
 	else{
 		exito = false;
@@ -87,6 +89,8 @@ bool Ruta :: EscribirRuta(const char * fichero){
 	if (!fo.fail()){
 		fo << "RUTA-MP" << endl;
 		fo << (*this);
+
+		fo.close();
 	}
 	else{
 		exito = false;

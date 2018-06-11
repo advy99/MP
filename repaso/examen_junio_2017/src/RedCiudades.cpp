@@ -139,6 +139,7 @@ void RedCiudades :: EscribirRedCiudades(const char * fichero)const{
 	if (!fo.fail()){
 		fo << "RED" << endl;
 		fo << (*this);
+		fo.close();
 	}
 	else{
 		cerr << "ERROR: No se pudo crear " << fichero << endl; 
@@ -265,7 +266,7 @@ void RedCiudades :: LiberarMemoria(){
 
 		delete [] distancia;
 
-		
+		distancia = 0;
 	}
 
 	num_ciudades = 0;
